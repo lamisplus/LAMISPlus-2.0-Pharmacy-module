@@ -35,11 +35,13 @@ public class DrugDispenseService {
         //Optional<Drug> DrugOptional = drugDispenseRepository.findByDrugNameAndPatientIdAnd(drugOrder.getName(), UN_ARCHIVED);
         //if (DrugOptional.isPresent()) throw new RecordExistException(Drug.class, "Name", drugOrder.getName());
         List<DrugDispense> drugDispenseList = new ArrayList<>();
-        String drugPrescribedGroupId = UUID.randomUUID().toString();
         drugDispenseDTOS.forEach(drugDispense -> {
             if(drugDispense.getDrugOrderId() == null){
                 throw new EntityNotFoundException(DrugOrder.class, "DrugOrderId", "DrugOrderId");
             }
+            DrugDispense drugDispense1= drugDispenseMapper.toDrugDispense(drugDispense);
+            drugDispense1.setUuid(UUID.randomUUID().toString());
+
             drugDispenseList.add(drugDispenseMapper.toDrugDispense(drugDispense));
         });
         return drugDispenseRepository.saveAll(drugDispenseList);
