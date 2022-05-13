@@ -239,72 +239,63 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.8.0</version>
 				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.4</version>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.12.1</version>
-				<executions>
-					<execution>
-						<id>install node and yarn</id>
-						<goals>
-							<goal>install-node-and-yarn</goal>
-						</goals>
-						<configuration>
-							<nodeVersion>v16.13.2</nodeVersion>
-							<yarnVersion>v1.22.17</yarnVersion>
-						</configuration>
-					</execution>
-					<execution>
-						<id>yarn install</id>
-						<goals>
-							<goal>yarn</goal>
-						</goals>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>yarn run build</id>
-						<goals>
-							<goal>yarn</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<configuration>
-							<target>
-								<copy todir="${project.build.directory}/classes/views/static/patient">
-									<fileset dir="${project.basedir}/build"/>
-								</copy>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--			<plugin>-->
+			<!--				<groupId>org.springframework.boot</groupId>-->
+			<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+			<!--			</plugin>-->
+			<!--			<plugin>-->
+			<!--				<groupId>com.github.eirslett</groupId>-->
+			<!--				<artifactId>frontend-maven-plugin</artifactId>-->
+			<!--				<version>1.12.1</version>-->
+			<!--				<executions>-->
+			<!--					<execution>-->
+			<!--						<id>install node and npm</id>-->
+			<!--						<goals>-->
+			<!--							<goal>install-node-and-npm</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<nodeVersion>v16.13.2</nodeVersion>-->
+			<!--							<npmVersion>8.1.2</npmVersion>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--					<execution>-->
+			<!--						<id>npm install</id>-->
+			<!--						<goals>-->
+			<!--							<goal>npm</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<arguments>install</arguments>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--					<execution>-->
+			<!--						<id>npm run build</id>-->
+			<!--						<goals>-->
+			<!--							<goal>npm</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<arguments>run build</arguments>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--				</executions>-->
+			<!--			</plugin>-->
 		</plugins>
 	</build>
 </project>

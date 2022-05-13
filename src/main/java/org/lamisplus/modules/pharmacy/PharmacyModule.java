@@ -48,7 +48,7 @@ public class PharmacyModule extends AcrossModule {
 				getClass().getPackage().getName() +".service",
 				getClass().getPackage().getName() +".config",
 				getClass().getPackage().getName() +".domain",
-				getClass().getPackage().getName() +".domain.mapper",
+				//getClass().getPackage().getName() +".domain.mapper",
 				getClass().getPackage().getName() +".installers",
 				getClass().getPackage().getName() +".util",
 				getClass().getPackage().getName() +".repository"));

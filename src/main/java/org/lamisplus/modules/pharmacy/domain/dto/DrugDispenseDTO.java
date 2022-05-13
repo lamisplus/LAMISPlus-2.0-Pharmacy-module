@@ -31,12 +31,5 @@ public class DrugDispenseDTO {
     private Integer duration;
     private String durationUnit;
     private String type;
-
-    //Patient details
-    private String patientFirstName;
-    private String patientLastName;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate PatientDob;
-    private String patientHospitalNumber;
     private Object otherDetails;
 }
