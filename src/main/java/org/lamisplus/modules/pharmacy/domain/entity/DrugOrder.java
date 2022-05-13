@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.lamisplus.modules.base.security.SecurityUtils;
@@ -15,6 +16,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "drug_order")
@@ -64,7 +66,7 @@ public class DrugOrder extends JsonBEntity {
     private String createdBy = SecurityUtils.getCurrentUserLogin().orElse("");
 
     @Basic
-    @Column(name = "date_created")
+    @Column(name = "date_created", updatable = false)
     @JsonIgnore
     @UpdateTimestamp
     private LocalDateTime dateCreated = LocalDateTime.now();
@@ -84,11 +86,11 @@ public class DrugOrder extends JsonBEntity {
     @JsonIgnore
     private Long organisationUnitId;
 
-    @OneToMany(mappedBy = "drugOrderByDrugOrderId")
+    @OneToOne(mappedBy = "drugOrderByDrugOrderId")
     @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private List<DrugDispense> drugDispensesById;
+    private DrugDispense drugDispensesById;
 
     @Type(type = "jsonb")
     @Basic(fetch = FetchType.LAZY)
@@ -97,4 +99,12 @@ public class DrugOrder extends JsonBEntity {
 
     @Transient
     private Integer status;
+
+    @PrePersist
+    private void setFields(){
+        if(StringUtils.isBlank(uuid)){
+            uuid = UUID.randomUUID().toString();
+        }
+        archived = 0;
+    }
 }

@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTOS;
+import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugDispenseDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
+import org.lamisplus.modules.pharmacy.service.DrugDispenseService;
 import org.lamisplus.modules.pharmacy.service.DrugOrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import java.util.Map;
 public class DrugOrderController {
 
     private final DrugOrderService drugOrderService;
+    private final DrugDispenseService drugDispenseService;
 
     @GetMapping
     public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrders() {

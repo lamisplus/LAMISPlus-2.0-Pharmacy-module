@@ -2,9 +2,7 @@ package org.lamisplus.modules.pharmacy.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTO;
-import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTO;
-import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTOS;
+import org.lamisplus.modules.pharmacy.domain.dto.*;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugDispense;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.service.DrugDispenseService;
@@ -32,8 +30,8 @@ public class DrugDispenseController {
     }
 
     @PostMapping
-    public ResponseEntity<List<DrugDispense>> save(@RequestBody List<DrugDispenseDTO> drugDispensesDTO) {
-        return ResponseEntity.ok(drugDispenseService.save(drugDispensesDTO));
+    public ResponseEntity<List<DrugDispense>> save(@RequestBody DrugDispenseDTOS drugDispenseDTOS) {
+        return ResponseEntity.ok(drugDispenseService.save(drugDispenseDTOS));
     }
 
     @PutMapping("/{id}")
@@ -45,5 +43,20 @@ public class DrugDispenseController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Integer> delete(@PathVariable Long id) {
         return ResponseEntity.ok(drugDispenseService.delete(id));
+    }
+
+    @GetMapping("/patients/{id}")
+    public ResponseEntity<List<PatientDrugDispenseDTO>> getAllDrugDispenseForAPatient(@PathVariable Long id) {
+        return ResponseEntity.ok(drugDispenseService.getAllDrugDispenseForAPatient(id));
+    }
+
+    @GetMapping("/patients/{id}/{drugOrderId}")
+    public ResponseEntity<List<PatientDrugDispenseDTO>> getAllDrugDispenseForAPatientByDrugOrderId(@PathVariable Long id, @PathVariable Long drugOrderId) {
+        return ResponseEntity.ok(drugDispenseService.getAllDrugDispenseForAPatientByDrugOrderId(id, drugOrderId));
+    }
+
+    @GetMapping("/drug-orders/{id}")
+    public ResponseEntity<List<PatientDrugDispenseDTO>> getAllDrugDispenseByDrugOrderId(@PathVariable Long id) {
+        return ResponseEntity.ok(drugDispenseService.getAllDrugDispenseByDrugOrderId(id));
     }
 }
