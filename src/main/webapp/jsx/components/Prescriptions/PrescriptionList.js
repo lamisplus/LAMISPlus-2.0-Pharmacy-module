@@ -6,7 +6,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
  import axios from "axios";
-import { url as baseUrl , PHARMACYSERVICECODE} from "../../api";
+import { url as baseUrl } from "../../../api";
 import {PrescriptionObj} from './PrescriptionObj';
 
 import { forwardRef } from 'react';
