@@ -14,6 +14,7 @@ import { Card, Row, Col,} from "react-bootstrap";
 import Button from "@material-ui/core/Button";
 import DrugRegimenOrder from './DrugPrecription'
 import RegimenPrescription from './RegimenPrescription'
+import RecentActivities  from './RecentActivities';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -110,63 +111,7 @@ const PatientSearch = (props) => {
         </Button>
         
             <br/><br/>
-            <MaterialTable
-                icons={tableIcons}
-                title="Drug Order History"
-                columns={[
-                { title: "Drug Name", field: "name" },
-                {
-                    title: "Date",
-                    field: "date",
-                },
-                { title: "Dosage", field: "dosage", filtering: false, },
-                {
-                    title: "Period",
-                    field: "period",
-                    filtering: false,
-                },
-                {
-                    title: "Status",
-                    field: "status",
-                    filtering: false,
-                },
-               
-                ]}
-                data={ prescriptions.map((row) => ({
-                name: <span>
-                            {row.regimen ?
-                                ( row.regimen && row.regimen.regimen ? row.regimen.regimen + ' - ': '')
-                                :
-                            <b> {row.drugs && row.drugs.length > 0 ? row.drugs.map(x=>x.drug.name).toString() : ''}</b>}
-                        </span>,
-                date: row.date_prescribed,
-                dosage: row.dosage_frequency || '-',
-                period: <span>
-                            {'Start at '} <b>{row.start_date || ''}</b> {' for '} <b>{row.duration}{' '}{row.duration_unit}</b>
-                        </span>,
-                status: <span> 
-                            <Badge  color="primary">{row.prescription_status ? DRUG_ORDER_STATUS.find(x => x.id == row.prescription_status).name : ''}</Badge>
-                            </span>,
-             
-                }))}
-                
-                        options={{
-                            headerStyle: {
-                                backgroundColor: "#9F9FA5",
-                                color: "#000",
-                            },
-                            searchFieldStyle: {
-                                width : '300%',
-                                margingLeft: '250px',
-                            },
-                            filtering: false,
-                            exportButton: false,
-                            searchFieldAlignment: 'left',
-                            pageSizeOptions:[10,20,100],
-                            pageSize:10,
-                            debounceInterval: 400
-                        }}
-            />
+        <RecentActivities />
       </Card.Body>
       </Card>
       </Col>

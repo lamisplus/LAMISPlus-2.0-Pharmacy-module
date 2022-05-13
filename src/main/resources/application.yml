@@ -63,8 +63,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: emeka
-    url: jdbc:postgresql://localhost:5432/amos-test
+    password: admin
+    url: jdbc:postgresql://localhost:5432/pharmacy_module
     hibernate:
       ddl-auto: none
       event.merge.enty_copy_observer: allow

@@ -29,10 +29,8 @@ const Home = () => {
                     onSelect={(k) => setKey(k)}
                     className="mb-3"
                     >
-                    <Tab eventKey="home" title="Checked In Patients">                   
-                     
-                    </Tab>
-                    <Tab eventKey="prescriptions" title="Prescriptions">                   
+                   
+                    <Tab eventKey="home" title="Prescriptions">                   
                       <PrescriptionList />
                     </Tab>
                     
