@@ -107,6 +107,9 @@ public class DrugDispenseService {
             patientDrugDispenseDTO.setPatientFirstName("Test");
             patientDrugDispenseDTO.setPatientLastName("Test");
             patientDrugDispenseDTO.setPatientHospitalNumber("ttttttt");
+            patientDrugDispenseDTO.setPatientAddress("White House Abj");
+            patientDrugDispenseDTO.setPatientGender("Female");
+            patientDrugDispenseDTO.setPatientPhoneNumber("09087654321");
 
             patientDrugDispenseDTO.setDrugDispenses(v.stream()
                     .map(drugDispense -> {
