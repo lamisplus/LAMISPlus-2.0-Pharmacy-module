@@ -2,11 +2,19 @@ package org.lamisplus.modules.pharmacy.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vladmihalcea.hibernate.type.array.IntArrayType;
+import com.vladmihalcea.hibernate.type.array.StringArrayType;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonNodeBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonNodeStringType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.lamisplus.modules.base.security.SecurityUtils;
 import org.springframework.data.annotation.CreatedBy;
@@ -18,11 +26,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@TypeDefs({
+        @TypeDef(name = "string-array", typeClass = StringArrayType.class),
+        @TypeDef(name = "int-array", typeClass = IntArrayType.class),
+        @TypeDef(name = "json", typeClass = JsonStringType.class),
+        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class),
+        @TypeDef(name = "jsonb-node", typeClass = JsonNodeBinaryType.class),
+        @TypeDef(name = "json-node", typeClass = JsonNodeStringType.class),
+})
 @Entity
 @Table(name = "drug_order")
 @Data
 @EqualsAndHashCode
-public class DrugOrder extends JsonBEntity {
+public class DrugOrder extends Audit {
     @Id
     @Column(name = "id", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,30 +78,6 @@ public class DrugOrder extends JsonBEntity {
     @JsonIgnore
     private Integer archived;
 
-    @CreatedBy
-    @Basic
-    @Column(name = "created_by", updatable = false)
-    @JsonIgnore
-    private String createdBy = SecurityUtils.getCurrentUserLogin().orElse("");
-
-    @Basic
-    @Column(name = "date_created", updatable = false)
-    @JsonIgnore
-    @UpdateTimestamp
-    private LocalDateTime dateCreated = LocalDateTime.now();
-
-    @LastModifiedBy
-    @Basic
-    @Column(name = "modified_by")
-    @JsonIgnore
-    private String modifiedBy = SecurityUtils.getCurrentUserLogin().orElse("");
-
-    @Basic
-    @Column(name = "date_modified")
-    @JsonIgnore
-    @UpdateTimestamp
-    private LocalDateTime dateModified = LocalDateTime.now();
-
     @JsonIgnore
     private Long organisationUnitId;
 
@@ -103,6 +95,10 @@ public class DrugOrder extends JsonBEntity {
     @Transient
     private Integer status;
 
+    @Transient
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
+    private LocalDateTime dateTimeDispensed;
+
     @PrePersist
     private void setFields(){
         if(StringUtils.isBlank(uuid)){
@@ -110,6 +106,4 @@ public class DrugOrder extends JsonBEntity {
         }
         archived = 0;
     }
-
-
 }

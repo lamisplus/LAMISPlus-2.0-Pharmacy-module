@@ -110,7 +110,10 @@ public class DrugOrderService {
                         patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
                         if(drugOrder.getDrugDispensesById() == null){
                             drugOrder.setStatus(0);
-                        } else {drugOrder.setStatus(1);}
+                        } else {
+                            drugOrder.setDateTimeDispensed(drugOrder.getDrugDispensesById().getDateTimeDispensed());
+                            drugOrder.setStatus(1);
+                        }
                         return drugOrder;
                     })
                     .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
