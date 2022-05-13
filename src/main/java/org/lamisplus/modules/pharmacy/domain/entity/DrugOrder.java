@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.lamisplus.modules.base.security.SecurityUtils;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,7 +20,7 @@ import java.util.List;
 @Table(name = "drug_order")
 @Data
 @EqualsAndHashCode
-public class DrugOrder {
+public class DrugOrder extends JsonBEntity {
     @Id
     @Column(name = "id", updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +34,8 @@ public class DrugOrder {
     private String drugName;
 
     //TODO: change to integer
-    private String dosageStrength;
-    private String dosageUnit;
+    private String dosageStrengthUnit;
+    //private String dosageUnit;
     private String comments;
     private String orderedBy;
 
@@ -88,4 +89,12 @@ public class DrugOrder {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<DrugDispense> drugDispensesById;
+
+    @Type(type = "jsonb")
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "other_details", columnDefinition = "jsonb")
+    private Object otherDetails;
+
+    @Transient
+    private Integer status;
 }

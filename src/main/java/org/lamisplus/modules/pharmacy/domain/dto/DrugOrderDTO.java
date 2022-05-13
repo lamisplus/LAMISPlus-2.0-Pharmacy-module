@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,7 +20,7 @@ public class DrugOrderDTO {
     private String drugName;
 
     //TODO: change to integer
-    private String dosageStrength;
+    private String dosageStrengthUnit;
     private String dosageUnit;
     private String comments;
     private String orderedBy;
@@ -40,4 +41,6 @@ public class DrugOrderDTO {
     private String type;
     @JsonIgnore
     private Integer archived;
+
+    private Object otherDetails;
 }

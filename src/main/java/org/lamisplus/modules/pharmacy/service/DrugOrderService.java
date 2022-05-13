@@ -6,15 +6,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundException;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTOS;
+import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugOrderMapper;
+import org.lamisplus.modules.pharmacy.repository.DrugDispenseRepository;
 import org.lamisplus.modules.pharmacy.repository.DrugOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 @Service
 @Transactional
@@ -24,7 +28,9 @@ public class DrugOrderService {
     private static final int ARCHIVED = 1;
     private static final int UN_ARCHIVED = 0;
     private final DrugOrderRepository drugOrderRepository;
+    private final DrugDispenseRepository drugDispenseRepository;
     private final DrugOrderMapper drugOrderMapper;
+    private String prescriptionGroupId = "";
 
 
     public List<DrugOrderDTO> getAllDrugOrders() {
@@ -65,5 +71,52 @@ public class DrugOrderService {
         //Archive also the drug dispense
         drugOrderRepository.save(drugOrder);
         return drugOrder.getArchived();
+    }
+
+    public List<PatientDrugOrderDTO> getAllDrugOrdersForPatients() {
+        Map<String, List<DrugOrder>> orders = drugOrderRepository
+                .findAllDrugOrderGroupByPrescriptionGroupIdOrderById()
+                .stream()
+                .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
+                .collect(groupingBy(DrugOrder::getPrescriptionGroupId));
+
+        return getPatientDrugOrders(orders);
+    }
+
+    public List<PatientDrugOrderDTO> getAllDrugOrdersForAPatient(Long patientId) {
+        Map<String, List<DrugOrder>> orders = drugOrderRepository
+                .findAllByPatientIdGroupByPrescriptionGroupIdOrderById(patientId)
+                .stream()
+                .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
+                .collect(groupingBy(DrugOrder::getPrescriptionGroupId));
+
+        return getPatientDrugOrders(orders);
+    }
+
+    private List<PatientDrugOrderDTO> getPatientDrugOrders(Map<String, List<DrugOrder>> drugOrderMap){
+        List<PatientDrugOrderDTO> patientDrugOrderDTOS = new ArrayList<>();
+        drugOrderMap.forEach((k,v) ->{
+            PatientDrugOrderDTO patientDrugOrderDTO = new PatientDrugOrderDTO();
+            patientDrugOrderDTO.setPatientDob(LocalDate.now());
+            patientDrugOrderDTO.setPatientFirstName("Test");
+            patientDrugOrderDTO.setPatientLastName("Test");
+            patientDrugOrderDTO.setPatientHospitalNumber("ttttttt");
+
+            patientDrugOrderDTO.setDrugOrders(v.stream()
+                    .map(drugOrder -> {
+                        patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
+                        if(drugOrder.getDrugDispensesById() == null){
+                            drugOrder.setStatus(0);
+                        } else {drugOrder.setStatus(1);}
+                        return drugOrder;
+                    })
+                    .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
+                    .collect(Collectors.toList()));
+
+            patientDrugOrderDTOS.add(patientDrugOrderDTO);
+        });
+
+
+        return patientDrugOrderDTOS;
     }
 }
