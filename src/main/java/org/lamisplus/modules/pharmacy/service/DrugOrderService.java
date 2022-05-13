@@ -101,6 +101,9 @@ public class DrugOrderService {
             patientDrugOrderDTO.setPatientFirstName("Test");
             patientDrugOrderDTO.setPatientLastName("Test");
             patientDrugOrderDTO.setPatientHospitalNumber("ttttttt");
+            patientDrugOrderDTO.setPatientAddress("White House Abj");
+            patientDrugOrderDTO.setPatientGender("Female");
+            patientDrugOrderDTO.setPatientPhoneNumber("09087654321");
 
             patientDrugOrderDTO.setDrugOrders(v.stream()
                     .map(drugOrder -> {

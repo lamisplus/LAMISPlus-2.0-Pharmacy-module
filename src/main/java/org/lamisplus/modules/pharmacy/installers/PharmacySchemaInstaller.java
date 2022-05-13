@@ -10,6 +10,6 @@ import org.springframework.core.annotation.Order;
         version = 1)
 public class PharmacySchemaInstaller extends AcrossLiquibaseInstaller {
     public PharmacySchemaInstaller() {
-        super("classpath:installers/schema/pharmacy-schema.xml");
+        super("classpath:schema/pharmacy-schema.xml");
     }
 }

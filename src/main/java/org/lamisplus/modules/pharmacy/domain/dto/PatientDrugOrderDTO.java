@@ -15,6 +15,9 @@ public class PatientDrugOrderDTO {
     private LocalDate PatientDob;
     private String patientHospitalNumber;
     private Long patientId;
+    private String patientAddress;
+    private String patientPhoneNumber;
+    private String patientGender;
 
     private List<DrugOrder> drugOrders;
 }

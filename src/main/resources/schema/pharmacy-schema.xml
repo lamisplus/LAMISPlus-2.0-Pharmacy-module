@@ -58,6 +58,7 @@
             visit_id bigint,
             other_details jsonb,
             status integer,
+            encounterDateTime timestamp without time zone,
             CONSTRAINT drug_order_pkey PRIMARY KEY (id)
             )
         </sql>
