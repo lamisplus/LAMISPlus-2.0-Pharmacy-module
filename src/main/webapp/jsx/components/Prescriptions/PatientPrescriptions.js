@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Prescriptions = (props) => {
 
- const prescriptionOrder  = props  && props.patientObj  ? props.patientObj.formDataObj : {}
+ const prescriptionOrder  = props  && props.patientObj  ? props.patientObj : {}
    
   const classes = useStyles();
   const [loading, setLoading] = useState('')
@@ -83,12 +83,12 @@ const Prescriptions = (props) => {
   console.log(formData)
 const updateFormData = (data) =>{
 
-    setLoading(true);
-      const index = formData.findIndex(x => x.id == data.id);
+    // setLoading(true);
+    //   const index = formData.findIndex(x => x.drugOrders.id == drugOrders.id);
 
-      formData[index] = data;
-      setFormData(formData);
-    setLoading(false);
+    //   formData[index] = data;
+    //   setFormData(formData);
+    // setLoading(false);
     }
 
   const toggle = (form) => {
@@ -120,8 +120,9 @@ const updateFormData = (data) =>{
      </button>
    );
 
-  
+
  const Actions = (form) => {
+  console.log(form) 
    return (
      <Menu>
        <MenuButton
@@ -132,10 +133,10 @@ const updateFormData = (data) =>{
            borderRadius: "4px",
          }}
        >
-         Action <span aria-hidden>▾</span>
+         Action<span aria-hidden>▾</span>
        </MenuButton>
        <MenuList style={{ hover: "#eee" }}>
-         {form.data && form.data.prescription_status === 0 ? (
+         {form && form.status === 0 ? (
 
            <MenuItem onSelect={() => 
             toggle(form)
@@ -146,7 +147,7 @@ const updateFormData = (data) =>{
                size="15"
                style={{ cursor: "pointer", color: "#000" }}
              >
-               &nbsp; {""} Dispense drugs
+               &nbsp; {""} Dispense drugs {}
              </i>
            </MenuItem>
 
@@ -163,7 +164,7 @@ const updateFormData = (data) =>{
              </i>
            </MenuItem>
          )}
-         {form.data && form.data.prescription_status !=0  ? (
+         {form && form.status !=0  ? (
             <MenuItem onSelect={() => toggle1(form)}>
               <i
                 className="fa fa-eye"
@@ -197,7 +198,7 @@ const updateFormData = (data) =>{
             </ButtonMui>
             </Link>     
           <div>
-            {formData.length >= 0 ? (
+            {formData.drugOrders.length >= 0 ? (
               <Fragment>
                    <h3>Drug Order Details</h3>
                     <br />
@@ -207,6 +208,7 @@ const updateFormData = (data) =>{
                                 <tr>
                                   <th>Name</th>
                                   <th>Dosage</th>
+                                  <th>Duration</th>
                                   <th>Date Prescribed</th>
                                   <th>Date Dispensed</th>
                                   <th></th>
@@ -215,18 +217,15 @@ const updateFormData = (data) =>{
                               
                               
                                 <tbody >
-                                {!loading  ?  formData.map((form) => (
+                                {!loading  ?  formData.drugOrders.map((form) => (
                                   
-                                  form.data!==null?
+                                  form !==null?
                                   <tr key={form.id}>
-                                    <td>
-                                        {form.data.regimen && form.data.regimen.name ? form.data.regimen.name + ' - ': ''}
-                                      <b> {form.data.drugs && form.data.drugs.length > 0 ? form.data.drugs.map(x=>x.drug.name).toString() : ''}</b>
-                                          {/*{form.data && form.data.type!=0 ? form.data.drug.name :  form.data.regimen.name}*/}
-                                    </td>
-                                    <td>{form.data.duration && form.data.duration ? form.data.duration + ' ' + form.data.duration_unit : ''}</td>
-                                    <td>{Moment(form.data.date_prescribed).format("YYYY-MM-DD")}</td>
-                                    <td>{ form.data.date_dispensed ? Moment(form.data.date_dispensed).format("YYYY-MM-DD") : '' }</td>
+                                    <td>{form.drugName}</td>
+                                    <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
+                                    <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
+                                    <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss")}</td>
+                                    <td>{ form.dateTimePrescribed ? Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss") : '' }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :

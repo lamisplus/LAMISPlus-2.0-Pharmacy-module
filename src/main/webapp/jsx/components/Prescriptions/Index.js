@@ -61,7 +61,7 @@ function PatientCard(props) {
         <PatientCardDetail patientObj={patientObj}/>
         <br/>
            
-            <PatientPrescriptions  patientObj={patientObj}/> 
+        <PatientPrescriptions  patientObj={patientObj}/> 
            
             
            

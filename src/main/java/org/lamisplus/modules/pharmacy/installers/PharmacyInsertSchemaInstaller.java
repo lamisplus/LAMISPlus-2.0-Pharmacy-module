@@ -9,6 +9,6 @@ import org.springframework.core.annotation.Order;
         description = "Insert the required database tables data for pharmacy", version = 1)
 public class PharmacyInsertSchemaInstaller extends AcrossLiquibaseInstaller {
     public PharmacyInsertSchemaInstaller() {
-        super("classpath:installers/schema/pharmacy-insert-schema-1.0.xml");
+        super("classpath:schema/pharmacy-insert-schema-1.0.xml");
     }
 }

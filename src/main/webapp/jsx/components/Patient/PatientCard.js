@@ -115,51 +115,51 @@ const VaccinationStatus = (patient)=>{
                     <Row className={"mt-1"}>
                     <Col md={12} className={classes.root2}>
                         <b style={{fontSize: "25px"}}>
-                        {patientObj.firstName + " " + patientObj.lastName }
+                        {patientObj.patientFirstName + " " + patientObj.patientLastName }
                         </b>
                         
                     </Col>
                     <Col md={4} className={classes.root2}>
                     <span>
                         {" "}
-                        Patient ID : <b>{patientObj.participant_id }</b>
+                        Patient ID : <b>{patientObj.patientId }</b>
                     </span>
                     </Col>
 
                     <Col md={4} className={classes.root2}>
                     <span>
-                        Date Of Birth : <b>{patientObj.dob }</b>
+                        Date Of Birth : <b>{patientObj.patientDob }</b>
                     </span>
                     </Col>
                     <Col md={4} className={classes.root2}>
                     <span>
                         {" "}
-                        Age : <b>{calculate_age(moment(patientObj.dob).format("DD-MM-YYYY"))}</b>
+                        Age : <b>{calculate_age(moment(patientObj.patientDob).format("DD-MM-YYYY"))}</b>
                     </span>
                     </Col>
                     <Col md={4}>
                     <span>
                         {" "}
                         Gender :{" "}
-                        <b>{patientObj.gender===1?"Male": "Female" }</b>
+                        // <b>{patientObj.gender===1?"Male": "Female" }</b>
                     </span>
                     </Col>
                     <Col md={4} className={classes.root2}>
                     <span>
                         {" "}
-                        Phone Number : <b>{patientObj.phone }</b>
+                        Phone Number : ""//<b>{patientObj.phone }</b>
                     </span>
                     </Col>
                     <Col md={4} className={classes.root2}>
                     <span>
                         {" "}
-                        Address : <b>{patientObj.address } </b>
+                        // Address : <b>{patientObj.address } </b>
                     </span>
                     </Col>
 
                     <Col md={12}>
-                    {VaccinationStatus(patientObj)}
-                    {CurrentStatus(patientObj.current_status)}
+                    // {VaccinationStatus(patientObj)}
+                    // {CurrentStatus(patientObj.current_status)}
                     
                     </Col>
                     </Row>

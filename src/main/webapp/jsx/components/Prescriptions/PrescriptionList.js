@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MaterialTable from 'material-table';
 
 import { Link } from 'react-router-dom'
@@ -6,7 +6,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
  import axios from "axios";
-import { url as baseUrl } from "../../../api";
+import { url as baseUrl, token as token  } from "../../../api";
 import {PrescriptionObj} from './PrescriptionObj';
 
 import { forwardRef } from 'react';
@@ -49,17 +49,29 @@ ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 
 
 const PatientSearch = (props) => {
-  const prescriptions = PrescriptionObj
-  const totalDrugsPrescribed = (drugsArray) => {
-
-    const dispensed = []
-
-    drugsArray.map(drugs => {
-        if (drugs.data.prescription_status === 1)
-          dispensed.push(drugs.data)
-       
-    })
+  const prescriptions = PrescriptionObj;
+  const [prescriptionList, setPrescriptionList] = useState([])
+    useEffect(() => {
+        Prescribtions();
+    }, []);
     
+    ///GET LIST OF Drug Prescriptions
+    async function Prescribtions() {
+        axios
+            .get(`${baseUrl}drug-orders/patients`,{ headers: {"Authorization" : `Bearer ${token}`} })
+            .then((response) => {
+                setPrescriptionList(response.data);
+            })
+            .catch((error) => {
+            });
+    }
+    //Get total drug dispensed 
+    const totalDrugsPrescribed = (drugsArray) => {
+      const dispensed = []
+        drugsArray.map(drugs => {
+            if (drugs.status === 1)
+              dispensed.push(drugs)
+        })
     return dispensed.length
   }
   const drugType = (drugsArray) => {
@@ -107,12 +119,12 @@ const PatientSearch = (props) => {
             filtering: false,
           },
         ]}
-        data={ prescriptions.map((prescription) => ({
-          Id: prescription.hospitalNumber,
-          name: prescription.firstName + " " + prescription.lastName,
-          date: prescription.dateEncounter,
-          prescribedCount: prescription.formDataObj.length,
-          dispensedCount: totalDrugsPrescribed(prescription.formDataObj),
+        data={ prescriptionList.map((prescription) => ({
+          Id: prescription.patientHospitalNumber,
+          name: prescription.patientFirstName + " " + prescription.patientLastName,
+          date: prescription.patientDob,
+          prescribedCount: prescription.drugOrders.length,
+          dispensedCount: totalDrugsPrescribed(prescription.drugOrders),
          // type:   drugType(prescription.formDataObj),
           actions: (
             
