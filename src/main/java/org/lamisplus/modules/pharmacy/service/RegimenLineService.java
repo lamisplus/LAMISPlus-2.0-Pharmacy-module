@@ -6,7 +6,7 @@ import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundExceptio
 import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.entity.Regimen;
 import org.lamisplus.modules.pharmacy.domain.entity.RegimenLine;
-import org.lamisplus.modules.pharmacy.repository.RegimenLineRepository;
+import org.lamisplus.modules.pharmacy.repositories.RegimenLineRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

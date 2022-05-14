@@ -1,0 +1,14 @@
+basePackage: org.lamisplus.modules.pharmacy
+name: PharmacyModule
+store: true
+menus:
+  - disabled: false
+    name: Sync
+    state: sync
+    url: /across/resources/static/pharmacy/index.html
+umdLocation: /across/resources/static/pharmacy/index.html
+webModules:
+  - breadcrumb: PHARMACY
+    name: PharmacyModule
+    path: pharmacy
+    position: 99

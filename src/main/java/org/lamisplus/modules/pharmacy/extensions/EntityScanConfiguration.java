@@ -1,4 +1,4 @@
-package org.lamisplus.modules.pharmacy.config;
+package org.lamisplus.modules.pharmacy.extensions;
 
 import com.foreach.across.core.annotations.ModuleConfiguration;
 import com.foreach.across.modules.hibernate.jpa.AcrossHibernateJpaModule;
@@ -21,7 +21,7 @@ import org.lamisplus.modules.pharmacy.domain.PharmacyDomain;
 public class EntityScanConfiguration implements HibernatePackageConfigurer {
     @Override
     public void configureHibernatePackage(HibernatePackageRegistry hibernatePackageRegistry) {
-        hibernatePackageRegistry.addPackageToScan(PharmacyDomain.class, BaseDomain.class);
+        hibernatePackageRegistry.addPackageToScan(PharmacyDomain.class);
     }
 
 }
