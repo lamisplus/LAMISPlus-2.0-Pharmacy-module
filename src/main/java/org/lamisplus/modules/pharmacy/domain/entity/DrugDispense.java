@@ -36,7 +36,7 @@ import java.util.UUID;
 })
 @Entity
 @Table(name = "drug_dispense")
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Data
 public class DrugDispense extends Audit {
     @Id

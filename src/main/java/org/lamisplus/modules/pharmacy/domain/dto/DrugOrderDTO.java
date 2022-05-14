@@ -24,6 +24,7 @@ public class DrugOrderDTO {
     private String dosageUnit;
     private String comments;
     private String orderedBy;
+    private String dosageStrength;
 
     //TODO: change to integer
     private String duration;

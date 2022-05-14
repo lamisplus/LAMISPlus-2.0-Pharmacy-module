@@ -37,7 +37,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "drug_order")
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class DrugOrder extends Audit {
     @Id
     @Column(name = "id", updatable = false)
@@ -53,7 +53,7 @@ public class DrugOrder extends Audit {
 
     //TODO: change to integer
     private String dosageStrengthUnit;
-    //private String dosageUnit;
+    private String dosageStrength;
     private String comments;
     private String orderedBy;
 
