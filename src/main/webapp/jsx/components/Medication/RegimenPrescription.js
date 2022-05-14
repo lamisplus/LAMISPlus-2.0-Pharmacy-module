@@ -1,31 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {  Modal, ModalHeader, ModalBody,
-    Form,
-    Row,
-    Col,Input,
-    FormGroup,
-    Label,Card, CardBody
-} from 'reactstrap';
+
+import {CardBody,InputGroup, Form,Input,Label,Card,ModalHeader,CardHeader,Modal, ModalBody,FormGroup} from 'reactstrap'
 
 import MatButton from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import CancelIcon from '@material-ui/icons/Cancel'
-import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import "react-widgets/dist/css/react-widgets.css";
-import { DateTimePicker } from 'react-widgets';
 import Moment from 'moment';
 import momentLocalizer from 'react-widgets-moment';
 import moment from "moment";
 import { Spinner } from 'reactstrap';
-// import { useSelector, useDispatch } from 'react-redux';
-// import './modal.css';
-import { url } from "../../../api";
+
+import { url as baseUrl, token } from "../../../api";
 import axios from "axios";
+//import { CardHeader } from 'material-ui';
+
 
 
 Moment.locale('en');
@@ -67,47 +59,97 @@ const useStyles = makeStyles(theme => ({
 
 const DispenseModal = (props) => {
     const { buttonLabel, className } = props;
+    const [errors, setErrors] = useState({});
     const toggle = props.togglestatus
     const modal = props.modalstatus
+    const [loading, setLoading] = useState(false)
     const closeBtn = props.close
+    const [saving, setSaving] = useState(false);
     const classes = useStyles();
-    const [optionsample, setOptionsample] = useState([]);
-    const formData = props.formData ? props.formData : {}
-    const [formValues, setFormValues] = useState({})
-    console.log(props.formData)
-    const handleInputChange = (e) => {
-        setFormValues ({ ...formValues, [e.target.name]: e.target.value });
-    }
+    const [regimens, setRegimens] = useState([])
+    const [regimenDrugs, setRegimenDrug] = useState([])
+    const [dosageUnit, setDosageUnit] = useState([])
+    const [objValues, setObjValues] = useState({brand: "",
+                                                    comments: "string",
+                                                    dateTimeDispensed: "yyyy-MM-dd@HH:mm:ss",
+                                                    dateTimePrescribed: "yyyy-MM-dd@HH:mm:ss",
+                                                    dosageFrequency: 0,
+                                                    dosageStrengthUnit: "",
+                                                    drugName: "",
+                                                    duration: "",
+                                                    durationUnit: "",
+                                                    encounterDateTime: "yyyy-MM-dd@HH:mm:ss",
+                                                    orderedBy: "",
+                                                    otherDetails: {},
+                                                    patientId: 0,
+                                                    startDate: "yyyy-MM-dd",
+                                                    status: 0,
+                                                    type: ""
+                                                });
 
-    // useEffect(() => {
-    //     async function getCharacters() {
-    //         try {
-    //             const response = await axios(
-    //                 url + "drugs"
-    //             );
-    //             const body = response.data;
-    //             console.log(body)
-    //             setOptionsample(
-    //                 body.map(({ genericName, id }) => ({ title: genericName, value: id }))
-    //             );
-    //         } catch (error) {
-    //         }
-    //     }
-    //     getCharacters();
-    // }, []);
+    const handleInputChange = (e) => {
+        setObjValues ({ ...objValues, [e.target.name]: e.target.value });
+    }
+    useEffect(() => {
+        RegimenList();
+        DosageUnit();
+      }, []);
+   //Get list of Regimens
+   const RegimenList =()=>{
+    axios
+       .get(`${baseUrl}regimens`,
+           { headers: {"Authorization" : `Bearer ${token}`} }
+       )
+       .then((response) => {
+           setRegimens(response.data);
+       })
+       .catch((error) => {
+       });
+   
+    }
+    //Get list of selected Regimen
+    const handleSelectedRegimen = (e)=> {
+        const id = e.target.value
+        async function getRegimenLine() {
+            const response = await axios.get(`${baseUrl}drugs/regimen/`+id,
+            { headers: {"Authorization" : `Bearer ${token}`} }
+            ).then((response) => {
+                setRegimenDrug(response.data);
+            })
+            .catch((error) => {
+            });
+           
+      }
+      getRegimenLine();
+  
+    }
+    // Dosage Strength Unit
+    const DosageUnit =()=>{
+        axios
+           .get(`${baseUrl}application-codesets/v2/DOSE_STRENGTH_UNIT`,
+               { headers: {"Authorization" : `Bearer ${token}`} }
+           )
+           .then((response) => {
+               //console.log(response.data);
+               setDosageUnit(response.data);
+           })
+           .catch((error) => {
+           //console.log(error);
+           });
+       
+     }
 
     const handleDispense = (e) => {
         e.preventDefault()
-        const date_dispensed = moment(formValues.dateDispensed).format(
-            "DD-MM-YYYY"
-        );
-        formData.data.brand_name_dispensed = formValues.brandName
-        formData.data.quantity_dispensed = formValues.qtyDispensed
-        formData.data.prescription_status = 1
-        formData.data.date_dispensed = date_dispensed
-        formData.data.comment = formValues.comment
-        const data = { ...formData };
-        //props.updatePrescriptionStatus(formData.id, data);
+        // const date_dispensed = moment(formValues.dateDispensed).format(
+        //     "DD-MM-YYYY"
+        // );
+        // formData.data.brand_name_dispensed = formValues.brandName
+        // formData.data.quantity_dispensed = formValues.qtyDispensed
+        // formData.data.prescription_status = 1
+        // formData.data.date_dispensed = date_dispensed
+        // formData.data.comment = formValues.comment
+        // const data = { ...formData };
 
         toggle()
     };
@@ -118,7 +160,6 @@ const DispenseModal = (props) => {
         <div>
             <Card>
                 <CardBody>
-                    <ToastContainer autoClose={3000} hideProgressBar />
                     <Modal
                         isOpen={modal}
                         toggle={toggle}
@@ -126,10 +167,237 @@ const DispenseModal = (props) => {
                         size="xl"
                     >
                         <ModalHeader toggle={toggle} close={closeBtn}>
-                           REGIMEN PRESCRIPTION
+                            DRUG PRESCRIPTION
                         </ModalHeader>
                         <ModalBody>
+                        <form >
+                                <div className="row">
+                                
+                                    <div className="form-group mb-3 col-md-4">
+                                        <FormGroup>
+                                        <Label for="artDate">Encounter Date * </Label>
+                                        <Input
+                                            type="datetime-local"
+                                            name="visitDate"
+                                            id="visitDate"
+                                            onChange={handleInputChange}
+                                            value={objValues.visitDate}
+                                            required
+                                        />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="form-group mb-3 col-md-4"></div>
+                              
+                                    <div className="form-group mb-3 col-md-4"></div>
+                                    <div className="form-group mb-3 col-md-12">
+                                        <FormGroup>
+                                        <Label >Select Regimen *</Label>
+                                        <Input
+                                            type="select"
+                                            name="drugName"
+                                            id="drugName"
+                                            value={objValues.drugName}
+                                            onChange={handleSelectedRegimen}
+                                            
+                                            >
+                                            <option value=""> </option>
+                      
+                                                {regimens.map((value) => (
+                                                    <option key={value.id} value={value.id}>
+                                                        {value.name}
+                                                    </option>
+                                                ))}
+                                        </Input>
+                                       
+                                        </FormGroup>
+                                    </div>
+                                    {regimenDrugs.length >0 ? 
+                                        (
+                                            <>
+                                                <Card>
+                                                <CardBody>
+                                                <h4>Enter Drugs Information </h4>
+                                                <div className="row">
+                                                {regimenDrugs.map((drugsInfo) => (
+                                                    <>
+                                                <div className="form-group mb-3 col-md-4">
+                                                <FormGroup>
+                                                <Label >Drug </Label>
+                                                <Input
+                                                        type="text"
+                                                        name="drugName"
+                                                        id="drugName"
+                                                        value={drugsInfo.name}
+                                                        onChange={handleInputChange}
+                                                        required
+                                                        ></Input>
+                                                </FormGroup>
+                                                </div>
+                                                
+                                                <div className="form-group mb-3 col-md-4">
+                                                <FormGroup>
+                                                <Label >	Dosage Strength</Label>
+                                                <Input
+                                                        type="number"
+                                                        name="dosageStrengthUnit"
+                                                        id="dosageStrengthUnit"
+                                                        value={objValues.dosageStrengthUnit}
+                                                        onChange={handleInputChange}
+                                                        required
+                                                        >
+                                                        
+                                                    </Input>
+                                                
+                                                </FormGroup>
+                                                </div>
+                                            
+                                                <div className="form-group mb-3 col-md-4">
+                                                    <FormGroup>
+                                                    <Label >Dosage Unit *</Label>
+                                                    <Input
+                                                        type="select"
+                                                        name="dosageStrengthUnitRegimen"
+                                                        id="dosageStrengthUnitRegimen"
+                                                        //onChange={handleInputChange}
+                                                        //value={objValues.dosageStrengthUnitRegimen}
+                                                        required
+                                                    >
+                                                        <option value=""> </option>
+                                
+                                                            {dosageUnit.map((value) => (
+                                                                <option key={value.id} value={value.id}>
+                                                                    {value.display}
+                                                                </option>
+                                                            ))}
+                                                    </Input>
+                                                    
+                                                    </FormGroup>
+                                                </div>
+                                                </>
+                                                ))
+                                                }
+                                                </div>
+                                                </CardBody>
+                                                </Card>
+                                                <br/>
+                                            </>
+                                        )
+                                        :
+                                        ""
+                                    }
+                                    <div className="form-group mb-3 col-md-6">
+                                        <FormGroup>
+                                        <Label >Dose Frequency</Label>
+                                        <Input
+                                            type="select"
+                                            name="dosageFrequency"
+                                            id="dosageFrequency"
+                                            value={objValues.dosageFrequency}
+                                            onChange={handleInputChange}
+                                            required
+                                            >
+                                            
+                                        </Input>
+                                        {errors.dosageFrequency !=="" ? (
+                                            <span className={classes.error}>{errors.dosageFrequency}</span>
+                                        ) : "" }
+                                        </FormGroup>
+                                    </div>
+                                    
+                                    <div className="form-group mb-3 col-md-6">
+                                        <FormGroup>
+                                        <Label >Start Date </Label>
+                                        <Input
+                                            type="date"
+                                            name="startDate"
+                                            id="startDate"
+                                            value={objValues.startDate}
+                                            onChange={handleInputChange}
+                                            required
+                                            >
+                                             
+                                        </Input>
+                                        </FormGroup>
+                                    </div>
+                                    <div className="form-group mb-3 col-md-6">
+                                        <FormGroup>
+                                        <Label >Duration </Label>
+                                        <Input
+                                            type="number"
+                                            name="duration"
+                                            id="duration"
+                                            value={objValues.duration}
+                                            onChange={handleInputChange}
+                                            required
+                                            >
+                                          
+                                        </Input>
+                                        </FormGroup>
+                                    </div>
+                                    <div className="form-group mb-3 col-md-6">
+                                        <FormGroup>
+                                        <Label >Duration Unit </Label>
+                                        <InputGroup> 
+                                            <Input 
+                                                type="number"
+                                                name="durationUnit"
+                                                id="durationUnit"
+                                                onChange={handleInputChange}
+                                                value={objValues.bodyWeight} 
+                                            />
+                                           
+                                            
+                                        </InputGroup>
+                                        {objValues.bodyWeight > 200 ? (
+                                                <span className={classes.error}>{"Body Weight cannot be greater than 200."}</span>
+                                            ) : "" }
+                                        </FormGroup>
+                                    </div>
+
+                                    <div className="form-group mb-3 col-md-12">
+                                        <FormGroup>
+                                        <Label >Clinical Notes</Label>
+                                        <Input
+                                            type="textarea"
+                                            name="comments"
+                                            rows="40" cols="50"
+                                            id="comments"
+                                            onChange={handleInputChange}
+                                            value={objValues.comments}
+                                            required
+                                        />
+                                        </FormGroup>
+                                    </div>
+                                </div>
+                                
+                                {saving ? <Spinner /> : ""}
+                                <br />
+                            
+                                <MatButton
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                startIcon={<SaveIcon />}
+                                onClick={handleDispense}
+                            >
+                                {!saving ? (
+                                <span style={{ textTransform: "capitalize" }}>Save</span>
+                                ) : (
+                                <span style={{ textTransform: "capitalize" }}>Saving...</span>
+                                )}
+                            </MatButton>
                           
+                            <MatButton
+                                variant="contained"
+                                className={classes.button}
+                                startIcon={<CancelIcon />}
+                                
+                            >
+                                <span style={{ textTransform: "capitalize" }}>Cancel</span>
+                            </MatButton>
+                          
+                                </form>
                         </ModalBody>
                     </Modal>
                 </CardBody>

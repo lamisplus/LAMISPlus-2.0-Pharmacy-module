@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import momentLocalizer from "react-widgets-moment";
 import Moment from "moment";
 import { Link } from "react-router-dom";
-import DispenseModal from './DispenseModal'
+import DispenseModal from './DispenseDrug'
 // import DispenseModal from './DrugDispenseFormIo';
 // import DispenseModalUpdate from './DrugDispenseUpdateFormIo';
 // import ViewModal from './ViewModalForm';
@@ -225,7 +225,7 @@ const updateFormData = (data) =>{
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
                                     <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss")}</td>
-                                    <td>{ form.dateTimePrescribed ? Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss") : '' }</td>
+                                    <td>{ form.dateTimeDispensed ? Moment(form.dateTimeDispensed).format("YYYY-MM-DD @ HH:mm:ss") : '' }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :

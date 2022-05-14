@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {  Modal, ModalHeader, ModalBody,
-    Form,
-    Row,
     Col,Input,
     FormGroup,
     Label,Card, CardBody
@@ -11,25 +9,14 @@ import MatButton from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import CancelIcon from '@material-ui/icons/Cancel'
-import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-widgets/dist/css/react-widgets.css";
-import { DateTimePicker } from 'react-widgets';
-import Moment from 'moment';
-import momentLocalizer from 'react-widgets-moment';
-import moment from "moment";
-import { Spinner } from 'reactstrap';
-// import { useSelector, useDispatch } from 'react-redux';
-// import './modal.css';
 import { url } from "./../../../api";
 import axios from "axios";
+import { Row,Alert, Button, Badge, Media } from "react-bootstrap";
 
 
-Moment.locale('en');
-momentLocalizer();
 const useStyles = makeStyles(theme => ({
     card: {
         margin: theme.spacing(20),
@@ -67,14 +54,14 @@ const useStyles = makeStyles(theme => ({
 
 const DispenseModal = (props) => {
     const { buttonLabel, className } = props;
-    const toggle = props.toggle
-    const modal = props.isOpen
+    const toggle = props.togglestatus
+    const modal = props.modalstatus
     const closeBtn = props.close
     const classes = useStyles();
     const [optionsample, setOptionsample] = useState([]);
     const formData = props.formData ? props.formData : {}
     const [formValues, setFormValues] = useState({})
-    console.log(props.formData)
+
     const handleInputChange = (e) => {
         setFormValues ({ ...formValues, [e.target.name]: e.target.value });
     }
@@ -98,15 +85,15 @@ const DispenseModal = (props) => {
 
     const handleDispense = (e) => {
         e.preventDefault()
-        const date_dispensed = moment(formValues.dateDispensed).format(
-            "DD-MM-YYYY"
-        );
-        formData.data.brand_name_dispensed = formValues.brandName
-        formData.data.quantity_dispensed = formValues.qtyDispensed
-        formData.data.prescription_status = 1
-        formData.data.date_dispensed = date_dispensed
-        formData.data.comment = formValues.comment
-        const data = { ...formData };
+        // const date_dispensed = moment(formValues.dateDispensed).format(
+        //     "DD-MM-YYYY"
+        // );
+        // formData.data.brand_name_dispensed = formValues.brandName
+        // formData.data.quantity_dispensed = formValues.qtyDispensed
+        // formData.data.prescription_status = 1
+        // formData.data.date_dispensed = date_dispensed
+        // formData.data.comment = formValues.comment
+        // const data = { ...formData };
         //props.updatePrescriptionStatus(formData.id, data);
 
         toggle()
@@ -123,7 +110,7 @@ const DispenseModal = (props) => {
                         isOpen={modal}
                         toggle={toggle}
                         className={className}
-                        size="xl"
+                        size="lg"
                     >
                         <ModalHeader toggle={toggle} close={closeBtn}>
                             Dispensing
@@ -152,72 +139,63 @@ const DispenseModal = (props) => {
                                     </span>
                                 </div>
                             </Row>
-                            <Form onSubmit={handleDispense}>
+                            <Col lg={12}>
+                            
                                 <Row>
-                                    <Col md={6}>
+                                    
+                                    <Col xl={12} >
+                                        <Alert
+                                        variant="outline-alert-outline-success"
+                                        className="alert alert-primary notification"
+                                        >
+                                        <p className="notificaiton-title mb-2">
+                                            <strong>Success!</strong> Vampires The Romantic Ideology
+                                            Behind Them
+                                        </p>
+                                        <p>
+                                            The following article covers a topic that has recently
+                                            moved to center stage-at lease it seems that way.
+                                        </p>
+                                        
+                                        </Alert>
+                                    </Col>
+                                   
+                                </Row>
+                                
+                            </Col>
+                            <form>
+                            <div className="row">
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
                                             <Label for="maritalStatus">Date Dispensed</Label>
-                                            <DateTimePicker
-                                                time={false}
+                                            
+                                            <Input
+                                                type="date"
                                                 name="dateDispensed"
                                                 value={formValues.dateDispensed}
-                                                onChange={dateValue => setFormValues({...formValues, dateDispensed: dateValue})}
-                                                id="date_sample_collected"
-                                                defaultValue={new Date()}
-                                                max={new Date()}
-                                                required
+                                                id="dateDispensed"
+                                                placeholder="Date Dispensed"
+                                                onChange={handleInputChange}
                                             />
                                         </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={6}>
+                                    </div>
+                                    </div>
+                                    <div className="row">
+                                    <div className="form-group mb-3 col-md-5">
                                         <FormGroup>
                                             <Label for="exampleNumber">Drug Name (Brand name)</Label>
-                                            {/* <Input
+                                            <Input
                                                 type="text"
                                                 name="brandName"
                                                 value={formValues.brandName}
                                                 id="drugDispensed"
                                                 placeholder="brand name"
                                                 onChange={handleInputChange}
-                                            /> */}
-
-                                            <Autocomplete
-                                                multiple="true"
-                                                id="drugDispensed"
-                                                size="small"
-                                                options={optionsample}
-                                                //loading="true"
-                                                //value={formValues.generic_name}
-                                                getOptionLabel={(option) => option.title}
-                                                //defaultValue={}
-                                                onChange={(e, i) => {
-                                                    setFormValues({ ...formValues, brandName: i });
-                                                }}
-                                                renderTags={(value, getTagProps) =>
-                                                    value.map((option, index) => (
-                                                        <Chip
-                                                            label={option.title}
-                                                            {...getTagProps({ index })}
-                                                            disabled={index === 0}
-                                                        />
-                                                    ))
-                                                }
-                                                style={{ width: "auto", marginTop: "-1rem" }}
-                                                s
-                                                renderInput={(params) => (
-                                                    <TextField
-                                                        {...params}
-                                                        variant="outlined"
-                                                        margin="normal"
-                                                    />
-                                                )}
-                                                required
                                             />
+
                                         </FormGroup>
-                                    </Col>
-                                    <Col md={2}>
+                                    </div>
+                                    <div className="form-group mb-3 col-md-3">
                                         <FormGroup>
                                             <Label for="exampleNumber">Quantity</Label>
                                             <Input
@@ -227,8 +205,8 @@ const DispenseModal = (props) => {
                                                 onChange={handleInputChange}
                                             />
                                         </FormGroup>
-                                    </Col>
-                                    <Col md={4}>
+                                    </div>
+                                    <div className="form-group mb-3 col-md-4">
                                         <FormGroup>
                                             <Label for="exampleSelect">Unit</Label>
                                             <Input
@@ -241,28 +219,30 @@ const DispenseModal = (props) => {
                                                 <option value="ml">ml</option>
                                             </Input>
                                         </FormGroup>
-                                    </Col>
-                                    <Col md="12">
+                                    </div>
+                                    <div className="form-group mb-3 col-md-12">
                                         <FormGroup>
                                             <Label for="comment">Note</Label>
                                             <Input
                                                 type="textarea"
                                                 name="comment"
                                                 id="comment"
+                                                row="40"
                                                 onChange={handleInputChange}
                                             ></Input>
                                         </FormGroup>
-                                    </Col>
-                                </Row>
+                                    </div>
+                                </div>
                                 <MatButton
                                     type="submit"
                                     variant="contained"
                                     color="primary"
                                     className={classes.button}
                                     startIcon={<SaveIcon />}
+                                    onClick={handleDispense}
                                     // disabled={loading}
                                 >
-                                    Ok
+                                    Save
                                 </MatButton>
 
                                 <MatButton
@@ -273,7 +253,7 @@ const DispenseModal = (props) => {
                                     startIcon={<CancelIcon />}>
                                     Cancel
                                 </MatButton>
-                            </Form>
+                            </form>
                         </ModalBody>
                     </Modal>
                 </CardBody>

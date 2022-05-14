@@ -3,8 +3,6 @@ import MaterialTable from 'material-table';
 
 import { Link } from 'react-router-dom'
 //import Remove from '@material-ui/icons/Remove';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 import { FaPlus } from "react-icons/fa";
 // import axios from "axios";
 // import { url as baseUrl , PHARMACYSERVICECODE} from "../../api";
