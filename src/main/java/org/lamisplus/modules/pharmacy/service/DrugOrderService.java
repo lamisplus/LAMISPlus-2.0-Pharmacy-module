@@ -9,8 +9,8 @@ import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTOS;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugOrderMapper;
-import org.lamisplus.modules.pharmacy.repository.DrugDispenseRepository;
-import org.lamisplus.modules.pharmacy.repository.DrugOrderRepository;
+import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
+import org.lamisplus.modules.pharmacy.repositories.DrugOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

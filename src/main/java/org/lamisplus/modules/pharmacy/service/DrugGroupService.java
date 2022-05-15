@@ -7,7 +7,7 @@ import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugGroup;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugMapper;
-import org.lamisplus.modules.pharmacy.repository.DrugGroupRepository;
+import org.lamisplus.modules.pharmacy.repositories.DrugGroupRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

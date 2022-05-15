@@ -9,8 +9,8 @@ import org.lamisplus.modules.pharmacy.domain.dto.DrugDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.Drug;
 import org.lamisplus.modules.pharmacy.domain.entity.RegimenDrug;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugMapper;
-import org.lamisplus.modules.pharmacy.repository.DrugRepository;
-import org.lamisplus.modules.pharmacy.repository.RegimenDrugRepository;
+import org.lamisplus.modules.pharmacy.repositories.DrugRepository;
+import org.lamisplus.modules.pharmacy.repositories.RegimenDrugRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

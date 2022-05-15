@@ -7,11 +7,10 @@ import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundExceptio
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTOS;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugDispenseDTO;
-import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugDispense;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugDispenseMapper;
-import org.lamisplus.modules.pharmacy.repository.DrugDispenseRepository;
+import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

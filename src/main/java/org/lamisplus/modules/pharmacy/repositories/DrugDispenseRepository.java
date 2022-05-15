@@ -1,4 +1,4 @@
-package org.lamisplus.modules.pharmacy.repository;
+package org.lamisplus.modules.pharmacy.repositories;
 
 
 import org.lamisplus.modules.pharmacy.domain.entity.DrugDispense;
@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

@@ -18,8 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         transactionManagerRef = "pharmacyTransactionManger",
-        basePackages = "org.lamisplus.modules.pharmacy.repository"
-
+        basePackages = {"org.lamisplus.modules.pharmacy.repositories"}
 )
 public class DomainConfiguration {
 
@@ -37,6 +36,4 @@ public class DomainConfiguration {
         jpaTransactionManager.setEntityManagerFactory (entityManagerFactory);
         return jpaTransactionManager;
     }
-
-
 }

@@ -7,7 +7,7 @@ import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.dto.RegimenDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.Regimen;
 import org.lamisplus.modules.pharmacy.domain.mapper.RegimenMapper;
-import org.lamisplus.modules.pharmacy.repository.RegimenRepository;
+import org.lamisplus.modules.pharmacy.repositories.RegimenRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
