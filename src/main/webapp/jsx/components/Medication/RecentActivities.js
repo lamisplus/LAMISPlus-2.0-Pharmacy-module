@@ -1,15 +1,21 @@
-import React, { Fragment } from "react";
-// BS
-import { Dropdown, Nav, Tab } from "react-bootstrap";
-/// Scroll
+import React, {Fragment } from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Link } from "react-router-dom";
-// images
-
-// Page titie
+import {Badge, Alert } from "react-bootstrap";
 
 
-const RecentActivities = () => {
+
+const RecentActivities = (props) => {
+      const ordersObj = props.ordersObj;
+      let dispensedDrugs =[]
+      ordersObj.length > 0 && ordersObj[0].drugOrders.map((drugOrders) => {
+            
+            if(drugOrders.status!==0){
+              dispensedDrugs.push(drugOrders)
+            }
+      })
+      console.log(dispensedDrugs)
+
   return (
     <Fragment>
       {/* <Ext /> */}
@@ -28,132 +34,42 @@ const RecentActivities = () => {
                 className="widget-timeline dz-scroll height370 ps ps--active-y"
               >
                 <ul className="timeline">
-                  <li>
-                    <div className="timeline-badge primary"></div>
+                  {ordersObj.length>0 && ordersObj[0].drugOrders.map((drugOrders, index)=>(
+                    <li>
+                    <div className={ index % 2===0 ? "timeline-badge success" : "timeline-badge primary"}></div>
                     <Link
                       className="timeline-panel text-muted"
                       to="/widget-basic"
                     >
-                      <span>10 Days ago</span>
+                      <span><b>{drugOrders.drugName}</b></span>
                       <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
+                        Date Prescribed{" "} <br/>
+                        <strong className="text-primary">{drugOrders.dateTimePrescribed}</strong>.
                       </h6>
                       <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
+                        Dosage{" "}<br/>
+                        <strong className="text-primary">{drugOrders.dosageFrequency}</strong>
                       </h6>
                       <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge info"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                      <span>10 Days ago</span>
-                      <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
+                        Period{" "}<br/>
+                        <strong className="text-primary"><span>
+                          {'Start at '} <b>{drugOrders.startDate || ''}</b> {' for '} <b>{drugOrders.duration}{' '}{drugOrders.durationUnit}</b>
+                        </span>
+                        </strong>
                       </h6>
                       <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
+                        Status{" "}<br/>
+                        <strong className="text-primary">
+                        <Badge as="a" href="" variant={  index % 2===0? "outline-warning badge-rounded" : "outline-warning badge-rounded" }>
+                            Not Dispensed
+                        </Badge>
+                        </strong>
                       </h6>
                     </Link>
                   </li>
-                  <li>
-                    <div className="timeline-badge danger"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                       <span>10 Days ago</span>
-                      <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge success"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                       <span>10 Days ago</span>
-                      <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge warning"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                       <span>10 Days ago</span>
-                      <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge dark"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                       <span>10 Days ago</span>
-                      <h6 className="mb-0">
-                        Date Sample Collected{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Assay{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                      <h6 className="mb-0">
-                        Date Result Received{" "}<br/>
-                        <strong className="text-primary">04 Nov, 2021</strong>.
-                      </h6>
-                    </Link>
-                  </li>
+                  ))
+
+                  }
                 </ul>
               </PerfectScrollbar>
             </div>
@@ -171,252 +87,40 @@ const RecentActivities = () => {
                 className="widget-timeline dz-scroll style-1 height370 ps ps--active-y"
               >
                 <ul className="timeline">
-                  <li>
-                    <div className="timeline-badge primary"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                     <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
-                      <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
-                      </p>
-                      <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
-                     </strong><br/>
-                     <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
-                     </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
-                    
-
-                    </Link>
-                  </li>
+                {dispensedDrugs.length>0 ? dispensedDrugs.map((drugOrders, index)=>(
                   <li>
                     <div className="timeline-badge info"></div>
                     <Link
                       className="timeline-panel text-muted"
                       to="/widget-basic"
                     >
-                      <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
+                      <span><b>Drug Name : {drugOrders.drugName}</b></span>
                       <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
+                        Date Dispense<br/>
+                        {drugOrders.dateTimeDispensed}
                       </p>
                       <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
+                          Frequency<br/>
+                          {drugOrders.dosageFrequency}
                      </strong><br/>
                      <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
+                      dispensedBy<br/>
+                      {drugOrders.dispensedBy}
                      </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
                     
-
                     </Link>
                   </li>
-                  <li>
-                    <div className="timeline-badge danger"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
+                 ))
+
+                 :
+                  <Alert
+                      variant="info"
+                      className="alert-dismissible solid fade show"
                     >
-                      <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
-                      <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
-                      </p>
-                      <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
-                     </strong><br/>
-                     <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
-                     </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
-                    
-
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge success"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                      <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
-                      <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
-                      </p>
-                      <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
-                     </strong><br/>
-                     <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
-                     </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
-                    
-
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge warning"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                      <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
-                      <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
-                      </p>
-                      <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
-                     </strong><br/>
-                     <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
-                     </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
-                    
-
-                    </Link>
-                  </li>
-                  <li>
-                    <div className="timeline-badge dark"></div>
-                    <Link
-                      className="timeline-panel text-muted"
-                      to="/widget-basic"
-                    >
-                      <span>20 Days ago</span>
-                      <h6 className="mb-0">
-                      Current Regimen
-                        TDF(300mg)+3TC(300mg)+DTG(50mg){" "}
-                        <strong className="text-info">Current Regimen Line<br/>
-                        ART First Line Adult</strong>
-                      </h6>
-                      <p className="mb-0">
-                        Refill Date<br/>
-                        08 Jan, 2022
-                      </p>
-                      <strong className="text-warning">
-                          Next Appointment<br/>
-                        05 Jul, 2022
-                     </strong><br/>
-                     <strong className="text-primary">
-                        Refill Duration<br/>
-                        180
-                     </strong><br/>
-                     <strong className="text-teal">
-                     Refill Duration<br/>
-                        180
-                     </strong>
-                     <strong className="mb-0">
-                     IPT<br/>
-                    Isoniazid Preventive Therapy (IPT)
-                    </strong><br/>
-                    <strong className="mb-0">
-                    IPT Date<b/>
-                    08 Jan, 2022
-                    </strong>
-                    
-
-                    </Link>
-                  </li>
+                      <p>No Drug Dispense</p>
+                  </Alert>
+                
+                }
                 </ul>
               </PerfectScrollbar>
             </div>

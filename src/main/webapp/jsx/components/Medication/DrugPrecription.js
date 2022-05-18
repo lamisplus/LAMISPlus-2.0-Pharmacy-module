@@ -1,19 +1,17 @@
 import React, {useState, useEffect} from 'react';
 
 import {CardBody,InputGroup, Form,Input,Label,Card,ModalHeader,CardHeader,Modal, ModalBody,FormGroup} from 'reactstrap'
-
 import MatButton from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import CancelIcon from '@material-ui/icons/Cancel'
-
 import "react-toastify/dist/ReactToastify.css";
 import "react-widgets/dist/css/react-widgets.css";
 import Moment from 'moment';
 import momentLocalizer from 'react-widgets-moment';
-import moment from "moment";
+//import moment from "moment";
 import { Spinner } from 'reactstrap';
-
+import { toast} from "react-toastify";
 import { url  as baseUrl, token} from "../../../api";
 import axios from "axios";
 //import { CardHeader } from 'material-ui';
@@ -68,22 +66,23 @@ const DispenseModal = (props) => {
     const classes = useStyles();
     const [drugs, setDrugs] = useState([])
     const [dosageUnit, setDosageUnit] = useState([])
+    const [drugOrdersObj] = useState({drugOrders:[]})
     const [objValues, setObjValues] = useState({brand: "",
-                                                    comments: "string",
-                                                    dateTimeDispensed: "yyyy-MM-dd@HH:mm:ss",
-                                                    dateTimePrescribed: "yyyy-MM-dd@HH:mm:ss",
-                                                    dosageFrequency: 0,
-                                                    dosageStrengthUnit: "",
-                                                    drugName: "",
-                                                    duration: "",
-                                                    durationUnit: "",
-                                                    encounterDateTime: "yyyy-MM-dd@HH:mm:ss",
-                                                    orderedBy: "",
-                                                    otherDetails: {},
-                                                    patientId: 0,
-                                                    startDate: "yyyy-MM-dd",
-                                                    status: 0,
-                                                    type: ""
+                                                comments: "",
+                                                dateTimeDispensed: "",
+                                                dateTimePrescribed: "",
+                                                dosageFrequency:"",
+                                                dosageStrengthUnit: "",
+                                                drugName: "",
+                                                duration: "",
+                                                durationUnit: "",
+                                                encounterDateTime: "",
+                                                orderedBy: "",
+                                                otherDetails: {},
+                                                patientId: 190,
+                                                startDate: "",
+                                                status: 0,
+                                                type: ""
                                                 });
 
     const handleInputChange = (e) => {
@@ -125,17 +124,26 @@ const DispenseModal = (props) => {
 
     const handleDispense = (e) => {
         e.preventDefault()
-        // const date_dispensed = moment(formValues.dateDispensed).format(
-        //     "DD-MM-YYYY"
-        // );
-        // formData.data.brand_name_dispensed = formValues.brandName
-        // formData.data.quantity_dispensed = formValues.qtyDispensed
-        // formData.data.prescription_status = 1
-        // formData.data.date_dispensed = date_dispensed
-        // formData.data.comment = formValues.comment
-        // const data = { ...formData };
+        objValues.encounterDateTime=Moment(objValues.encounterDateTime).format("YYYY-MM-DD@HH:mm:ss")
+        drugOrdersObj.drugOrders=[objValues]
+        setSaving(true);
+            axios.post(`${baseUrl}drug-orders`, drugOrdersObj,
+            { headers: {"Authorization" : `Bearer ${token}`}},
+            
+            )
+              .then(response => {
+                  setSaving(false);
+                  toast.success("Record save successful");                  
+                  props.DrugOrderList()
+                  props.togglestatus()
 
-        toggle()
+              })
+              .catch(error => {
+                  //console.log(error)
+                  setSaving(false);
+                  toast.error("Something went wrong");
+              });
+
     };
 
 
@@ -162,10 +170,10 @@ const DispenseModal = (props) => {
                                         <Label for="artDate">Encounter Date * </Label>
                                         <Input
                                             type="datetime-local"
-                                            name="visitDate"
-                                            id="visitDate"
+                                            name="encounterDateTime"
+                                            id="encounterDateTime"
                                             onChange={handleInputChange}
-                                            value={objValues.visitDate}
+                                            value={objValues.encounterDateTime}
                                             required
                                         />
                                         </FormGroup>
@@ -191,7 +199,7 @@ const DispenseModal = (props) => {
                                             <option value=""> </option>
                       
                                             {drugs.map((value) => (
-                                                <option key={value.id} value={value.id}>
+                                                <option key={value.name} value={value.name}>
                                                     {value.name}
                                                 </option>
                                             ))}
@@ -204,17 +212,17 @@ const DispenseModal = (props) => {
                                     <Label >	Dosage Strength</Label>
                                     <Input
                                             type="number"
-                                            name="dosageStrengthUnit"
-                                            id="tbStatusId"
-                                            value={objValues.tbStatusId}
+                                            name="dosageStrength"
+                                            id="dosageStrength"
+                                            value={objValues.dosageStrength}
                                             onChange={handleInputChange}
                                             required
                                             >
                                             
                                         </Input>
-                                    {errors.dosageStrengthUnit !=="" ? (
-                                            <span className={classes.error}>{errors.dosageStrengthUnit}</span>
-                                        ) : "" }
+                                    {/* {errors.dosageStrength !=="" ? (
+                                            <span className={classes.error}>{errors.dosageStrength}</span>
+                                        ) : "" } */}
                                     </FormGroup>
                                     </div>
                                 
@@ -264,7 +272,7 @@ const DispenseModal = (props) => {
                                         <FormGroup>
                                         <Label >Dose Frequency</Label>
                                         <Input
-                                            type="select"
+                                            type="text"
                                             name="dosageFrequency"
                                             id="dosageFrequency"
                                             value={objValues.dosageFrequency}
@@ -273,9 +281,9 @@ const DispenseModal = (props) => {
                                             >
                                             
                                         </Input>
-                                        {errors.dosageFrequency !=="" ? (
+                                        {/* {errors.dosageFrequency !=="" ? (
                                             <span className={classes.error}>{errors.dosageFrequency}</span>
-                                        ) : "" }
+                                        ) : "" } */}
                                         </FormGroup>
                                     </div>
                                     
@@ -323,9 +331,7 @@ const DispenseModal = (props) => {
                                            
                                             
                                         </InputGroup>
-                                        {objValues.bodyWeight > 200 ? (
-                                                <span className={classes.error}>{"Body Weight cannot be greater than 200."}</span>
-                                            ) : "" }
+                                        
                                         </FormGroup>
                                     </div>
 
@@ -367,6 +373,7 @@ const DispenseModal = (props) => {
                                 variant="contained"
                                 className={classes.button}
                                 startIcon={<CancelIcon />}
+                                //onClick={props.togglestatus()}
                                 
                             >
                                 <span style={{ textTransform: "capitalize" }}>Cancel</span>

@@ -16,6 +16,7 @@ import { Spinner } from 'reactstrap';
 
 import { url as baseUrl, token } from "../../../api";
 import axios from "axios";
+import { array } from 'yup';
 //import { CardHeader } from 'material-ui';
 
 
@@ -58,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DispenseModal = (props) => {
+     //Update the Regimen Object List 
     const { buttonLabel, className } = props;
     const [errors, setErrors] = useState({});
     const toggle = props.togglestatus
@@ -69,6 +71,7 @@ const DispenseModal = (props) => {
     const [regimens, setRegimens] = useState([])
     const [regimenDrugs, setRegimenDrug] = useState([])
     const [dosageUnit, setDosageUnit] = useState([])
+    const [otherDetails, setOtherDetails] = useState()
     const [objValues, setObjValues] = useState({brand: "",
                                                     comments: "string",
                                                     dateTimeDispensed: "yyyy-MM-dd@HH:mm:ss",
@@ -89,6 +92,11 @@ const DispenseModal = (props) => {
 
     const handleInputChange = (e) => {
         setObjValues ({ ...objValues, [e.target.name]: e.target.value });
+    }
+    const handleInputChangeOtherDetails = (e) => {
+        console.log(e.target.name)
+        setOtherDetails ({ ...otherDetails, [e.target.name]: e.target.value });
+        console.log(otherDetails)
     }
     useEffect(() => {
         RegimenList();
@@ -114,7 +122,13 @@ const DispenseModal = (props) => {
             const response = await axios.get(`${baseUrl}drugs/regimen/`+id,
             { headers: {"Authorization" : `Bearer ${token}`} }
             ).then((response) => {
-                setRegimenDrug(response.data);
+                let updatedObj=[]
+                response.data.map((x) => (
+                    x["dosageStrength"]="",
+                    x["dosageStrengthUnit"]="",
+                    updatedObj.push(x)
+                ));
+                setRegimenDrug(updatedObj)
             })
             .catch((error) => {
             });
@@ -122,8 +136,15 @@ const DispenseModal = (props) => {
       }
       getRegimenLine();
   
-    }
+    }   
+    // regimenDrugs.length  > 0 && regimenDrugs.map((x) => (
+    //     x["dosageStrength"]="",
+    //     x["dosageStrengthUnit"]="",
+    //     updatedObj.push(x)
+    // ))
+
     // Dosage Strength Unit
+
     const DosageUnit =()=>{
         axios
            .get(`${baseUrl}application-codesets/v2/DOSE_STRENGTH_UNIT`,
@@ -132,6 +153,7 @@ const DispenseModal = (props) => {
            .then((response) => {
                //console.log(response.data);
                setDosageUnit(response.data);
+               
            })
            .catch((error) => {
            //console.log(error);
@@ -139,23 +161,16 @@ const DispenseModal = (props) => {
        
      }
 
+     console.log(regimenDrugs)
+
     const handleDispense = (e) => {
         e.preventDefault()
-        // const date_dispensed = moment(formValues.dateDispensed).format(
-        //     "DD-MM-YYYY"
-        // );
-        // formData.data.brand_name_dispensed = formValues.brandName
-        // formData.data.quantity_dispensed = formValues.qtyDispensed
-        // formData.data.prescription_status = 1
-        // formData.data.date_dispensed = date_dispensed
-        // formData.data.comment = formValues.comment
-        // const data = { ...formData };
+
 
         toggle()
     };
 
-
-
+   
     return (
         <div>
             <Card>
@@ -225,10 +240,10 @@ const DispenseModal = (props) => {
                                                 <Label >Drug </Label>
                                                 <Input
                                                         type="text"
-                                                        name="drugName"
-                                                        id="drugName"
+                                                        name={drugsInfo.name}
+                                                        id={drugsInfo.name}
                                                         value={drugsInfo.name}
-                                                        onChange={handleInputChange}
+                                                        onChange={handleInputChangeOtherDetails}
                                                         required
                                                         ></Input>
                                                 </FormGroup>
@@ -236,13 +251,13 @@ const DispenseModal = (props) => {
                                                 
                                                 <div className="form-group mb-3 col-md-4">
                                                 <FormGroup>
-                                                <Label >	Dosage Strength</Label>
+                                                <Label >	Dosage Strength - {drugsInfo.abbrev}</Label>
                                                 <Input
                                                         type="number"
-                                                        name="dosageStrengthUnit"
-                                                        id="dosageStrengthUnit"
-                                                        value={objValues.dosageStrengthUnit}
-                                                        onChange={handleInputChange}
+                                                        name={drugsInfo.code}
+                                                        id={drugsInfo.code}
+                                                        value=""
+                                                        onChange={handleInputChangeOtherDetails}
                                                         required
                                                         >
                                                         
@@ -256,10 +271,10 @@ const DispenseModal = (props) => {
                                                     <Label >Dosage Unit *</Label>
                                                     <Input
                                                         type="select"
-                                                        name="dosageStrengthUnitRegimen"
-                                                        id="dosageStrengthUnitRegimen"
-                                                        //onChange={handleInputChange}
-                                                        //value={objValues.dosageStrengthUnitRegimen}
+                                                        name={drugsInfo.code}
+                                                        id={drugsInfo.code}
+                                                        onChange={handleInputChangeOtherDetails}
+                                                        value=""
                                                         required
                                                     >
                                                         <option value=""> </option>
@@ -289,7 +304,7 @@ const DispenseModal = (props) => {
                                         <FormGroup>
                                         <Label >Dose Frequency</Label>
                                         <Input
-                                            type="select"
+                                            type="number"
                                             name="dosageFrequency"
                                             id="dosageFrequency"
                                             value={objValues.dosageFrequency}
@@ -343,7 +358,7 @@ const DispenseModal = (props) => {
                                                 name="durationUnit"
                                                 id="durationUnit"
                                                 onChange={handleInputChange}
-                                                value={objValues.bodyWeight} 
+                                                value={objValues.durationUnit} 
                                             />
                                            
                                             
