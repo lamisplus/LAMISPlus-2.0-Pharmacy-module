@@ -2,9 +2,10 @@ basePackage: org.lamisplus.modules.pharmacy
 name: PharmacyModule
 store: true
 menus:
-  - disabled: false
-    name: Sync
-    state: sync
+  - icon:
+    disabled: false
+    name: Pharmacy
+    state: pharmacy
     url: /across/resources/static/pharmacy/index.html
 umdLocation: /across/resources/static/pharmacy/index.html
 webModules:

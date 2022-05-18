@@ -23,11 +23,11 @@ import java.util.Map;
 public class DrugOrderController {
 
     private final DrugOrderService drugOrderService;
-    private final DrugDispenseService drugDispenseService;
 
     @GetMapping
-    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrders() {
-        return ResponseEntity.ok(drugOrderService.getAllDrugOrders());
+    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrders(@RequestParam (required = false, defaultValue = "0")Long patientId) {
+        if(patientId == null) patientId = 0L;
+        return ResponseEntity.ok(drugOrderService.getAllDrugOrders(patientId));
     }
 
     @GetMapping("/patients")
