@@ -65,6 +65,8 @@ public class DrugOrderService {
         List<DrugOrder> drugOrders = new ArrayList<>();
         String drugPrescribedGroupId = UUID.randomUUID().toString();
         drugOrderDTOS.getDrugOrders().forEach(drugOrder -> {
+            if (drugOrder.getPatientId() == null) throw new EntityNotFoundException(DrugOrder.class, "id", "id");
+
             drugOrder.setId(null);
             drugOrder.setPrescriptionGroupId(drugPrescribedGroupId);
             drugOrder.setUuid(UUID.randomUUID().toString());
