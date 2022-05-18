@@ -69,7 +69,7 @@ public class DrugDispenseService {
                 .orElseThrow(() -> new EntityNotFoundException(DrugDispense.class, "Id", id + ""));
 
         drugDispense.setArchived(ARCHIVED);
-        //Archive also the drug dispense
+        //TODO: Also archive the drug dispense
         drugDispenseRepository.save(drugDispense);
         return drugDispense.getArchived();
     }
@@ -131,7 +131,6 @@ public class DrugDispenseService {
                 .stream()
                 .sorted(Comparator.comparingLong(DrugDispense::getDrugOrderId).reversed())
                 .collect(groupingBy(DrugDispense::getDrugOrderId));
-
         return getPatientDrugOrders(drugDispenseMap, null);
     }
 }

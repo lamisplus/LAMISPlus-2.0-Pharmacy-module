@@ -16,6 +16,8 @@ public interface DrugOrderRepository extends JpaRepository<DrugOrder, Long> {
 
     List<DrugOrder> findAllByArchived(int archived);
 
+    List<DrugOrder> findAllByPatientIdAndArchived(Long patientId, int archived);
+
     @Query(value = "SELECT * FROM drug_order GROUP BY prescription_group_id, id ORDER BY id DESC", nativeQuery = true)
     List<DrugOrder> findAllDrugOrderGroupByPrescriptionGroupIdOrderById();
 

@@ -9,7 +9,6 @@ import org.lamisplus.modules.pharmacy.domain.dto.DrugOrderDTOS;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugOrderDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugOrderMapper;
-import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
 import org.lamisplus.modules.pharmacy.repositories.DrugOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,13 +27,36 @@ public class DrugOrderService {
     private static final int ARCHIVED = 1;
     private static final int UN_ARCHIVED = 0;
     private final DrugOrderRepository drugOrderRepository;
-    private final DrugDispenseRepository drugDispenseRepository;
     private final DrugOrderMapper drugOrderMapper;
-    private String prescriptionGroupId = "";
 
 
-    public List<DrugOrderDTO> getAllDrugOrders() {
-        return drugOrderMapper.toDrugOrderDTOList(drugOrderRepository.findAllByArchived(UN_ARCHIVED));
+    public List<DrugOrderDTO> getAllDrugOrders(Long patientId) {
+        List<DrugOrderDTO> drugOrdersDTOS;
+        if(patientId == 0) {
+            drugOrdersDTOS = drugOrderRepository.findAllByArchived(UN_ARCHIVED)
+                    .stream()
+                    .map(drugOrder -> transformDrugOrder(drugOrder))
+                    .collect(Collectors.toList());
+        } else {
+            drugOrdersDTOS = drugOrderRepository.findAllByPatientIdAndArchived(patientId, UN_ARCHIVED)
+                    .stream()
+                    .map(drugOrder -> transformDrugOrder(drugOrder))
+                    .collect(Collectors.toList());
+        }
+        return drugOrdersDTOS;
+
+    }
+
+    private  DrugOrderDTO transformDrugOrder(DrugOrder drugOrder){
+
+        if (drugOrder.getDrugDispensesById() == null) {
+            drugOrder.setStatus(0);
+        } else {
+            drugOrder.setDateTimeDispensed(drugOrder.getDrugDispensesById().getDateTimeDispensed());
+            drugOrder.setStatus(1);
+        }
+        return drugOrderMapper.toDrugOrderDTO(drugOrder);
+
     }
 
     public List<DrugOrder> save(DrugOrderDTOS drugOrderDTOS) {
@@ -121,8 +143,6 @@ public class DrugOrderService {
 
             patientDrugOrderDTOS.add(patientDrugOrderDTO);
         });
-
-
         return patientDrugOrderDTOS;
     }
 }

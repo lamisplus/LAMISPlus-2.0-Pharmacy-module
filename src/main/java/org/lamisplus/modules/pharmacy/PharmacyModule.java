@@ -24,7 +24,7 @@ import java.util.List;
 @AcrossApplication(
 		modules = {
 				AcrossHibernateJpaModule.NAME,
-				//AcrossWebModule.NAME,
+				AcrossWebModule.NAME,
 				BaseModule.NAME
 		},
 		modulePackageClasses = {BaseModule.class})
@@ -33,9 +33,9 @@ import java.util.List;
 public class PharmacyModule extends AcrossModule {
 	public static final String NAME = "PharmacyModule";
 
-	/*public static void main( String[] args ) {
+	public static void main( String[] args ) {
 		AcrossApplicationRunner.run( PharmacyModule.class, args );
-	}*/
+	}
 
 	public String getName() {
 		return NAME;
