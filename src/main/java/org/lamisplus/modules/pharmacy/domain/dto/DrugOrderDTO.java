@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +19,8 @@ public class DrugOrderDTO {
 
     @JsonIgnore
     private String uuid;
+
+    @NotBlank(message = "drugName is mandatory")
     private String drugName;
 
     //TODO: change to integer
@@ -28,6 +32,8 @@ public class DrugOrderDTO {
 
     //TODO: change to integer
     private String duration;
+
+    @NotNull(message = "patientId is mandatory")
     private Long patientId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -40,8 +46,10 @@ public class DrugOrderDTO {
     private String brand;
     private Integer dosageFrequency;
     private String type;
-    @JsonIgnore
-    private Integer archived;
 
     private Object otherDetails;
+
+    @NotNull(message = "encounterDateTime is mandatory")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
+    private LocalDateTime encounterDateTime;
 }
