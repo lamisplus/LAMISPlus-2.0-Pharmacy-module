@@ -62,17 +62,16 @@ public class DrugOrderService {
     public List<DrugOrder> save(DrugOrderDTOS drugOrderDTOS) {
         //Optional<Drug> DrugOptional = drugOrderRepository.findByDrugNameAndPatientIdAnd(drugOrder.getName(), UN_ARCHIVED);
         //if (DrugOptional.isPresent()) throw new RecordExistException(Drug.class, "Name", drugOrder.getName());
-        List<DrugOrder> drugOrders = new ArrayList<>();
+        List<DrugOrderDTO> drugOrderDTOList = new ArrayList<>();
         String drugPrescribedGroupId = UUID.randomUUID().toString();
-        drugOrderDTOS.getDrugOrders().forEach(drugOrder -> {
-            if (drugOrder.getPatientId() == null) throw new EntityNotFoundException(DrugOrder.class, "id", "id");
-
-            drugOrder.setId(null);
-            drugOrder.setPrescriptionGroupId(drugPrescribedGroupId);
-            drugOrder.setUuid(UUID.randomUUID().toString());
-            drugOrders.add(drugOrder);
+        drugOrderDTOS.getDrugOrders().forEach(drugOrderDTO -> {
+            if (drugOrderDTO.getPatientId() == null) throw new EntityNotFoundException(DrugOrder.class, "id", "id");
+            drugOrderDTO.setId(null);
+            drugOrderDTO.setPrescriptionGroupId(drugPrescribedGroupId);
+            drugOrderDTO.setUuid(UUID.randomUUID().toString());
+            drugOrderDTOList.add(drugOrderDTO);
         });
-        return drugOrderRepository.saveAll(drugOrders);
+        return drugOrderRepository.saveAll(drugOrderMapper.toDrugOrderList(drugOrderDTOList));
     }
 
     public DrugOrderDTO getDrugOrder(Long id) {

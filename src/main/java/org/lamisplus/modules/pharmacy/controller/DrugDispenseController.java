@@ -9,6 +9,7 @@ import org.lamisplus.modules.pharmacy.service.DrugDispenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,7 @@ public class DrugDispenseController {
     }
 
     @PostMapping
-    public ResponseEntity<List<DrugDispense>> save(@RequestBody DrugDispenseDTOS drugDispenseDTOS) {
+    public ResponseEntity<List<DrugDispense>> save(@RequestBody @Valid DrugDispenseDTOS drugDispenseDTOS) {
         return ResponseEntity.ok(drugDispenseService.save(drugDispenseDTOS));
     }
 

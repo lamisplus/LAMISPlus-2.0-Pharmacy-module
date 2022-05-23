@@ -64,7 +64,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: emeka
-    url: jdbc:postgresql://localhost:5432/pharmacy
+    url: jdbc:postgresql://localhost:5432/mathew-pharmacy
     hibernate:
       ddl-auto: none
       event.merge.enty_copy_observer: allow

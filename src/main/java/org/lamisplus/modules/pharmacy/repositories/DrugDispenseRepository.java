@@ -27,4 +27,6 @@ public interface DrugDispenseRepository extends JpaRepository<DrugDispense, Long
 
     @Query(value = "SELECT * FROM drug_dispense WHERE drug_order_id=?1 GROUP BY drug_order_id, id ORDER BY id DESC", nativeQuery = true)
     List<DrugDispense>  findAllDrugDispenseByDrugOrderId(Long drugOrderId);
+
+    Optional<DrugDispense> findByDrugOrderId(Long drugOrderId);
 }

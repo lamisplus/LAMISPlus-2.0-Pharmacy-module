@@ -3,7 +3,8 @@ package org.lamisplus.modules.pharmacy.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundException;
+import org.lamisplus.modules.base.controller.apierror.EntityNotFoundException;
+import org.lamisplus.modules.base.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTOS;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugDispenseDTO;
@@ -14,6 +15,7 @@ import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class DrugDispenseService {
         return drugDispenseMapper.toDrugDispenseDTOList(drugDispenseRepository.findAllByArchived(UN_ARCHIVED));
     }
 
-    public List<DrugDispense> save(DrugDispenseDTOS drugDispenseDTOS) {
+    public List<DrugDispense> save(@Valid DrugDispenseDTOS drugDispenseDTOS) {
         //Optional<Drug> DrugOptional = drugDispenseRepository.findByDrugNameAndPatientIdAnd(drugOrder.getName(), UN_ARCHIVED);
         //if (DrugOptional.isPresent()) throw new RecordExistException(Drug.class, "Name", drugOrder.getName());
         List<DrugDispense> drugDispenseList = new ArrayList<>();
@@ -43,6 +45,11 @@ public class DrugDispenseService {
             if(drugDispense.getDrugOrderId() == null){
                 throw new EntityNotFoundException(DrugOrder.class, "DrugOrderId", "DrugOrderId");
             }
+                if(drugDispenseRepository.findByDrugOrderId(drugDispense.getDrugOrderId()).isPresent()) {
+                    throw new RecordExistException(DrugDispense.class,
+                            "Drug " + drugDispense.getDrugName() + " has already been dispensed with order",
+                            " " + drugDispense.getDrugOrderId());
+                }
             drugDispenseList.add(drugDispense);
         });
         return drugDispenseRepository.saveAll(drugDispenseList);

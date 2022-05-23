@@ -25,9 +25,8 @@ import java.util.List;
 		modules = {
 				AcrossHibernateJpaModule.NAME,
 				AcrossWebModule.NAME,
-				BaseModule.NAME
-		},
-		modulePackageClasses = {BaseModule.class})
+				"BaseModule"
+		},modulePackageClasses = {BaseModule.class})
 @Slf4j
 @EnableSwagger2
 public class PharmacyModule extends AcrossModule {

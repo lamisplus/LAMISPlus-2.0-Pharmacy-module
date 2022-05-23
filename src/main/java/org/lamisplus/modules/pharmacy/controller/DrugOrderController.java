@@ -11,8 +11,10 @@ import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.service.DrugDispenseService;
 import org.lamisplus.modules.pharmacy.service.DrugOrderService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 @RequestMapping("/api/drug-orders")
 @Slf4j
 @RequiredArgsConstructor
+@Validated
 public class DrugOrderController {
 
     private final DrugOrderService drugOrderService;
@@ -46,7 +49,7 @@ public class DrugOrderController {
     }
 
     @PostMapping
-    public ResponseEntity<List<DrugOrder>> save(@RequestBody DrugOrderDTOS drugOrderDTOS) {
+    public ResponseEntity<List<DrugOrder>> save(@RequestBody @Valid DrugOrderDTOS drugOrderDTOS) {
         return ResponseEntity.ok(drugOrderService.save(drugOrderDTOS));
     }
 
