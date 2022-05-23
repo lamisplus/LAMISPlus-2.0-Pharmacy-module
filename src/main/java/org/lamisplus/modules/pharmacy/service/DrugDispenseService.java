@@ -15,7 +15,6 @@ import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,19 +36,20 @@ public class DrugDispenseService {
         return drugDispenseMapper.toDrugDispenseDTOList(drugDispenseRepository.findAllByArchived(UN_ARCHIVED));
     }
 
-    public List<DrugDispense> save(@Valid DrugDispenseDTOS drugDispenseDTOS) {
+    public List<DrugDispense> save(DrugDispenseDTOS drugDispenseDTOS) {
         //Optional<Drug> DrugOptional = drugDispenseRepository.findByDrugNameAndPatientIdAnd(drugOrder.getName(), UN_ARCHIVED);
         //if (DrugOptional.isPresent()) throw new RecordExistException(Drug.class, "Name", drugOrder.getName());
         List<DrugDispense> drugDispenseList = new ArrayList<>();
         drugDispenseDTOS.getDrugDispenses().forEach(drugDispense -> {
             if(drugDispense.getDrugOrderId() == null){
                 throw new EntityNotFoundException(DrugOrder.class, "DrugOrderId", "DrugOrderId");
+            } else {
+                drugDispenseRepository
+                        .findByDrugOrderId(drugDispense.getDrugOrderId())
+                        .ifPresent( drugDispense1 -> {
+                throw new RecordExistException(DrugDispense.class, "Drug " + drugDispense.getDrugName()+ " has already been dispensed with order", " "+drugDispense.getDrugOrderId());
+            });
             }
-                if(drugDispenseRepository.findByDrugOrderId(drugDispense.getDrugOrderId()).isPresent()) {
-                    throw new RecordExistException(DrugDispense.class,
-                            "Drug " + drugDispense.getDrugName() + " has already been dispensed with order",
-                            " " + drugDispense.getDrugOrderId());
-                }
             drugDispenseList.add(drugDispense);
         });
         return drugDispenseRepository.saveAll(drugDispenseList);
