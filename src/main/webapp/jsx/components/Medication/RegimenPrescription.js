@@ -94,9 +94,8 @@ const DispenseModal = (props) => {
         setObjValues ({ ...objValues, [e.target.name]: e.target.value });
     }
     const handleInputChangeOtherDetails = (e) => {
-        console.log(e.target.name)
         setOtherDetails ({ ...otherDetails, [e.target.name]: e.target.value });
-        console.log(otherDetails)
+
     }
     useEffect(() => {
         RegimenList();
@@ -161,7 +160,6 @@ const DispenseModal = (props) => {
        
      }
 
-     console.log(regimenDrugs)
 
     const handleDispense = (e) => {
         e.preventDefault()

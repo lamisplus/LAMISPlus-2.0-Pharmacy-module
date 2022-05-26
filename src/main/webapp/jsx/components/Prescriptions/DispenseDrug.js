@@ -59,7 +59,9 @@ const useStyles = makeStyles(theme => ({
 
 const DispenseModal = (props) => {
    const drugDetails= props && props.datasample ? props.datasample : {}
-   console.log(drugDetails)
+   //console.log(drugDetails)
+   //console.log(props)
+
     const { buttonLabel, className } = props;
     const toggle = props.togglestatus
     const modal = props.modalstatus
@@ -75,7 +77,7 @@ const DispenseModal = (props) => {
                                                         dosageStrength: drugDetails.dosageStrength,
                                                         dosageStrengthUnit: drugDetails.dosageStrengthUnit,
                                                         drugName: drugDetails.drugName,
-                                                        drugOrderId: drugDetails.drugOrderId,
+                                                        drugOrderId: drugDetails.id,
                                                         duration: drugDetails.duration,
                                                         durationUnit:drugDetails.durationUnit,
                                                         otherDetails: {},
@@ -101,14 +103,21 @@ const DispenseModal = (props) => {
             )
               .then(response => {
                   setSaving(false);
+                  const newData =  {...drugDetails, ...formValues}
+                  console.log(newData)
+                  drugDetails = newData
+                  console.log(drugDetails)
                   toast.success("Record save successful");
-                  //props.toggle()
+                  props.togglestatus()
 
               })
               .catch(error => {
-                  //console.log(error)
+                const newData =  {...drugDetails, ...formValues}
+                drugDetails = newData
+                console.log(drugDetails)
                   setSaving(false);
                   toast.error("Something went wrong");
+                  props.togglestatus()
               });
     };
 

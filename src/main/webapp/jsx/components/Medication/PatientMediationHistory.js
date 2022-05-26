@@ -68,7 +68,7 @@ const PatientSearch = (props) => {
     //Get list of Regimens
     const DrugOrderList =()=>{
     axios
-      .get(`${baseUrl}drug-orders/patients/${patientID}`,
+      .get(`${baseUrl}drug-orders?patientId=${patientID}`,
           { headers: {"Authorization" : `Bearer ${token}`} }
       )
       .then((response) => {

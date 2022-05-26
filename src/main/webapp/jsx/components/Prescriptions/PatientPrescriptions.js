@@ -78,27 +78,28 @@ const Prescriptions = (props) => {
   const toggleModal1 = () => setModal1(!modal1)
   const [modal2, setModal2] = useState(false);
   const toggleModal2 = () => setModal2(!modal2)
-  const [formData, setFormData] = useState(prescriptionOrder);
-  const [drugDetails, setDrugDetails] = useState()
-  console.log(formData)
+  const [formData, setFormData] = useState(props  && props.patientObj  ? props.patientObj : {});
+  const [drugDetails, setDrugDetails] = useState({})
+
 const updateFormData = (data) =>{
 
-    // setLoading(true);
-    //   const index = formData.findIndex(x => x.drugOrders.id == drugOrders.id);
+    setLoading(true);
+    //   console.log(formData)
+    //   // const index = formData.findIndex(x => x.drugOrders.id == drugOrders.id);
 
-    //   formData[index] = data;
-    //   setFormData(formData);
+    //   // formData[index] = data;
+    //   // setFormData(formData);
     // setLoading(false);
     }
 
   const toggle = (form) => {
-    console.log(form)
+    //console.log(form)
     setDrugDetails({ ...drugDetails, ...form });
     setModal(!modal);
     
   } 
   const toggle1 = (form) => {
-    console.log(form)
+    //console.log(form)
     setDrugDetails({ ...drugDetails, ...form });
     setModal1(!modal1)
   }
@@ -121,8 +122,7 @@ const updateFormData = (data) =>{
    );
 
 
- const Actions = (form) => {
-  console.log(form) 
+ const Actions = (form) => { 
    return (
      <Menu>
        <MenuButton

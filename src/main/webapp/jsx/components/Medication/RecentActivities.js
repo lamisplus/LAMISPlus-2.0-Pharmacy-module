@@ -7,11 +7,21 @@ import {Badge, Alert } from "react-bootstrap";
 
 const RecentActivities = (props) => {
       const ordersObj = props.ordersObj;
+      // update the object to Dispense Drug Order List
       let dispensedDrugs =[]
-      ordersObj.length > 0 && ordersObj[0].drugOrders.map((drugOrders) => {
+      ordersObj.length > 0 && ordersObj.map((drugOrders) => {
             
             if(drugOrders.status!==0){
               dispensedDrugs.push(drugOrders)
+            }
+      })
+
+      //Update the Drug order to check the ones that have been dispensed
+      let prescribedDrugs =[]
+      ordersObj.length > 0 && ordersObj.map((drugOrders) => {
+            
+            if(drugOrders.status===0){
+              prescribedDrugs.push(drugOrders)
             }
       })
       console.log(dispensedDrugs)
@@ -34,7 +44,7 @@ const RecentActivities = (props) => {
                 className="widget-timeline dz-scroll height370 ps ps--active-y"
               >
                 <ul className="timeline">
-                  {ordersObj.length>0 && ordersObj[0].drugOrders.map((drugOrders, index)=>(
+                  {prescribedDrugs.length>0 && prescribedDrugs.map((drugOrders, index)=>(
                     <li>
                     <div className={ index % 2===0 ? "timeline-badge success" : "timeline-badge primary"}></div>
                     <Link
@@ -118,7 +128,7 @@ const RecentActivities = (props) => {
                       className="alert-dismissible solid fade show"
                     >
                       <p>No Drug Dispense</p>
-                  </Alert>
+                    </Alert>
                 
                 }
                 </ul>

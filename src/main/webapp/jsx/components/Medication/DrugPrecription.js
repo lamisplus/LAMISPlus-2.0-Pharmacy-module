@@ -14,6 +14,7 @@ import { Spinner } from 'reactstrap';
 import { toast} from "react-toastify";
 import { url  as baseUrl, token} from "../../../api";
 import axios from "axios";
+import { input } from "react-bootstrap";
 //import { CardHeader } from 'material-ui';
 
 
@@ -302,32 +303,40 @@ const DispenseModal = (props) => {
                                         </Input>
                                         </FormGroup>
                                     </div>
-                                    <div className="form-group mb-3 col-md-6">
+                                    <div className="form-group input-group-sm mb-3 col-md-6">
                                         <FormGroup>
                                         <Label >Duration </Label>
-                                        <Input
+                                        <input
                                             type="number"
                                             name="duration"
                                             id="duration"
                                             value={objValues.duration}
                                             onChange={handleInputChange}
+                                            className="form-control"
                                             required
                                             >
                                           
-                                        </Input>
+                                        </input>
                                         </FormGroup>
+                                       
                                     </div>
-                                    <div className="form-group mb-3 col-md-6">
+                                    <div className="form-group input-group-sm mb-3 col-md-6">
                                         <FormGroup>
                                         <Label >Duration Unit </Label>
                                         <InputGroup> 
                                             <Input 
-                                                type="number"
+                                                type="select"
                                                 name="durationUnit"
                                                 id="durationUnit"
                                                 onChange={handleInputChange}
+                                                className="form-control"
                                                 value={objValues.bodyWeight} 
-                                            />
+                                            >
+                                                 <option value=""> </option>
+                                                 <option value="Days"> Days</option>
+                                                 <option value="Weeks">Weeks </option>
+                                                 <option value="Months">Months </option>
+                                            </Input>
                                            
                                             
                                         </InputGroup>
@@ -342,6 +351,7 @@ const DispenseModal = (props) => {
                                             type="textarea"
                                             name="comments"
                                             rows="40" cols="50"
+                                            className="form-control"
                                             id="comments"
                                             onChange={handleInputChange}
                                             value={objValues.comments}
