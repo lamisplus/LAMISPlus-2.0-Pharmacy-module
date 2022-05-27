@@ -121,11 +121,11 @@ public class DrugOrderService {
         drugOrderMap.forEach((k,v) ->{
             PatientDrugOrderDTO patientDrugOrderDTO = new PatientDrugOrderDTO();
             patientDrugOrderDTO.setPatientDob(LocalDate.now());
-            patientDrugOrderDTO.setPatientFirstName("Test");
-            patientDrugOrderDTO.setPatientLastName("Test");
-            patientDrugOrderDTO.setPatientHospitalNumber("ttttttt");
+            patientDrugOrderDTO.setPatientFirstName("Emeka");
+            patientDrugOrderDTO.setPatientLastName("Greg");
+            patientDrugOrderDTO.setPatientHospitalNumber("32542652");
             patientDrugOrderDTO.setPatientAddress("White House Abj");
-            patientDrugOrderDTO.setPatientGender("Female");
+            patientDrugOrderDTO.setPatientGender("Male");
             patientDrugOrderDTO.setPatientPhoneNumber("09087654321");
 
             patientDrugOrderDTO.setDrugOrders(v.stream()
