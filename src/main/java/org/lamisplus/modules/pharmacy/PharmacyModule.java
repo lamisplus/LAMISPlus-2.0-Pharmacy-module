@@ -41,16 +41,15 @@ public class PharmacyModule extends AcrossModule {
 	}
 
 	public PharmacyModule() {
-		super();
-		addApplicationContextConfigurer(new ComponentScanConfigurer(
-				getClass().getPackage().getName() +".controller",
-				getClass().getPackage().getName() +".service",
-				getClass().getPackage().getName() +".config",
-				getClass().getPackage().getName() +".domain",
-				getClass().getPackage().getName() +".extensions",
-				getClass().getPackage().getName() +".installers",
-				getClass().getPackage().getName() +".util",
-				getClass().getPackage().getName() +".repositories"));
+		super ();
+		addApplicationContextConfigurer (new ComponentScanConfigurer (
+				getClass ().getPackage ().getName () + ".domain",
+				getClass ().getPackage ().getName () + ".repositories",
+				getClass ().getPackage ().getName () + ".config",
+				getClass ().getPackage ().getName () + ".services",
+				getClass ().getPackage ().getName () + ".controller",
+				getClass ().getPackage ().getName () + ".util",
+				"org.lamisplus.modules.base.service"));
 	}
 
 	/*
