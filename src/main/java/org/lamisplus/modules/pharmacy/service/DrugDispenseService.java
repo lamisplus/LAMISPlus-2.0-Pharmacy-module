@@ -5,15 +5,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.lamisplus.modules.base.controller.apierror.EntityNotFoundException;
 import org.lamisplus.modules.base.controller.apierror.RecordExistException;
+import org.lamisplus.modules.patient.domain.dto.PersonResponseDto;
+import org.lamisplus.modules.patient.domain.entity.Person;
+import org.lamisplus.modules.patient.service.PersonService;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTO;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDispenseDTOS;
 import org.lamisplus.modules.pharmacy.domain.dto.PatientDrugDispenseDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugDispense;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugOrder;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugDispenseMapper;
-import org.lamisplus.modules.pharmacy.repositories.DrugDispenseRepository;
+import org.lamisplus.modules.pharmacy.repository.DrugDispenseRepository;
+import org.lamisplus.modules.pharmacy.util.JsonNodeTransformer;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -22,7 +25,6 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-@Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class DrugDispenseService {
@@ -30,6 +32,8 @@ public class DrugDispenseService {
     private static final int UN_ARCHIVED = 0;
     private final DrugDispenseRepository drugDispenseRepository;
     private final DrugDispenseMapper drugDispenseMapper;
+    private final PersonService personService;
+    private final JsonNodeTransformer jsonNodeTransformer;
 
 
     public List<DrugDispenseDTO> getAllDrugDispense() {
@@ -37,10 +41,13 @@ public class DrugDispenseService {
     }
 
     public List<DrugDispense> save(DrugDispenseDTOS drugDispenseDTOS) {
-        //Optional<Drug> DrugOptional = drugDispenseRepository.findByDrugNameAndPatientIdAnd(drugOrder.getName(), UN_ARCHIVED);
+        //Optional<Drug> DrugOptional = drugDispenseRepository.findByDrugNameAndPatientIdAndDrugOrderId(drugOrder.getName(), UN_ARCHIVED);
         //if (DrugOptional.isPresent()) throw new RecordExistException(Drug.class, "Name", drugOrder.getName());
         List<DrugDispense> drugDispenseList = new ArrayList<>();
         drugDispenseDTOS.getDrugDispenses().forEach(drugDispense -> {
+            if(!personService.isPersonExist(drugDispense.getPatientId())){
+                throw new EntityNotFoundException(Person.class, "patientId", "" + drugDispense.getPatientId());
+            }
             if(drugDispense.getDrugOrderId() == null){
                 throw new EntityNotFoundException(DrugOrder.class, "DrugOrderId", "DrugOrderId");
             } else {
@@ -104,28 +111,19 @@ public class DrugDispenseService {
     private List<PatientDrugDispenseDTO> getPatientDrugOrders(Map<Long, List<DrugDispense>> drugDispenseMap, Long patientId){
         List<PatientDrugDispenseDTO> patientDrugDispenseDTOS = new ArrayList<>();
         if(patientId != null){
-            //get patient id
-            //set patient first, last name, hospital number, dob
+            patientDrugDispenseDTOS.add(this.setDTO(patientId));
         }
         drugDispenseMap.forEach((k,v) ->{
-            PatientDrugDispenseDTO patientDrugDispenseDTO = new PatientDrugDispenseDTO();
-            patientDrugDispenseDTO.setPatientDob(LocalDate.now().minusYears(30L));
-            patientDrugDispenseDTO.setPatientFirstName("Test");
-            patientDrugDispenseDTO.setPatientLastName("Test");
-            patientDrugDispenseDTO.setPatientHospitalNumber("ttttttt");
-            patientDrugDispenseDTO.setPatientAddress("White House Abj");
-            patientDrugDispenseDTO.setPatientGender("Female");
-            patientDrugDispenseDTO.setPatientPhoneNumber("09087654321");
-
-            patientDrugDispenseDTO.setDrugDispenses(v.stream()
-                    .map(drugDispense -> {
-                        patientDrugDispenseDTO.setPatientId(drugDispense.getPatientId());
-                        return drugDispense;
+            final PatientDrugDispenseDTO[] patientDrugDispenseDTO = {new PatientDrugDispenseDTO()};
+            patientDrugDispenseDTO[0].setDrugDispenses(v.stream()
+                    .peek(drugDispense -> {
+                        if (patientDrugDispenseDTO[0].getPatientId() == null) {
+                            patientDrugDispenseDTO[0] = this.setDTO(drugDispense.getPatientId());
+                        }
                     })
                     .sorted(Comparator.comparingLong(DrugDispense::getId).reversed())
                     .collect(Collectors.toList()));
-
-            patientDrugDispenseDTOS.add(patientDrugDispenseDTO);
+            patientDrugDispenseDTOS.add(patientDrugDispenseDTO[0]);
         });
 
 
@@ -139,5 +137,32 @@ public class DrugDispenseService {
                 .sorted(Comparator.comparingLong(DrugDispense::getDrugOrderId).reversed())
                 .collect(groupingBy(DrugDispense::getDrugOrderId));
         return getPatientDrugOrders(drugDispenseMap, null);
+    }
+
+    private PatientDrugDispenseDTO setDTO(Long patientId){
+        PatientDrugDispenseDTO patientDrugDispenseDTO = new PatientDrugDispenseDTO();
+        PersonResponseDto personResponseDTO = personService.getPersonById(patientId);
+        try {
+            patientDrugDispenseDTO.setPatientId(patientId);
+            patientDrugDispenseDTO.setPatientDob(personResponseDTO.getDateOfBirth());
+            patientDrugDispenseDTO.setPatientLastName(personResponseDTO.getSurname());
+            patientDrugDispenseDTO.setPatientFirstName(personResponseDTO.getFirstName());
+            patientDrugDispenseDTO.setPatientHospitalNumber
+                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getIdentifier(), "identifier", "value", true));
+
+            patientDrugDispenseDTO.setPatientAddress
+                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getAddress(), "address", "city", true));
+
+            patientDrugDispenseDTO.setPatientGender
+                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getGender(), null, "display", false));
+
+            patientDrugDispenseDTO.setPatientPhoneNumber(jsonNodeTransformer.getNodeValue(personResponseDTO.getContactPoint(),
+                    "contactPoint", "value", true));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return patientDrugDispenseDTO;
+
     }
 }

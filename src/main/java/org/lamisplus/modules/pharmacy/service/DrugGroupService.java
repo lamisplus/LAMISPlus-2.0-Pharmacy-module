@@ -2,20 +2,18 @@ package org.lamisplus.modules.pharmacy.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundException;
-import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
+import org.lamisplus.modules.base.controller.apierror.EntityNotFoundException;
+import org.lamisplus.modules.base.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.DrugGroup;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugMapper;
-import org.lamisplus.modules.pharmacy.repositories.DrugGroupRepository;
+import org.lamisplus.modules.pharmacy.repository.DrugGroupRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class DrugGroupService {

@@ -1,4 +1,4 @@
-package org.lamisplus.modules.pharmacy.repositories;
+package org.lamisplus.modules.pharmacy.repository;
 
 import org.lamisplus.modules.pharmacy.domain.entity.Regimen;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,19 +2,17 @@ package org.lamisplus.modules.pharmacy.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundException;
-import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
+import org.lamisplus.modules.base.controller.apierror.EntityNotFoundException;
+import org.lamisplus.modules.base.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.entity.Regimen;
 import org.lamisplus.modules.pharmacy.domain.entity.RegimenLine;
-import org.lamisplus.modules.pharmacy.repositories.RegimenLineRepository;
+import org.lamisplus.modules.pharmacy.repository.RegimenLineRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class RegimenLineService {
