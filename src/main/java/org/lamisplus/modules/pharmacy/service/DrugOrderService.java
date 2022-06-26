@@ -59,6 +59,17 @@ public class DrugOrderService {
 
     }
 
+    public List<DrugOrderDTO> getAllDrugOrdersByVisitId(Integer visitId) {
+        List<DrugOrderDTO> drugOrdersDTOS;
+
+        drugOrdersDTOS = drugOrderRepository.findAllByVisitIdAndArchived(visitId, UN_ARCHIVED)
+                .stream()
+                .map(this::transformDrugOrder)
+                .collect(Collectors.toList());
+
+        return drugOrdersDTOS;
+    }
+
     private  DrugOrderDTO transformDrugOrder(DrugOrder drugOrder){
 
         if (drugOrder.getDrugDispensesById() == null) {
@@ -139,46 +150,46 @@ public class DrugOrderService {
 
     private List<PatientDrugOrderDTO> getPatientDrugOrders(Map<String, List<DrugOrder>> drugOrderMap) {
         List<PatientDrugOrderDTO> patientDrugOrderDTOS = new ArrayList<>();
-        drugOrderMap.forEach((k, v) -> {
-            PatientDrugOrderDTO patientDrugOrderDTO = new PatientDrugOrderDTO();
-
-            patientDrugOrderDTO.setDrugOrders(v.stream()
-                    .map(drugOrder -> {
-                        try {
-                            if (patientDrugOrderDTO.getPatientHospitalNumber() == null) {
-                                PersonResponseDto personResponseDTO = personService.getPersonById(drugOrder.getPatientId());
-                                patientDrugOrderDTO.setPatientDob(personResponseDTO.getDateOfBirth());
-                                patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
-                                patientDrugOrderDTO.setPatientFirstName(personResponseDTO.getFirstName());
-                                patientDrugOrderDTO.setPatientLastName(personResponseDTO.getSurname());
-                                patientDrugOrderDTO.setPatientHospitalNumber
-                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getIdentifier(), "identifier", "value", true));
-
-                                patientDrugOrderDTO.setPatientAddress
-                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getAddress(), "address", "city", true));
-
-                                patientDrugOrderDTO.setPatientGender
-                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getGender(), null, "display", false));
-
-                                patientDrugOrderDTO.setPatientPhoneNumber(jsonNodeTransformer.getNodeValue(personResponseDTO.getContactPoint(),
-                                        "contactPoint", "value", true));
-                            }
-                            patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
-                            if (drugOrder.getDrugDispensesById() == null) {
-                                drugOrder.setStatus(0);
-                            } else {
-                                drugOrder.setDateTimeDispensed(drugOrder.getDrugDispensesById().getDateTimeDispensed());
-                                drugOrder.setStatus(1);
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    })
-                    .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
-                    .collect(Collectors.toList()));
-            patientDrugOrderDTOS.add(patientDrugOrderDTO);
-        });
+//        drugOrderMap.forEach((k, v) -> {
+//            PatientDrugOrderDTO patientDrugOrderDTO = new PatientDrugOrderDTO();
+//
+//            patientDrugOrderDTO.setDrugOrders(v.stream()
+//                    .map(drugOrder -> {
+//                        try {
+//                            if (patientDrugOrderDTO.getPatientHospitalNumber() == null) {
+//                                PersonResponseDto personResponseDTO = personService.getPersonById(drugOrder.getPatientId());
+//                                patientDrugOrderDTO.setPatientDob(personResponseDTO.getDateOfBirth());
+//                                patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
+//                                patientDrugOrderDTO.setPatientFirstName(personResponseDTO.getFirstName());
+//                                patientDrugOrderDTO.setPatientLastName(personResponseDTO.getSurname());
+//                                patientDrugOrderDTO.setPatientHospitalNumber
+//                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getIdentifier(), "identifier", "value", true));
+//
+//                                patientDrugOrderDTO.setPatientAddress
+//                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getAddress(), "address", "city", true));
+//
+//                                patientDrugOrderDTO.setPatientGender
+//                                        (jsonNodeTransformer.getNodeValue(personResponseDTO.getGender(), null, "display", false));
+//
+//                                patientDrugOrderDTO.setPatientPhoneNumber(jsonNodeTransformer.getNodeValue(personResponseDTO.getContactPoint(),
+//                                        "contactPoint", "value", true));
+//                            }
+//                            patientDrugOrderDTO.setPatientId(drugOrder.getPatientId());
+//                            if (drugOrder.getDrugDispensesById() == null) {
+//                                drugOrder.setStatus(0);
+//                            } else {
+//                                drugOrder.setDateTimeDispensed(drugOrder.getDrugDispensesById().getDateTimeDispensed());
+//                                drugOrder.setStatus(1);
+//                            }
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    })
+//                    .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
+//                    .collect(Collectors.toList()));
+//            patientDrugOrderDTOS.add(patientDrugOrderDTO);
+//        });
         return patientDrugOrderDTOS;
     }
 }

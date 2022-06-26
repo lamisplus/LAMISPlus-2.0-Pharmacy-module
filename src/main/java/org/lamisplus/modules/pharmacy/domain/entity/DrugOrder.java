@@ -60,6 +60,7 @@ public class DrugOrder extends Audit {
     //TODO: change to integer
     private String duration;
     private Long patientId;
+    private Integer visitId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date startDate;

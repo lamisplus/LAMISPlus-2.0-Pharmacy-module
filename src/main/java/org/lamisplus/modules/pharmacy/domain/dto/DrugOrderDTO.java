@@ -35,6 +35,7 @@ public class DrugOrderDTO {
 
     @NotNull(message = "patientId is mandatory")
     private Long patientId;
+    private Integer visitId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date startDate;
