@@ -2,10 +2,8 @@ package org.lamisplus.modules.pharmacy.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -25,7 +23,9 @@ public class DrugDispenseDTO {
     private Long quantity;
     private String unit;
     private String dispensedBy;
-    private Date startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
     private String dosageStrength;
     private String dosageStrengthUnit;
     private Integer dosageFrequency;

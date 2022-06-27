@@ -3,6 +3,7 @@ package org.lamisplus.modules.pharmacy.domain.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.lamisplus.modules.base.domain.entities.Audit;
 
 import javax.persistence.*;
 

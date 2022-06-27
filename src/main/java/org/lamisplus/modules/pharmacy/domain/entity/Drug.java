@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.lamisplus.modules.base.domain.entities.Audit;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "drug")
 public class Drug extends Audit<String> {
     @Id
@@ -50,8 +51,8 @@ public class Drug extends Audit<String> {
     @ToString.Exclude
     private List<DrugInventory> drugInventoriesById;*/
 
-    @OneToMany(mappedBy = "drugByDrugId")
+    /*@OneToMany(mappedBy = "drugByDrugId")
     @JsonIgnore
     @ToString.Exclude
-    private List<RegimenDrug> regimenDrugsById;
+    private List<RegimenDrug> regimenDrugsById;*/
 }

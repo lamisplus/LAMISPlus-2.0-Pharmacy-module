@@ -33,7 +33,8 @@ public class DrugDispenseService {
     private final DrugDispenseRepository drugDispenseRepository;
     private final DrugDispenseMapper drugDispenseMapper;
     private final PersonService personService;
-    private final JsonNodeTransformer jsonNodeTransformer;
+    //private final JsonNodeTransformer jsonNodeTransformer;
+    private final PatientDetailService patientDetailService;
 
 
     public List<DrugDispenseDTO> getAllDrugDispense() {
@@ -111,15 +112,17 @@ public class DrugDispenseService {
     private List<PatientDrugDispenseDTO> getPatientDrugOrders(Map<Long, List<DrugDispense>> drugDispenseMap, Long patientId){
         List<PatientDrugDispenseDTO> patientDrugDispenseDTOS = new ArrayList<>();
         if(patientId != null){
-            patientDrugDispenseDTOS.add(this.setDTO(patientId));
+            //PatientDrugDispenseDTO patientDrugDispenseDTO = (PatientDrugDispenseDTO) patientDetailService.setDTO(patientId);
+            patientDrugDispenseDTOS.add((PatientDrugDispenseDTO) patientDetailService.setDTO(patientId));
         }
         drugDispenseMap.forEach((k,v) ->{
             final PatientDrugDispenseDTO[] patientDrugDispenseDTO = {new PatientDrugDispenseDTO()};
             patientDrugDispenseDTO[0].setDrugDispenses(v.stream()
-                    .peek(drugDispense -> {
+                    .map(drugDispense -> {
                         if (patientDrugDispenseDTO[0].getPatientId() == null) {
-                            patientDrugDispenseDTO[0] = this.setDTO(drugDispense.getPatientId());
+                            patientDrugDispenseDTO[0] = (PatientDrugDispenseDTO) patientDetailService.setDTO(drugDispense.getPatientId());
                         }
+                        return drugDispense;
                     })
                     .sorted(Comparator.comparingLong(DrugDispense::getId).reversed())
                     .collect(Collectors.toList()));
@@ -139,7 +142,7 @@ public class DrugDispenseService {
         return getPatientDrugOrders(drugDispenseMap, null);
     }
 
-    private PatientDrugDispenseDTO setDTO(Long patientId){
+    /*private PatientDrugDispenseDTO setDTO(Long patientId){
         PatientDrugDispenseDTO patientDrugDispenseDTO = new PatientDrugDispenseDTO();
         PersonResponseDto personResponseDTO = personService.getPersonById(patientId);
         try {
@@ -147,16 +150,25 @@ public class DrugDispenseService {
             patientDrugDispenseDTO.setPatientDob(personResponseDTO.getDateOfBirth());
             patientDrugDispenseDTO.setPatientLastName(personResponseDTO.getSurname());
             patientDrugDispenseDTO.setPatientFirstName(personResponseDTO.getFirstName());
-            patientDrugDispenseDTO.setPatientHospitalNumber
-                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getIdentifier(), "identifier", "value", true));
+            patientDrugDispenseDTO
+                    .setPatientHospitalNumber(jsonNodeTransformer
+                            .getNodeValue(personResponseDTO
+                                    .getIdentifier(), "identifier", "value", true));
 
-            patientDrugDispenseDTO.setPatientAddress
-                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getAddress(), "address", "city", true));
+            patientDrugDispenseDTO
+                    .setPatientAddress(jsonNodeTransformer
+                            .getNodeValue(personResponseDTO
+                                    .getAddress(), "address", "city", true));
 
-            patientDrugDispenseDTO.setPatientGender
-                    (jsonNodeTransformer.getNodeValue(personResponseDTO.getGender(), null, "display", false));
+            patientDrugDispenseDTO
+                    .setPatientGender(jsonNodeTransformer
+                            .getNodeValue(personResponseDTO
+                                    .getGender(), null, "display", false));
 
-            patientDrugDispenseDTO.setPatientPhoneNumber(jsonNodeTransformer.getNodeValue(personResponseDTO.getContactPoint(),
+            patientDrugDispenseDTO
+                    .setPatientPhoneNumber(jsonNodeTransformer
+                            .getNodeValue(personResponseDTO
+                                            .getContactPoint(),
                     "contactPoint", "value", true));
         }catch (Exception e){
             e.printStackTrace();
@@ -164,5 +176,5 @@ public class DrugDispenseService {
 
         return patientDrugDispenseDTO;
 
-    }
+    }*/
 }

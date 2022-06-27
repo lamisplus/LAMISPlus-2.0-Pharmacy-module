@@ -37,7 +37,7 @@ public class DrugOrderDTO {
     private Long patientId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
     private String durationUnit;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")

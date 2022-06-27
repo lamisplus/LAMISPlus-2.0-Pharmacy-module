@@ -174,8 +174,8 @@ public class DrugOrderService {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    })
-                    .sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
+                        return drugOrder;
+                    }).sorted(Comparator.comparingLong(DrugOrder::getId).reversed())
                     .collect(Collectors.toList()));
             patientDrugOrderDTOS.add(patientDrugOrderDTO);
         });
