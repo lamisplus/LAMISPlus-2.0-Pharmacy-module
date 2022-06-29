@@ -107,4 +107,9 @@ public class DrugOrder extends Audit {
         }
         archived = 0;
     }
+
+
+    @Basic
+    @Column(name = "visit_id")
+    private Long VisitId;
 }

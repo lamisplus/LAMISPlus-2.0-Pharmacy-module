@@ -181,4 +181,11 @@ public class DrugOrderService {
         });
         return patientDrugOrderDTOS;
     }
+
+    public List<DrugOrderDTO> getAllDrugOrdersByVisitId(Long id) {
+        return drugOrderRepository.findAllByArchivedAndVisitId(UN_ARCHIVED, id)
+                .stream()
+                .map(this::transformDrugOrder)
+                .collect(Collectors.toList());
+    }
 }
