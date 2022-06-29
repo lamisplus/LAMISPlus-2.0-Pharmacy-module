@@ -58,5 +58,5 @@ public class DrugOrderDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
     private LocalDateTime dateTimeDispensed;
 
-    private Long VisitId;
+    private Integer visitId;
 }
