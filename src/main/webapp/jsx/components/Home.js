@@ -16,11 +16,15 @@ const Home = () => {
     <Fragment>
      
       <Row>
-       
+      <div className="row page-titles mx-0" style={{marginTop:"0px", marginBottom:"-10px"}}>
+			<ol className="breadcrumb">
+				<li className="breadcrumb-item active"><h4>Pharmacy</h4></li>
+			</ol>
+		</div>
         <Col xl={12}>
           <Card style={divStyle}>
             
-            <Card.Body>
+            <Card.Body style={{marginTop:"-20px"}}>
               {/* <!-- Nav tabs --> */}
               <div className="custom-tab-1">
                 <Tabs

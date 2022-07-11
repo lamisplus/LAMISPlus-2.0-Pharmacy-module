@@ -12,7 +12,7 @@ import "./../src/main/webapp/css/style.css";
 
 import Home from './main/webapp/jsx/components/Home'
 import Prescription from './main/webapp/jsx/components/Prescriptions/Index'
-import PatientMediationHistory from './main/webapp/jsx/components/Medication/PatientMediationHistory'
+//import PatientMediationHistory from './main/webapp/jsx/components/Medication/PatientMediationHistory'
 
 export default function App() {
   return (
@@ -25,9 +25,6 @@ export default function App() {
          
           <Route path="/prescriptions">
             <Prescription />
-          </Route>
-          <Route path="/medication">
-            <PatientMediationHistory />
           </Route>
           <Route path="/">
             <Home />
