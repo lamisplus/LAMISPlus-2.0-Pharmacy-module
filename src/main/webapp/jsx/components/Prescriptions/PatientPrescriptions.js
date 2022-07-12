@@ -25,9 +25,8 @@ import ButtonMui from "@material-ui/core/Button";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-//
 Moment.locale("en");
-momentLocalizer();
+//momentLocalizer();
 
 const useStyles = makeStyles((theme) => ({
 
@@ -225,7 +224,7 @@ const updateFormData = (data) =>{
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
                                     <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss")}</td>
-                                    <td>{ form.dateTimeDispensed ? Moment(form.dateTimeDispensed).format("YYYY-MM-DD @ HH:mm:ss") : '' }</td>
+                                    <td>{ Moment(new Date()).format("YYYY-MM-DD @ HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :

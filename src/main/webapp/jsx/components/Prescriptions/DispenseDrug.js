@@ -11,16 +11,17 @@ import SaveIcon from '@material-ui/icons/Save'
 import CancelIcon from '@material-ui/icons/Cancel'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "react-widgets/dist/css/react-widgets.css";
+import "react-widgets/styles.css";
 import axios from "axios";
 import { Row } from "react-bootstrap";
 import { Segment,  } from 'semantic-ui-react'
 import { url  as baseUrl, token} from "../../../api";
 import Moment from 'moment';
 import momentLocalizer from 'react-widgets-moment';
+import { useHistory } from 'react-router-dom';
 
 Moment.locale('en');
-momentLocalizer();
+//momentLocalizer();
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -58,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const DispenseModal = (props) => {
+    const history = useHistory();
    const drugDetails= props && props.datasample ? props.datasample : {}
    //console.log(drugDetails)
    //console.log(props)
@@ -69,28 +71,28 @@ const DispenseModal = (props) => {
     const classes = useStyles();
     const [saving, setSaving] = useState(false);
     const [drugDispenseObj] = useState({drugDispenses:[]})
-    const [formValues, setFormValues] = useState({ brand: "",
-                                                        comment: "",
-                                                        dateTimeDispensed: "",
-                                                        dispensedBy: "",
-                                                        dosageFrequency: drugDetails.dosageFrequency,
-                                                        dosageStrength: drugDetails.dosageStrength,
-                                                        dosageStrengthUnit: drugDetails.dosageStrengthUnit,
-                                                        drugName: drugDetails.drugName,
-                                                        drugOrderId: drugDetails.id,
-                                                        duration: drugDetails.duration,
-                                                        durationUnit:drugDetails.durationUnit,
-                                                        otherDetails: {},
-                                                        patientId: drugDetails.patientId,
-                                                        quantity:"",
-                                                        startDate: drugDetails.startDate,
-                                                        type: "",
-                                                        unit: "" });
+    const [formValues, setFormValues] = useState({
+    brand: "",
+    comment: "",
+    dateTimeDispensed: "",
+    dispensedBy: "",
+    dosageFrequency: drugDetails.dosageFrequency,
+    dosageStrength: drugDetails.dosageStrength,
+    dosageStrengthUnit: drugDetails.dosageStrengthUnit,
+    drugName: drugDetails.drugName,
+    drugOrderId: drugDetails.id,
+    duration: drugDetails.duration,
+    durationUnit:drugDetails.durationUnit,
+    otherDetails: {},
+    patientId: drugDetails.patientId,
+    quantity:"",
+    startDate: drugDetails.startDate,
+    type: "",
+    unit: "" });
 
     const handleInputChange = (e) => {
         setFormValues ({ ...formValues, [e.target.name]: e.target.value });
     }
-
 
     const handleDispense = (e) => {
         e.preventDefault()
@@ -119,6 +121,8 @@ const DispenseModal = (props) => {
                   toast.error("Something went wrong");
                   props.togglestatus()
               });
+
+                history.push('/');
     };
 
 
@@ -234,6 +238,7 @@ const DispenseModal = (props) => {
                                                 id="comment"
                                                 value={formValues.comment}
                                                 row="40"
+                                                style={{ minHeight: 100, fontSize: 14 }}
                                                 onChange={handleInputChange}
                                             ></Input>
                                         </FormGroup>

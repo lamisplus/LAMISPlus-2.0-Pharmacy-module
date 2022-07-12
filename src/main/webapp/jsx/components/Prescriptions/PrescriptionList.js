@@ -47,7 +47,6 @@ ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
 ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-
 const PatientSearch = (props) => {
   const prescriptions = PrescriptionObj;
   const [prescriptionList, setPrescriptionList] = useState([])
@@ -60,6 +59,7 @@ const PatientSearch = (props) => {
         axios
             .get(`${baseUrl}drug-orders/patients`,{ headers: {"Authorization" : `Bearer ${token}`} })
             .then((response) => {
+                //console.log("pres", response)
                 setPrescriptionList(response.data);
             })
             .catch((error) => {

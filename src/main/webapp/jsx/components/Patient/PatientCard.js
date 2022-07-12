@@ -19,7 +19,7 @@ import momentLocalizer from "react-widgets-moment";
 import moment from "moment";
 //Dtate Picker package
 Moment.locale("en");
-momentLocalizer();
+//momentLocalizer();
 
 const styles = theme => ({
   root: {
