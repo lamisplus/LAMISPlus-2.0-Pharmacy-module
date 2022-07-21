@@ -39,7 +39,7 @@ public class DrugOrderController {
     }
 
     @GetMapping("/visits/{id}")
-    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrdersByVisitId(@PathVariable Integer id) {
+    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrdersByVisitId(@PathVariable Long id) {
         return ResponseEntity.ok(drugOrderService.getAllDrugOrdersByVisitId(id));
     }
 

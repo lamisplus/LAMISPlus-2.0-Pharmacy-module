@@ -96,10 +96,12 @@ public class DrugOrderService {
     }
 
     public DrugOrder update(Long id, DrugOrderDTO drugOrderDTO) {
-        drugOrderRepository.findByIdAndArchived(id, UN_ARCHIVED)
+        DrugOrder current_order = drugOrderRepository.findByIdAndArchived(id, UN_ARCHIVED)
                 .orElseThrow(() -> new EntityNotFoundException(DrugOrder.class, "Id", id + ""));
         drugOrderDTO.setId(id);
         DrugOrder drugOrder = drugOrderMapper.toDrugOrder(drugOrderDTO);
+        drugOrder.setPrescriptionGroupId(current_order.getPrescriptionGroupId());
+        drugOrder.setPatientId(current_order.getPatientId());
         return drugOrderRepository.save(drugOrder);
     }
 
@@ -182,7 +184,7 @@ public class DrugOrderService {
         return patientDrugOrderDTOS;
     }
 
-    public List<DrugOrderDTO> getAllDrugOrdersByVisitId(Integer id) {
+    public List<DrugOrderDTO> getAllDrugOrdersByVisitId(Long id) {
         return drugOrderRepository.findAllByArchivedAndVisitId(UN_ARCHIVED, id)
                 .stream()
                 .map(this::transformDrugOrder)
