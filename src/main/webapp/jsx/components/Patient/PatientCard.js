@@ -75,7 +75,7 @@ function PatientCard(props) {
             return age_now + " year(s)";
     };
 
-  console.log(patientObj)
+  //console.log(patientObj)
 
   return (
     <div className={classes.root}>

@@ -58,8 +58,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const DispenseModal = (props) => {
-    const history = useHistory();
+const ViewDispenseModal = (props) => {
+   const history = useHistory();
    const drugDetails= props && props.datasample ? props.datasample : {}
    //console.log(drugDetails)
    //console.log(props)
@@ -71,62 +71,11 @@ const DispenseModal = (props) => {
     const classes = useStyles();
     const [saving, setSaving] = useState(false);
     const [drugDispenseObj] = useState({drugDispenses:[]})
-    const [formValues, setFormValues] = useState({
-    brand: "",
-    comment: "",
-    dateTimeDispensed: "",
-    dispensedBy: "",
-    dosageFrequency: drugDetails.dosageFrequency,
-    dosageStrength: drugDetails.dosageStrength,
-    dosageStrengthUnit: drugDetails.dosageStrengthUnit,
-    drugName: drugDetails.drugName,
-    drugOrderId: drugDetails.id,
-    duration: drugDetails.duration,
-    durationUnit:drugDetails.durationUnit,
-    otherDetails: {},
-    patientId: drugDetails.patientId,
-    quantity:"",
-    startDate: drugDetails.startDate,
-    type: "",
-    unit: "" });
+    const [formValues, setFormValues] = useState(drugDetails);
 
     const handleInputChange = (e) => {
         setFormValues ({ ...formValues, [e.target.name]: e.target.value });
     }
-
-    const handleDispense = (e) => {
-        e.preventDefault()
-        drugDispenseObj.drugDispenses=[formValues]
-        formValues.dateTimeDispensed=Moment(formValues.dateTimeDispensed).format("YYYY-MM-DD@HH:mm:ss")
-        setSaving(true);
-            axios.post(`${baseUrl}drug-dispenses`, drugDispenseObj,
-            { headers: {"Authorization" : `Bearer ${token}`}},
-            
-            )
-              .then(response => {
-                  setSaving(false);
-                  const newData =  {...drugDetails, ...formValues}
-                  //console.log(newData)
-                  //drugDetails = newData
-                  //console.log(drugDetails)
-                  toast.success("Record save successful");
-                  props.togglestatus()
-                  history.push('/');
-
-              })
-              .catch(error => {
-                console.log("error", error)
-//                const newData =  {...drugDetails, ...formValues}
-//                drugDetails = newData
-//                console.log(drugDetails)
-                  setSaving(false);
-                  toast.error("Something went wrong");
-                  props.togglestatus()
-              });
-
-
-    };
-
     return (
         <div>
             <Card>
@@ -142,8 +91,8 @@ const DispenseModal = (props) => {
                             Dispensing
                         </ModalHeader>
                         <ModalBody>
-                            <Col lg={12}>                           
-                                <Row>                                    
+                            <Col lg={12}>
+                                <Row>
                                     <Col xl={12} >
                                     <Segment color='teal'>
                                         <Row>
@@ -165,19 +114,19 @@ const DispenseModal = (props) => {
                                         </Row>
                                     </Segment>
                                     </Col>
-                                   
+
                                 </Row>
-                                
+
                             </Col>
                             <br/>
                             <form>
                             <div className="row">
                                     <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
-                                            <Label for="maritalStatus">Date Dispensed</Label>
-                                            
+                                            <Label for="dateTimeDispensed">Date Dispensed</Label>
+
                                             <Input
-                                                type="datetime-local"
+                                                type="text"
                                                 name="dateTimeDispensed"
                                                 value={formValues.dateTimeDispensed}
                                                 id="dateTimeDispensed"
@@ -196,7 +145,7 @@ const DispenseModal = (props) => {
                                                 name="brand"
                                                 value={formValues.brand}
                                                 id="brand"
-                                                //placeholder="brand name"
+                                                placeholder="brand name"
                                                 onChange={handleInputChange}
                                             />
 
@@ -208,7 +157,7 @@ const DispenseModal = (props) => {
                                             <Input
                                                 type="number"
                                                 name="quantity"
-                                                value={formValues.quantity}
+                                                value={formValues.dosageStrength}
                                                 id="quantity"
                                                 onChange={handleInputChange}
                                             />
@@ -218,14 +167,11 @@ const DispenseModal = (props) => {
                                         <FormGroup>
                                             <Label >Unit</Label>
                                             <Input
-                                                type="select"
+                                                type="text"
                                                 name="unit"
                                                 id="unit"
-                                                value={formValues.unit}
+                                                value={formValues.dosageStrengthUnit}
                                                 onChange={handleInputChange}>
-                                                <option value="Packs">Packs</option>
-                                                <option value="Tablets">Tablets</option>
-                                                <option value="ml">ml</option>
                                             </Input>
                                         </FormGroup>
                                     </div>
@@ -233,37 +179,18 @@ const DispenseModal = (props) => {
                                         <FormGroup>
                                             <Label for="comment">Note</Label>
                                             <Input
-                                                type="textarea"
+                                                type="text"
                                                 name="comment"
                                                 id="comment"
-                                                value={formValues.comment}
                                                 row="40"
+                                                value={formValues.comments}
                                                 style={{ minHeight: 100, fontSize: 14 }}
                                                 onChange={handleInputChange}
                                             ></Input>
                                         </FormGroup>
                                     </div>
                                 </div>
-                                <MatButton
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.button}
-                                    startIcon={<SaveIcon />}
-                                    onClick={handleDispense}
-                                    // disabled={loading}
-                                >
-                                    Save
-                                </MatButton>
 
-                                <MatButton
-                                    variant="contained"
-                                    color="default"
-                                    onClick={toggle}
-                                    className={classes.button}
-                                    startIcon={<CancelIcon />}>
-                                    Cancel
-                                </MatButton>
                             </form>
                         </ModalBody>
                     </Modal>
@@ -274,4 +201,4 @@ const DispenseModal = (props) => {
 }
 
 
-export default DispenseModal;
+export default ViewDispenseModal;

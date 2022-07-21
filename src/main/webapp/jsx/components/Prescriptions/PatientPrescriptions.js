@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import DispenseModal from './DispenseDrug'
 // import DispenseModal from './DrugDispenseFormIo';
 // import DispenseModalUpdate from './DrugDispenseUpdateFormIo';
-// import ViewModal from './ViewModalForm';
+import ViewModal from './ViewModalForm';
 import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
 import "@reach/menu-button/styles.css";
 import { Spinner } from 'reactstrap';
@@ -191,7 +191,6 @@ const updateFormData = (data) =>{
                 color="primary"
                 className=" float-end ms-2"
                 //startIcon={<FaUserPlus size="10"/>}
-
             >
                 <span style={{ textTransform: "capitalize" }}>Back</span>
             </ButtonMui>
@@ -224,7 +223,7 @@ const updateFormData = (data) =>{
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
                                     <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss")}</td>
-                                    <td>{ Moment(new Date()).format("YYYY-MM-DD @ HH:mm:ss") }</td>
+                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD @ HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :
@@ -254,7 +253,7 @@ const updateFormData = (data) =>{
       (
         <>
         <DispenseModal  modalstatus={modal} togglestatus={toggleModal} datasample={drugDetails} updateFormData={updateFormData}/>
-        {/*<ViewModal modalstatus={modal1} togglestatus={toggleModal1} datasample={drugDetails}/> */}
+        <ViewModal modalstatus={modal1} togglestatus={toggleModal1} datasample={drugDetails}/>
        </>
       ) 
       : ""
@@ -264,7 +263,5 @@ const updateFormData = (data) =>{
   );
 }
 
-
-  
 export default Prescriptions;
 
