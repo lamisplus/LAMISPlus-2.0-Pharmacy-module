@@ -59,7 +59,7 @@ const PatientSearch = (props) => {
         axios
             .get(`${baseUrl}drug-orders/patients`,{ headers: {"Authorization" : `Bearer ${token}`} })
             .then((response) => {
-                //console.log("pres", response)
+                console.log("pres", response)
                 setPrescriptionList(response.data);
             })
             .catch((error) => {
@@ -122,7 +122,7 @@ const PatientSearch = (props) => {
         data={ prescriptionList.map((prescription) => ({
           Id: prescription.patientHospitalNumber,
           name: prescription.patientFirstName + " " + prescription.patientLastName,
-          date: prescription.patientDob,
+          date: prescription.drugOrders[0].dateTimePrescribed.replace("@"," "),
           prescribedCount: prescription.drugOrders.length,
           dispensedCount: totalDrugsPrescribed(prescription.drugOrders),
          // type:   drugType(prescription.formDataObj),
@@ -143,11 +143,10 @@ const PatientSearch = (props) => {
             </Link>
           ),
         }))}
-        
                   options={{
                     headerStyle: {
-                        backgroundColor: "#9F9FA5",
-                        color: "#000",
+                        backgroundColor: "#014d88",
+                        color: "#fff"
                     },
                     searchFieldStyle: {
                         width : '300%',

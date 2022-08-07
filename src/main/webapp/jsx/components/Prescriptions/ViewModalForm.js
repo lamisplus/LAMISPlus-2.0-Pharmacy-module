@@ -100,7 +100,7 @@ const ViewDispenseModal = (props) => {
                                                 <strong>Drug Name :</strong> <p>{drugDetails.drugName}</p>
                                             </Col>
                                             <Col className="col-md-6 mb-2">
-                                                <strong>Date Prescribed : </strong> <p>{drugDetails.dateTimePrescribed}</p>
+                                                <strong>Date Prescribed : </strong> <p>{drugDetails.dateTimePrescribed.replace("@", " ")}</p>
                                             </Col>
                                             <Col className="col-md-6 mb-2">
                                                 <strong>Dose Frequency :</strong><p>{drugDetails.dosageFrequency} daily</p>
@@ -128,10 +128,11 @@ const ViewDispenseModal = (props) => {
                                             <Input
                                                 type="text"
                                                 name="dateTimeDispensed"
-                                                value={formValues.dateTimeDispensed}
+                                                value={formValues.dateTimeDispensed.replace("@", " ")}
                                                 id="dateTimeDispensed"
                                                 placeholder="Date Dispensed"
                                                 onChange={handleInputChange}
+                                                disabled={true}
                                             />
                                         </FormGroup>
                                     </div>
@@ -147,6 +148,7 @@ const ViewDispenseModal = (props) => {
                                                 id="brand"
                                                 placeholder="brand name"
                                                 onChange={handleInputChange}
+                                                disabled={true}
                                             />
 
                                         </FormGroup>
@@ -160,6 +162,7 @@ const ViewDispenseModal = (props) => {
                                                 value={formValues.dosageStrength}
                                                 id="quantity"
                                                 onChange={handleInputChange}
+                                                disabled={true}
                                             />
                                         </FormGroup>
                                     </div>
@@ -171,7 +174,8 @@ const ViewDispenseModal = (props) => {
                                                 name="unit"
                                                 id="unit"
                                                 value={formValues.dosageStrengthUnit}
-                                                onChange={handleInputChange}>
+                                                onChange={handleInputChange}
+                                                disabled={true}>
                                             </Input>
                                         </FormGroup>
                                     </div>
@@ -186,6 +190,7 @@ const ViewDispenseModal = (props) => {
                                                 value={formValues.comments}
                                                 style={{ minHeight: 100, fontSize: 14 }}
                                                 onChange={handleInputChange}
+                                                disabled={true}
                                             ></Input>
                                         </FormGroup>
                                     </div>

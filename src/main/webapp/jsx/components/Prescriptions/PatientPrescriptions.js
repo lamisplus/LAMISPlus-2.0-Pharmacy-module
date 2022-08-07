@@ -202,7 +202,7 @@ const updateFormData = (data) =>{
                     <br />
                     
                             <Table striped responsive >
-                              <thead style={{backgroundColor: "#9F9FA5",color: "#000",}}>
+                              <thead style={{backgroundColor: "#014d88", color: "#fff"}}>
                                 <tr>
                                   <th>Name</th>
                                   <th>Dosage</th>
@@ -222,8 +222,8 @@ const updateFormData = (data) =>{
                                     <td>{form.drugName}</td>
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
-                                    <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD @ HH:mm:ss")}</td>
-                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD @ HH:mm:ss") }</td>
+                                    <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD  HH:mm:ss")}</td>
+                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :

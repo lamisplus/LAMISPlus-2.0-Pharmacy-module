@@ -123,8 +123,6 @@ const DispenseModal = (props) => {
                   toast.error("Something went wrong");
                   props.togglestatus()
               });
-
-
     };
 
     return (
@@ -151,7 +149,7 @@ const DispenseModal = (props) => {
                                                 <strong>Drug Name :</strong> <p>{drugDetails.drugName}</p>
                                             </Col>
                                             <Col className="col-md-6 mb-2">
-                                                <strong>Date Prescribed : </strong> <p>{drugDetails.dateTimePrescribed}</p>
+                                                <strong>Date Prescribed : </strong> <p>{drugDetails.dateTimePrescribed.replace("@", " ")}</p>
                                             </Col>
                                             <Col className="col-md-6 mb-2">
                                                 <strong>Dose Frequency :</strong><p>{drugDetails.dosageFrequency} daily</p>

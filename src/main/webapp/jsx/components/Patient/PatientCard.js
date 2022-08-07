@@ -138,7 +138,7 @@ function PatientCard(props) {
                 </Row>
             
                 </ExpansionPanelSummary>
-                <ExpansionPanelDetails className={classes.details}>
+               {/* <ExpansionPanelDetails className={classes.details}>
                 <div className={classes.column} >
                     <Button
                             color='red'
@@ -183,7 +183,7 @@ function PatientCard(props) {
                    
                     </Typography>
                 </div>
-                </ExpansionPanelDetails>
+                </ExpansionPanelDetails> */}
                 <Divider />
                 <ExpansionPanelActions expandIcon={<ExpandMoreIcon />}>
                 
