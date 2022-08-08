@@ -15,4 +15,6 @@ public interface DrugOrderMapper {
     DrugOrderDTO toDrugOrderDTO(DrugOrder drugOrder);
 
     List<DrugOrderDTO> toDrugOrderDTOList(List<DrugOrder> drugOrders);
+
+    List<DrugOrder> toDrugOrderList(List<DrugOrderDTO> drugOrdersDTO);
 }

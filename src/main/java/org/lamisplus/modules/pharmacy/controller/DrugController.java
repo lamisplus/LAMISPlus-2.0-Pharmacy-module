@@ -28,10 +28,10 @@ public class DrugController {
         return ResponseEntity.ok(drugService.getDrug(id));
     }
 
-    @GetMapping("/regimen/{regimenId}")
+    /*@GetMapping("/regimen/{regimenId}")
     public ResponseEntity<List<DrugDTO>> getDrugsByRegimenId(@PathVariable Long regimenId) {
         return ResponseEntity.ok(drugService.getDrugsByRegimenId(regimenId));
-    }
+    }*/
 
     @PostMapping
     public ResponseEntity<Drug> save(@RequestBody Drug drug) {

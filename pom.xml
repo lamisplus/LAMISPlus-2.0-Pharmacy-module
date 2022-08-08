@@ -41,16 +41,6 @@
 			<name>Foreach nexus</name>
 			<url>https://repository.foreach.be/nexus/repository/public/</url>
 		</repository>
-		<repository>
-			<id>mvn-repo</id>
-			<url>https://raw.github.com/lamisplus/maven-repo/master</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
 
 	<dependencies>
@@ -216,6 +206,12 @@
 		<dependency>
 			<groupId>com.foreach.across.modules</groupId>
 			<artifactId>across-hibernate-module</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.lamisplus.modules</groupId>
+			<artifactId>patient</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

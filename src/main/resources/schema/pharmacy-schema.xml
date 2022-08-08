@@ -147,7 +147,7 @@
         </sql>
     </changeSet>
 
-    <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-29">
+    <!--<changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-29">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="regimen"/>
@@ -212,7 +212,7 @@
             <column name="code" type="VARCHAR(2147483647)"/>
         </createTable>
     </changeSet>
-
+-->
     <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-32">
         <preConditions onFail="MARK_RAN">
             <not>
@@ -222,14 +222,14 @@
         <addForeignKeyConstraint baseColumnNames="drug_group_id" baseTableName="drug" constraintName="drug_group_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="drug_group"/>
     </changeSet>
 
-    <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-33">
+    <!--<changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-33">
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="drug_id_fk" />
             </not>
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="drug_id" baseTableName="regimen_drug" constraintName="drug_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="drug"/>
-    </changeSet>
+    </changeSet>-->
 
     <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-34">
         <preConditions onFail="MARK_RAN">
@@ -240,22 +240,22 @@
         <addForeignKeyConstraint baseColumnNames="drug_order_id" baseTableName="drug_dispense" constraintName="drug_order_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="drug_order"/>
     </changeSet>
 
-    <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-35">
+    <!--<changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-35">
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="regimen_id_fk" />
             </not>
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="regimen_id" baseTableName="regimen_drug" constraintName="regimen_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="regimen"/>
-    </changeSet>
+    </changeSet>-->
 
-    <changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-36">
+    <!--<changeSet failOnError="false" author="Emeka Ilozue" id="1652433182071-pharmacy-36">
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="regimen_regimen_line_id_fkey" />
             </not>
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="regimen_line_id" baseTableName="regimen" constraintName="regimen_regimen_line_id_fkey" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="regimen_line"/>
-    </changeSet>
+    </changeSet>-->
 
 </databaseChangeLog>

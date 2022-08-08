@@ -16,6 +16,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.lamisplus.modules.base.domain.entities.Audit;
 import org.lamisplus.modules.base.security.SecurityUtils;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -60,6 +61,7 @@ public class DrugOrder extends Audit {
     //TODO: change to integer
     private String duration;
     private Long patientId;
+    private Integer visitId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date startDate;

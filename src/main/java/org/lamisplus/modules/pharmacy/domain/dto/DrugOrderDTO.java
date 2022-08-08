@@ -35,9 +35,10 @@ public class DrugOrderDTO {
 
     @NotNull(message = "patientId is mandatory")
     private Long patientId;
+    private Integer visitId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
     private String durationUnit;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")

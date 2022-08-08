@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(
         transactionManagerRef = "pharmacyTransactionManger",
-        basePackages = {"org.lamisplus.modules.pharmacy.repositories"}
+        basePackages = {"org.lamisplus.modules.pharmacy.repository"}
 )
 public class DomainConfiguration {
 
