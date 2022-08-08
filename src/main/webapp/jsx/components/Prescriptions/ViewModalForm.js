@@ -128,7 +128,7 @@ const ViewDispenseModal = (props) => {
                                             <Input
                                                 type="text"
                                                 name="dateTimeDispensed"
-                                                value={formValues.dateTimeDispensed.replace("@", " ")}
+                                                value={formValues.dateTimeDispensed === null ? "" :formValues.dateTimeDispensed.replace("@", " ")}
                                                 id="dateTimeDispensed"
                                                 placeholder="Date Dispensed"
                                                 onChange={handleInputChange}
