@@ -1,21 +1,13 @@
-import React, {useState} from 'react';
-import MaterialTable from 'material-table';
-
-import { Link } from 'react-router-dom'
-//import Remove from '@material-ui/icons/Remove';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
+import React, {useState, useEffect} from 'react';
 import { FaPlus } from "react-icons/fa";
-// import axios from "axios";
-// import { url as baseUrl , PHARMACYSERVICECODE} from "../../api";
 import {medicationObj} from './MedicationObj';
-import { Badge } from 'reactstrap';
 import { Card, Row, Col,} from "react-bootstrap";
 import Button from "@material-ui/core/Button";
 import DrugRegimenOrder from './DrugPrecription'
-import RegimenPrescription from './RegimenPrescription'
+import RecentActivities  from './RecentActivities';
 import { forwardRef } from 'react';
-
+import { url  as baseUrl, token} from "../../../api";
+import axios from "axios";
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -63,10 +55,29 @@ const DRUG_ORDER_STATUS = [{name:"Not Dispensed", id: 0},
 
 const PatientSearch = (props) => {
     const prescriptions = medicationObj
+    const patientID = 190;
     const [modal, setModal] = useState(false);
     const toggleModal = () => setModal(!modal);
     const [modalRegimen, setModalRegimen] = useState(false);
     const toggleModalRegimen = () => setModalRegimen(!modalRegimen) 
+
+    const [ordersObj, setOrdersObj]= useState([])
+    useEffect(() => {
+      DrugOrderList();
+    }, []);
+    //Get list of Regimens
+    const DrugOrderList =()=>{
+    axios
+      .get(`${baseUrl}drug-orders?patientId=${patientID}`,
+          { headers: {"Authorization" : `Bearer ${token}`} }
+      )
+      .then((response) => {
+        setOrdersObj(response.data);
+      })
+      .catch((error) => {
+      });
+
+    }
 
     const DisplayDrugOrderModal = ()=>{
         //console.log(modal)
@@ -79,6 +90,7 @@ const PatientSearch = (props) => {
         //console.log(modal)
     }
 
+    ///console.log(ordersObj)
   return (
 
     <div>
@@ -88,16 +100,7 @@ const PatientSearch = (props) => {
     <Card style={divStyle}>
 
     <Card.Body>
-    <Button
-                variant="contained"
-                color="primary"
-                className=" float-end ms-2"
-                startIcon={<FaPlus size="10"/>}
-                onClick={()=>DisplayRegimenModal()}
-
-            >
-                <span style={{ textTransform: "capitalize" }}>New Regimen Prescription</span>
-        </Button>
+    
         <Button
                 variant="contained"
                 color="primary"
@@ -110,69 +113,12 @@ const PatientSearch = (props) => {
         </Button>
         
             <br/><br/>
-            <MaterialTable
-                icons={tableIcons}
-                title="Drug Order History"
-                columns={[
-                { title: "Drug Name", field: "name" },
-                {
-                    title: "Date",
-                    field: "date",
-                },
-                { title: "Dosage", field: "dosage", filtering: false, },
-                {
-                    title: "Period",
-                    field: "period",
-                    filtering: false,
-                },
-                {
-                    title: "Status",
-                    field: "status",
-                    filtering: false,
-                },
-               
-                ]}
-                data={ prescriptions.map((row) => ({
-                name: <span>
-                            {row.regimen ?
-                                ( row.regimen && row.regimen.regimen ? row.regimen.regimen + ' - ': '')
-                                :
-                            <b> {row.drugs && row.drugs.length > 0 ? row.drugs.map(x=>x.drug.name).toString() : ''}</b>}
-                        </span>,
-                date: row.date_prescribed,
-                dosage: row.dosage_frequency || '-',
-                period: <span>
-                            {'Start at '} <b>{row.start_date || ''}</b> {' for '} <b>{row.duration}{' '}{row.duration_unit}</b>
-                        </span>,
-                status: <span> 
-                            <Badge  color="primary">{row.prescription_status ? DRUG_ORDER_STATUS.find(x => x.id == row.prescription_status).name : ''}</Badge>
-                            </span>,
-             
-                }))}
-                
-                        options={{
-                            headerStyle: {
-                                backgroundColor: "#9F9FA5",
-                                color: "#000",
-                            },
-                            searchFieldStyle: {
-                                width : '300%',
-                                margingLeft: '250px',
-                            },
-                            filtering: false,
-                            exportButton: false,
-                            searchFieldAlignment: 'left',
-                            pageSizeOptions:[10,20,100],
-                            pageSize:10,
-                            debounceInterval: 400
-                        }}
-            />
+        <RecentActivities  ordersObj={ordersObj}/>
       </Card.Body>
       </Card>
       </Col>
       </Row>
-      <DrugRegimenOrder modalstatus={modal} togglestatus={toggleModal}/>
-      <RegimenPrescription modalstatus={modalRegimen} togglestatus={toggleModalRegimen} />
+      <DrugRegimenOrder modalstatus={modal} togglestatus={toggleModal} DrugOrderList={DrugOrderList}/>
     </div>
   );
 }

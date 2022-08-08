@@ -6,10 +6,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import momentLocalizer from "react-widgets-moment";
 import Moment from "moment";
 import { Link } from "react-router-dom";
-import DispenseModal from './DispenseModal'
+import DispenseModal from './DispenseDrug'
 // import DispenseModal from './DrugDispenseFormIo';
 // import DispenseModalUpdate from './DrugDispenseUpdateFormIo';
-// import ViewModal from './ViewModalForm';
+import ViewModal from './ViewModalForm';
 import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
 import "@reach/menu-button/styles.css";
 import { Spinner } from 'reactstrap';
@@ -25,9 +25,8 @@ import ButtonMui from "@material-ui/core/Button";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-//
 Moment.locale("en");
-momentLocalizer();
+//momentLocalizer();
 
 const useStyles = makeStyles((theme) => ({
 
@@ -68,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Prescriptions = (props) => {
 
- const prescriptionOrder  = props  && props.patientObj  ? props.patientObj.formDataObj : {}
+ const prescriptionOrder  = props  && props.patientObj  ? props.patientObj : {}
    
   const classes = useStyles();
   const [loading, setLoading] = useState('')
@@ -78,27 +77,28 @@ const Prescriptions = (props) => {
   const toggleModal1 = () => setModal1(!modal1)
   const [modal2, setModal2] = useState(false);
   const toggleModal2 = () => setModal2(!modal2)
-  const [formData, setFormData] = useState(prescriptionOrder);
-  const [drugDetails, setDrugDetails] = useState()
-  console.log(formData)
+  const [formData, setFormData] = useState(props  && props.patientObj  ? props.patientObj : {});
+  const [drugDetails, setDrugDetails] = useState({})
+
 const updateFormData = (data) =>{
 
     setLoading(true);
-      const index = formData.findIndex(x => x.id == data.id);
+    //   console.log(formData)
+    //   // const index = formData.findIndex(x => x.drugOrders.id == drugOrders.id);
 
-      formData[index] = data;
-      setFormData(formData);
-    setLoading(false);
+    //   // formData[index] = data;
+    //   // setFormData(formData);
+    // setLoading(false);
     }
 
   const toggle = (form) => {
-    console.log(form)
+    //console.log(form)
     setDrugDetails({ ...drugDetails, ...form });
     setModal(!modal);
     
   } 
   const toggle1 = (form) => {
-    console.log(form)
+    //console.log(form)
     setDrugDetails({ ...drugDetails, ...form });
     setModal1(!modal1)
   }
@@ -120,8 +120,8 @@ const updateFormData = (data) =>{
      </button>
    );
 
-  
- const Actions = (form) => {
+
+ const Actions = (form) => { 
    return (
      <Menu>
        <MenuButton
@@ -132,10 +132,10 @@ const updateFormData = (data) =>{
            borderRadius: "4px",
          }}
        >
-         Action <span aria-hidden>▾</span>
+         Action<span aria-hidden>▾</span>
        </MenuButton>
        <MenuList style={{ hover: "#eee" }}>
-         {form.data && form.data.prescription_status === 0 ? (
+         {form && form.status === 0 ? (
 
            <MenuItem onSelect={() => 
             toggle(form)
@@ -146,7 +146,7 @@ const updateFormData = (data) =>{
                size="15"
                style={{ cursor: "pointer", color: "#000" }}
              >
-               &nbsp; {""} Dispense drugs
+               &nbsp; {""} Dispense drugs {}
              </i>
            </MenuItem>
 
@@ -163,7 +163,7 @@ const updateFormData = (data) =>{
              </i>
            </MenuItem>
          )}
-         {form.data && form.data.prescription_status !=0  ? (
+         {form && form.status !=0  ? (
             <MenuItem onSelect={() => toggle1(form)}>
               <i
                 className="fa fa-eye"
@@ -191,22 +191,22 @@ const updateFormData = (data) =>{
                 color="primary"
                 className=" float-end ms-2"
                 //startIcon={<FaUserPlus size="10"/>}
-
             >
                 <span style={{ textTransform: "capitalize" }}>Back</span>
             </ButtonMui>
             </Link>     
           <div>
-            {formData.length >= 0 ? (
+            {formData.drugOrders.length >= 0 ? (
               <Fragment>
                    <h3>Drug Order Details</h3>
                     <br />
                     
                             <Table striped responsive >
-                              <thead style={{backgroundColor: "#9F9FA5",color: "#000",}}>
+                              <thead style={{backgroundColor: "#014d88", color: "#fff"}}>
                                 <tr>
                                   <th>Name</th>
                                   <th>Dosage</th>
+                                  <th>Duration</th>
                                   <th>Date Prescribed</th>
                                   <th>Date Dispensed</th>
                                   <th></th>
@@ -215,18 +215,15 @@ const updateFormData = (data) =>{
                               
                               
                                 <tbody >
-                                {!loading  ?  formData.map((form) => (
+                                {!loading  ?  formData.drugOrders.map((form) => (
                                   
-                                  form.data!==null?
+                                  form !==null?
                                   <tr key={form.id}>
-                                    <td>
-                                        {form.data.regimen && form.data.regimen.name ? form.data.regimen.name + ' - ': ''}
-                                      <b> {form.data.drugs && form.data.drugs.length > 0 ? form.data.drugs.map(x=>x.drug.name).toString() : ''}</b>
-                                          {/*{form.data && form.data.type!=0 ? form.data.drug.name :  form.data.regimen.name}*/}
-                                    </td>
-                                    <td>{form.data.duration && form.data.duration ? form.data.duration + ' ' + form.data.duration_unit : ''}</td>
-                                    <td>{Moment(form.data.date_prescribed).format("YYYY-MM-DD")}</td>
-                                    <td>{ form.data.date_dispensed ? Moment(form.data.date_dispensed).format("YYYY-MM-DD") : '' }</td>
+                                    <td>{form.drugName}</td>
+                                    <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
+                                    <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
+                                    <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD  HH:mm:ss")}</td>
+                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :
@@ -256,7 +253,7 @@ const updateFormData = (data) =>{
       (
         <>
         <DispenseModal  modalstatus={modal} togglestatus={toggleModal} datasample={drugDetails} updateFormData={updateFormData}/>
-        {/*<ViewModal modalstatus={modal1} togglestatus={toggleModal1} datasample={drugDetails}/> */}
+        <ViewModal modalstatus={modal1} togglestatus={toggleModal1} datasample={drugDetails}/>
        </>
       ) 
       : ""
@@ -266,7 +263,5 @@ const updateFormData = (data) =>{
   );
 }
 
-
-  
 export default Prescriptions;
 

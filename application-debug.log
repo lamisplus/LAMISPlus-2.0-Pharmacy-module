@@ -1,0 +1,468 @@
+2022-07-13 08:04:26.191  INFO 8492 --- [main] o.l.modules.pharmacy.PharmacyModule      : Starting PharmacyModule on DESKTOP-OI5ET9H with PID 8492 (C:\Users\user\Desktop\usaid_projects\pharmacy-module\target\classes started by user in C:\Users\user\Desktop\usaid_projects\pharmacy-module)
+2022-07-13 08:04:26.202  INFO 8492 --- [main] o.l.modules.pharmacy.PharmacyModule      : No active profile set, falling back to default profiles: default
+2022-07-13 08:04:26.622  WARN 8492 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2022-07-13 08:04:26.880  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : 
+2022-07-13 08:04:26.880  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : --- Across AutoConfiguration Report ---
+2022-07-13 08:04:26.880  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : The following 39 auto-configuration classes have unknown Across support and were not added:
+2022-07-13 08:04:26.883  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration
+2022-07-13 08:04:26.883  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.JHipsterProperties
+2022-07-13 08:04:26.883  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.apidoc.SwaggerAutoConfiguration
+2022-07-13 08:04:26.884  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.apidoc.SwaggerPluginsAutoConfiguration
+2022-07-13 08:04:26.884  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.info.JHipsterInfoContributorConfiguration
+2022-07-13 08:04:26.884  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.metric.JHipsterLoggingMetricsExportConfiguration
+2022-07-13 08:04:26.884  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.config.metric.JHipsterMetricsEndpointConfiguration
+2022-07-13 08:04:26.884  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.security.ssl.UndertowSSLConfiguration
+2022-07-13 08:04:26.885  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.jhipster.security.uaa.UaaAutoConfiguration
+2022-07-13 08:04:26.885  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.bulkhead.autoconfigure.BulkheadAutoConfiguration
+2022-07-13 08:04:26.885  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.bulkhead.autoconfigure.BulkheadMetricsAutoConfiguration
+2022-07-13 08:04:26.885  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.bulkhead.autoconfigure.ThreadPoolBulkheadMetricsAutoConfiguration
+2022-07-13 08:04:26.886  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.circuitbreaker.autoconfigure.CircuitBreakerAutoConfiguration
+2022-07-13 08:04:26.886  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.circuitbreaker.autoconfigure.CircuitBreakerMetricsAutoConfiguration
+2022-07-13 08:04:26.886  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.circuitbreaker.autoconfigure.CircuitBreakersHealthIndicatorAutoConfiguration
+2022-07-13 08:04:26.886  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.ratelimiter.autoconfigure.RateLimiterAutoConfiguration
+2022-07-13 08:04:26.886  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.ratelimiter.autoconfigure.RateLimiterMetricsAutoConfiguration
+2022-07-13 08:04:26.887  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.ratelimiter.autoconfigure.RateLimitersHealthIndicatorAutoConfiguration
+2022-07-13 08:04:26.887  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.retry.autoconfigure.RetryAutoConfiguration
+2022-07-13 08:04:26.887  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.retry.autoconfigure.RetryMetricsAutoConfiguration
+2022-07-13 08:04:26.887  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.scheduled.threadpool.autoconfigure.ContextAwareScheduledThreadPoolAutoConfiguration
+2022-07-13 08:04:26.888  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.timelimiter.autoconfigure.TimeLimiterAutoConfiguration
+2022-07-13 08:04:26.888  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - io.github.resilience4j.timelimiter.autoconfigure.TimeLimiterMetricsAutoConfiguration
+2022-07-13 08:04:26.888  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration
+2022-07-13 08:04:26.888  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.availability.AvailabilityProbesAutoConfiguration
+2022-07-13 08:04:26.888  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration
+2022-07-13 08:04:26.889  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration
+2022-07-13 08:04:26.889  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.jdbc.DataSourceHealthContributorAutoConfiguration
+2022-07-13 08:04:26.889  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.mail.MailHealthContributorAutoConfiguration
+2022-07-13 08:04:26.889  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.metrics.web.client.HttpClientMetricsAutoConfiguration
+2022-07-13 08:04:26.889  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+2022-07-13 08:04:26.890  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
+2022-07-13 08:04:26.890  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.jooq.JooqAutoConfiguration
+2022-07-13 08:04:26.890  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration
+2022-07-13 08:04:26.890  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration
+2022-07-13 08:04:26.890  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : - org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : Consider adding them to a META-INF/across.configuration.
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : --- End Across AutoConfiguration Report ---
+2022-07-13 08:04:26.891  WARN 8492 --- [main] f.a.b.AcrossApplicationAutoConfiguration : 
+2022-07-13 08:04:27.054  INFO 8492 --- [main] .a.c.ApplicationAutoConfigurationPackage : Disabling @AutoConfigurationPackage on the root package - Across applications support only the application module
+2022-07-13 08:04:27.061  WARN 8492 --- [main] o.s.b.a.AutoConfigurationPackages        : @EnableAutoConfiguration was declared on a class in the default package. Automatic @Repository and @Entity scanning is not enabled.
+2022-07-13 08:04:27.644  INFO 8492 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2022-07-13 08:04:27.650  INFO 8492 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-13 08:04:27.651  INFO 8492 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.39]
+2022-07-13 08:04:27.875  INFO 8492 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-13 08:04:27.876  INFO 8492 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1623 ms
+2022-07-13 08:04:27.929  INFO 8492 --- [main] c.f.a.config.AcrossContextConfiguration  : Single datasource bean found - registering it as the AcrossContext datasource.
+2022-07-13 08:04:28.137  INFO 8492 --- [main] c.f.a.c.AcrossDynamicModulesConfigurer   : Adding package based APPLICATION module PharmacyModuleApplicationModule, resources: pharmacyModule, base package: org.lamisplus.modules.pharmacy.application
+2022-07-13 08:04:28.154  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
+2022-07-13 08:04:28.154  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: PharmacyModule (AcrossContext-1)
+2022-07-13 08:04:28.154  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 7 modules in the following order:
+2022-07-13 08:04:28.154  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - AcrossContextInfrastructureModule 5.1.0.RELEASE [resources: AcrossContextInfrastructureModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - AcrossHibernateJpaModule 4.1.0.RELEASE [resources: AcrossHibernateJpaModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 3 - AcrossWebModule 5.1.0.RELEASE [resources: ]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 4 - BaseModule 2.0.0 [resources: BaseModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 5 - PharmacyModule NO_VERSION [resources: PharmacyModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 6 - PharmacyModuleApplicationModule dynamic-module [resources: pharmacyModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 7 - AcrossContextPostProcessorModule 5.1.0.RELEASE [resources: AcrossContextPostProcessorModule]
+2022-07-13 08:04:28.155  INFO 8492 --- [main] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
+2022-07-13 08:04:28.203  INFO 8492 --- [main] c.f.across.core.config.AcrossConfig      : Creating a default ConversionService as no valid bean 'conversionService' is present
+2022-07-13 08:04:28.311  INFO 8492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-07-13 08:04:29.766 ERROR 8492 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:613) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:161) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.Driver.makeConnection(Driver.java:465) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.Driver.connect(Driver.java:264) ~[postgresql-42.2.18.jar:42.2.18]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) [HikariCP-3.4.5.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:158) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:116) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:612) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:669) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:700) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:712) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:783) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:809) [spring-jdbc-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.installers.AcrossCoreSchemaInstaller.getInstalledVersion(AcrossCoreSchemaInstaller.java:85) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossCoreSchemaInstaller.installCoreSchema(AcrossCoreSchemaInstaller.java:60) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_333]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_333]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_333]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_333]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:311) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.registry.DefaultAcrossContextBeanRegistry.getBeanOfType(DefaultAcrossContextBeanRegistry.java:106) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.getInstallerRepository(AcrossBootstrapInstallerRegistry.java:379) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.shouldPerformAction(AcrossBootstrapInstallerRegistry.java:329) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:122) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:85) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.context.bootstrap.AcrossBootstrapper.bootstrap(AcrossBootstrapper.java:169) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.AcrossContext.bootstrap(AcrossContext.java:393) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration.acrossContext(AcrossContextConfiguration.java:113) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.CGLIB$acrossContext$0(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5$$FastClassBySpringCGLIB$$b3cab72a.invoke(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.acrossContext(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_333]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_333]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_333]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_333]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:635) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.config.AcrossServletContextInitializer.onStartup(AcrossServletContextInitializer.java:82) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:230) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_333]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_333]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:843) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_333]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_333]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:440) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:193) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:178) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:158) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:545) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:405) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:87) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:75) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.lamisplus.modules.pharmacy.PharmacyModule.main(PharmacyModule.java:37) ~[classes/:na]
+
+2022-07-13 08:04:29.773  INFO 8492 --- [main] c.f.a.c.i.AcrossCoreSchemaInstaller      : Installing the core schema for Across
+2022-07-13 08:04:29.779  INFO 8492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-07-13 08:04:30.861 ERROR 8492 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:613) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:161) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.Driver.makeConnection(Driver.java:465) ~[postgresql-42.2.18.jar:42.2.18]
+	at org.postgresql.Driver.connect(Driver.java:264) ~[postgresql-42.2.18.jar:42.2.18]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115) [HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) [HikariCP-3.4.5.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:311) [liquibase-core-3.8.9.jar:na]
+	at com.foreach.across.core.installers.AcrossCoreSchemaInstaller.installCoreSchema(AcrossCoreSchemaInstaller.java:74) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_333]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_333]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_333]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_333]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:311) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.registry.DefaultAcrossContextBeanRegistry.getBeanOfType(DefaultAcrossContextBeanRegistry.java:106) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.getInstallerRepository(AcrossBootstrapInstallerRegistry.java:379) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.shouldPerformAction(AcrossBootstrapInstallerRegistry.java:329) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:122) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:85) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.context.bootstrap.AcrossBootstrapper.bootstrap(AcrossBootstrapper.java:169) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.core.AcrossContext.bootstrap(AcrossContext.java:393) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration.acrossContext(AcrossContextConfiguration.java:113) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.CGLIB$acrossContext$0(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5$$FastClassBySpringCGLIB$$b3cab72a.invoke(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244) ~[spring-core-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.acrossContext(<generated>) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_333]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_333]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_333]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_333]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:635) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254) [across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227) [spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342) ~[spring-beans-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at com.foreach.across.config.AcrossServletContextInitializer.onStartup(AcrossServletContextInitializer.java:82) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:230) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5166) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_333]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_333]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:843) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_333]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_333]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486) ~[tomcat-embed-core-9.0.39.jar:9.0.39]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:440) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:193) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:178) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:158) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:545) ~[spring-context-5.2.10.RELEASE.jar:5.2.10.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:405) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) ~[spring-boot-2.3.5.RELEASE.jar:2.3.5.RELEASE]
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:87) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:75) ~[across-core-5.1.0.RELEASE.jar:5.1.0.RELEASE]
+	at org.lamisplus.modules.pharmacy.PharmacyModule.main(PharmacyModule.java:37) ~[classes/:na]
+
+2022-07-13 08:04:30.868 ERROR 8492 --- [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanCreationException. Message: Error creating bean with name 'acrossContext' defined in com.foreach.across.config.AcrossContextConfiguration: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.foreach.across.core.AcrossContext]: Factory method 'acrossContext' threw exception; nested exception is com.foreach.across.core.context.bootstrap.AcrossBootstrapException: Across context bootstrap failed
+2022-07-13 08:04:30.885  INFO 8492 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-07-13 08:04:30.890  WARN 8492 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2022-07-13 08:04:30.896  INFO 8492 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-07-13 08:04:30.900 ERROR 8492 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+An error occurred while bootstrapping the Across context.
+
+Stacktrace:
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'acrossCoreSchemaInstaller': Invocation of init method failed; nested exception is liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:415)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:311)
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127)
+	at com.foreach.across.core.context.registry.DefaultAcrossContextBeanRegistry.getBeanOfType(DefaultAcrossContextBeanRegistry.java:106)
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.getInstallerRepository(AcrossBootstrapInstallerRegistry.java:379)
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.shouldPerformAction(AcrossBootstrapInstallerRegistry.java:329)
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:122)
+	at com.foreach.across.core.installers.AcrossBootstrapInstallerRegistry.runInstallers(AcrossBootstrapInstallerRegistry.java:85)
+	at com.foreach.across.core.context.bootstrap.AcrossBootstrapper.bootstrap(AcrossBootstrapper.java:169)
+	at com.foreach.across.core.AcrossContext.bootstrap(AcrossContext.java:393)
+	at com.foreach.across.config.AcrossContextConfiguration.acrossContext(AcrossContextConfiguration.java:113)
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.CGLIB$acrossContext$0(<generated>)
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5$$FastClassBySpringCGLIB$$b3cab72a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.foreach.across.config.AcrossContextConfiguration$$EnhancerBySpringCGLIB$$bbfe4fa5.acrossContext(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:650)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:635)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1336)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1176)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doCreateBean(AcrossListableBeanFactory.java:152)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at com.foreach.across.core.context.AcrossListableBeanFactory.doGetBean(AcrossListableBeanFactory.java:254)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:227)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:420)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1127)
+	at com.foreach.across.config.AcrossServletContextInitializer.onStartup(AcrossServletContextInitializer.java:82)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:230)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5166)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:843)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:440)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:193)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:178)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:158)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:545)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:405)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:87)
+	at com.foreach.across.AcrossApplicationRunner.run(AcrossApplicationRunner.java:75)
+	at org.lamisplus.modules.pharmacy.PharmacyModule.main(PharmacyModule.java:37)
+Caused by: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:316)
+	at com.foreach.across.core.installers.AcrossCoreSchemaInstaller.installCoreSchema(AcrossCoreSchemaInstaller.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+	... 94 more
+Caused by: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:613)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:161)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:225)
+	at org.postgresql.Driver.makeConnection(Driver.java:465)
+	at org.postgresql.Driver.connect(Driver.java:264)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:358)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:477)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:560)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:311)
+	... 102 more
+
+
+

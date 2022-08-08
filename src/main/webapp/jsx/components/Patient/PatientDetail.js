@@ -50,9 +50,8 @@ function PatientCard(props) {
     let history = useHistory();
     const [key, setKey] = useState('home');
     const { classes } = props;
-
     const patientObj = history.location && history.location.state ? history.location.state : {}
-    console.log(patientObj)
+
   return (
     <div className={classes.root}>
       <Card >
