@@ -39,4 +39,5 @@ public class DrugDispenseDTO {
     private String durationUnit;
     private String type;
     private Object otherDetails;
+    private Long VisitId;
 }
