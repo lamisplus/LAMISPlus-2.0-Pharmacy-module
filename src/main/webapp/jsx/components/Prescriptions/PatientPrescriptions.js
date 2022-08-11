@@ -223,7 +223,7 @@ const updateFormData = (data) =>{
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
                                     <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD  HH:mm:ss")}</td>
-                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
+                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed.replace("@", " ") : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :
