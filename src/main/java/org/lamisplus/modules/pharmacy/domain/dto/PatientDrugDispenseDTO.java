@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class PatientDrugDispenseDTO {
-    //Patient details
+public class PatientDrugDispenseDTO extends PatientDetailDTO{
+    /*//Patient details
     private String patientFirstName;
     private String patientLastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -17,7 +17,7 @@ public class PatientDrugDispenseDTO {
     private Long patientId;
     private String patientAddress;
     private String patientPhoneNumber;
-    private String patientGender;
+    private String patientGender;*/
 
     private List<DrugDispense> drugDispenses;
 }

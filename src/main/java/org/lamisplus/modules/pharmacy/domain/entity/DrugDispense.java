@@ -15,15 +15,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.lamisplus.modules.base.security.SecurityUtils;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.lamisplus.modules.base.domain.entities.Audit;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @TypeDefs({
@@ -63,11 +60,13 @@ public class DrugDispense extends Audit {
 
     @Basic
     @Column(name = "drug_order_id")
+    @NotNull(message = "drugOrderId is mandatory")
     private Long drugOrderId;
 
     @JsonIgnore
     private Integer archived;
 
+    @NotNull(message = "patientId is mandatory")
     private Long patientId;
     private Integer duration;
     private String durationUnit;

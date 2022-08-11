@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.lamisplus.modules.base.domain.entities.Audit;
 
 import javax.persistence.*;
 import java.util.List;

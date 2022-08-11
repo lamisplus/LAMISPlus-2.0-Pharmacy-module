@@ -3,30 +3,25 @@ package org.lamisplus.modules.pharmacy.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lamisplus.modules.pharmacy.controller.apierror.EntityNotFoundException;
-import org.lamisplus.modules.pharmacy.controller.apierror.RecordExistException;
+import org.lamisplus.modules.base.controller.apierror.EntityNotFoundException;
+import org.lamisplus.modules.base.controller.apierror.RecordExistException;
 import org.lamisplus.modules.pharmacy.domain.dto.DrugDTO;
 import org.lamisplus.modules.pharmacy.domain.entity.Drug;
-import org.lamisplus.modules.pharmacy.domain.entity.RegimenDrug;
 import org.lamisplus.modules.pharmacy.domain.mapper.DrugMapper;
-import org.lamisplus.modules.pharmacy.repositories.DrugRepository;
-import org.lamisplus.modules.pharmacy.repositories.RegimenDrugRepository;
+import org.lamisplus.modules.pharmacy.repository.DrugRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 @Slf4j
 @RequiredArgsConstructor
 public class DrugService {
     private static final int ARCHIVED = 1;
     private static final int UN_ARCHIVED = 0;
     private final DrugRepository drugRepository;
-    private final RegimenDrugRepository regimenDrugRepository;
     private final DrugMapper drugMapper;
 
 
@@ -61,8 +56,8 @@ public class DrugService {
         return drug.getArchived();
     }
 
-    public List<DrugDTO> getDrugsByRegimenId(Long regimenId) {
+    /*public List<DrugDTO> getDrugsByRegimenId(Long regimenId) {
         List<Drug> drug = regimenDrugRepository.findAllByRegimenId(regimenId).stream().map(RegimenDrug::getDrugByDrugId).collect(Collectors.toList());
         return drugMapper.toDrugDTOList(drug);
-    }
+    }*/
 }
