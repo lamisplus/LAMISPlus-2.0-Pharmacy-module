@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/drug-orders")
+@RequestMapping("/api/v1/drug-orders")
 @Slf4j
 @RequiredArgsConstructor
 @Validated
