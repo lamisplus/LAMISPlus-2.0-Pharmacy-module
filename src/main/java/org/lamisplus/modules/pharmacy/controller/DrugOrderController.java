@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/drug-orders")
+@RequestMapping("/api/v1/drug-orders")
 @Slf4j
 @RequiredArgsConstructor
 @Validated
@@ -41,6 +41,11 @@ public class DrugOrderController {
     @GetMapping("/patients")
     public ResponseEntity<List<PatientDrugOrderDTO>> getAllDrugOrdersForPatients() {
         return ResponseEntity.ok(drugOrderService.getAllDrugOrdersForPatients());
+    }
+
+    @GetMapping("/visits/{id}")
+    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrdersByVisitId(@PathVariable Long id) {
+        return ResponseEntity.ok(drugOrderService.getAllDrugOrdersByVisitId(id));
     }
 
     @GetMapping("/patients/{id}")

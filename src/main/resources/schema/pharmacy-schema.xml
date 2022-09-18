@@ -244,7 +244,7 @@
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="regimen_id_fk" />
-            </not>
+            </not>private Integer status
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="regimen_id" baseTableName="regimen_drug" constraintName="regimen_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="regimen"/>
     </changeSet>-->
