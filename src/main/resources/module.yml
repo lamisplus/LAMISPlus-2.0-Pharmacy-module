@@ -2,7 +2,7 @@ basePackage: org.lamisplus.modules.pharmacy
 name: PharmacyModule
 dependencies: {PatientModule: 1.0.0}
 menus:
-  - icon:
+  - icon: fa-sharp fa-solid fa-prescription-bottle
     disabled: false
     name: Pharmacy
     state: pharmacy

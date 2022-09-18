@@ -33,11 +33,6 @@ public class DrugOrderController {
         return ResponseEntity.ok(drugOrderService.getAllDrugOrders(patientId));
     }
 
-    @GetMapping("/orders-by-visit-id/{visit_id}")
-    public ResponseEntity<List<DrugOrderDTO>> getAllDrugOrdersByVisitId(@PathVariable Integer visit_id) {
-        return ResponseEntity.ok(drugOrderService.getAllDrugOrdersByVisitId(visit_id));
-    }
-
     @GetMapping("/patients")
     public ResponseEntity<List<PatientDrugOrderDTO>> getAllDrugOrdersForPatients() {
         return ResponseEntity.ok(drugOrderService.getAllDrugOrdersForPatients());
