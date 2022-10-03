@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     input: {
-        border:'2px solid #014d88',
+        border:'1px solid #014d88',
         borderRadius:'0px',
         fontSize:'16px',
         color:'#000'
@@ -74,8 +74,8 @@ const useStyles = makeStyles(theme => ({
         borderRadius:'0px'
     },
     label:{
-        fontSize:'16px',
-        color:'rgb(153, 46, 98)',
+        fontSize:'14px',
+        color:'#014d88',
         fontWeight:'600'
     }
 }))
@@ -94,23 +94,24 @@ const DispenseModal = (props) => {
     const [saving, setSaving] = useState(false);
     const [drugDispenseObj] = useState({drugDispenses:[]})
     const [formValues, setFormValues] = useState({
-    brand: "",
-    comment: "",
-    dateTimeDispensed: "",
-    dispensedBy: "",
-    dosageFrequency: drugDetails.dosageFrequency,
-    dosageStrength: drugDetails.dosageStrength,
-    dosageStrengthUnit: drugDetails.dosageStrengthUnit,
-    drugName: drugDetails.drugName,
-    drugOrderId: drugDetails.id,
-    duration: drugDetails.duration,
-    durationUnit:drugDetails.durationUnit,
-    otherDetails: {},
-    patientId: drugDetails.patientId,
-    quantity:"",
-    startDate: drugDetails.startDate,
-    type: "",
-    unit: "" });
+        brand: "",
+        comment: "",
+        dateTimeDispensed: "",
+        dispensedBy: "",
+        dosageFrequency: drugDetails.dosageFrequency,
+        dosageStrength: drugDetails.dosageStrength,
+        dosageStrengthUnit: drugDetails.dosageStrengthUnit,
+        drugName: drugDetails.drugName,
+        drugOrderId: drugDetails.id,
+        duration: drugDetails.duration,
+        durationUnit:drugDetails.durationUnit,
+        otherDetails: {},
+        patientId: drugDetails.patientId,
+        quantity:"",
+        startDate: drugDetails.startDate,
+        type: "",
+        unit: ""
+    });
 
     const handleInputChange = (e) => {
         setFormValues ({ ...formValues, [e.target.name]: e.target.value });
@@ -207,9 +208,7 @@ const DispenseModal = (props) => {
                                             />
                                         </FormGroup>
                                     </div>
-                                    </div>
-                                    <div className="row">
-                                    <div className="form-group mb-3 col-md-5">
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
                                             <Label for="exampleNumber" className={classes.label}>Brand name</Label>
                                             <Input
@@ -224,7 +223,10 @@ const DispenseModal = (props) => {
 
                                         </FormGroup>
                                     </div>
-                                    <div className="form-group mb-3 col-md-3">
+                            </div>
+                            <div className="row">
+
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
                                             <Label className={classes.label}>Quantity</Label>
                                             <Input
@@ -237,7 +239,7 @@ const DispenseModal = (props) => {
                                             />
                                         </FormGroup>
                                     </div>
-                                    <div className="form-group mb-3 col-md-4">
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
                                             <Label className={classes.label}>Unit</Label>
                                             <Input

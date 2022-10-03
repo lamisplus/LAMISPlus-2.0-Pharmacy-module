@@ -121,7 +121,8 @@ const updateFormData = (data) =>{
    );
 
 
- const Actions = (form) => { 
+ const Actions = (form) => {
+ console.log("form", form)
    return (
      <Menu>
        <MenuButton
@@ -135,7 +136,7 @@ const updateFormData = (data) =>{
          Action<span aria-hidden>▾</span>
        </MenuButton>
        <MenuList style={{ hover: "#eee" }}>
-         {form && form.status === 0 ? (
+         {form && form.status === 0 || form.status === null ? (
 
            <MenuItem onSelect={() => 
             toggle(form)
@@ -185,16 +186,17 @@ const updateFormData = (data) =>{
   return (
     <React.Fragment>
         <Card body>
+        {/*
         <Link to={"/"} >
             <ButtonMui
                 variant="contained"
                 color="primary"
                 className=" float-end ms-2"
-                //startIcon={<FaUserPlus size="10"/>}
+                startIcon={<FaUserPlus size="10"/>}
             >
                 <span style={{ textTransform: "capitalize" }}>Back</span>
             </ButtonMui>
-            </Link>     
+            </Link> */}
           <div>
             {formData.drugOrders.length >= 0 ? (
               <Fragment>
