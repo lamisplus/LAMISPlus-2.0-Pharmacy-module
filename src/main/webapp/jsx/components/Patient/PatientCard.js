@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import {Link} from "react-router-dom";
+
+import MatButton from "@material-ui/core/Button";
+import { TiArrowBack } from 'react-icons/ti'
 import classNames from 'classnames';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -21,39 +25,40 @@ import moment from "moment";
 Moment.locale("en");
 //momentLocalizer();
 
+
 const styles = theme => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-  icon: {
-    verticalAlign: 'bottom',
-    height: 20,
-    width: 20,
-  },
-  details: {
-    alignItems: 'center',
-  },
-  column: {
-    flexBasis: '20.33%',
-  },
-  helper: {
-    borderLeft: `2px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-  },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
+    root: {
+        width: '100%',
     },
-  },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+    },
+    secondaryHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+    },
+    icon: {
+        verticalAlign: 'bottom',
+        height: 20,
+        width: 20,
+    },
+    details: {
+        alignItems: 'center',
+    },
+    column: {
+        flexBasis: '20.33%',
+    },
+    helper: {
+        borderLeft: `2px solid ${theme.palette.divider}`,
+        padding: `${theme.spacing(1)}px ${theme.spacing(1) * 2}px`,
+    },
+    link: {
+        color: theme.palette.primary.main,
+        textDecoration: 'none',
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+    },
 });
 
 function PatientCard(props) {
@@ -79,118 +84,93 @@ function PatientCard(props) {
 
   return (
     <div className={classes.root}>
-       <ExpansionPanel defaultExpanded>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                
-                <Row>
-                    
-                    <Col md={11}>
-                    <Row className={"mt-1"}>
-                    <Col md={12} className={classes.root2}>
-                        <b style={{fontSize: "25px"}}>
-                        {patientObj.patientFirstName + " " + patientObj.patientLastName }
-                        </b>
-                        
-                    </Col>
-                    <Col md={4} className={classes.root2}>
-                    <span>
-                        {" "}
-                        Patient ID : <b>{patientObj.patientId }</b>
-                    </span>
-                    </Col>
+           <ExpansionPanel defaultExpanded>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 
-                    <Col md={4} className={classes.root2}>
-                    <span>
-                        Date Of Birth : <b>{patientObj.patientDob }</b>
-                    </span>
-                    </Col>
-                    <Col md={4} className={classes.root2}>
-                    <span>
-                        {" "}
-                        Age : <b>{calculate_age(moment(patientObj.PatientDob).format("DD-MM-YYYY"))}</b>
-                    </span>
-                    </Col>
-                    <Col md={4}>
-                    <span>
-                        {" "}
-                        Gender :{" "}
-                       <b>{patientObj.patientGender}</b>
-                    </span>
-                    </Col>
-                    <Col md={4} className={classes.root2}>
-                    <span>
-                        {" "}
-                        Phone Number : <b>{patientObj.patientPhoneNumber }</b>
-                    </span>
-                    </Col>
-                    <Col md={4} className={classes.root2}>
-                    <span>
-                        {" "}
-                        Address : <b>{patientObj.patientAddress } </b>
-                    </span>
-                    </Col>
+                    <Row>
 
-                    <Col md={12}>
-                    
-                    </Col>
+                        <Col md={12}>
+                        <Row className={"mt-1"}>
+                        <Col md={12} className={classes.root2}>
+                            <b style={{fontSize: "25px", color:'rgb(153, 46, 98)'}}>
+                            {patientObj.patientFirstName + " " + patientObj.patientLastName }
+                             < span style={{color:'green'}}>
+                                 {": "+"Active"}
+                            </span>
+                            </b>
+                        </Col>
+                        <Col md={4} className={classes.root2} style={{marginTop:"10px"}}>
+                        <span  style={{color:'#000'}}>
+                            {" "}
+                            Hospital Number : <b style={{color:'#0B72AA'}}>{patientObj.patientHospitalNumber }</b>
+                        </span>
+                        </Col>
+
+                        <Col md={4} className={classes.root2} style={{marginTop:"10px"}}>
+                        <span style={{color:'#000'}}>
+                            Date Of Birth : <b style={{color:'#0B72AA'}}>{patientObj.patientDob }</b>
+                        </span>
+                        </Col>
+                        <Col md={4} className={classes.root2} style={{marginTop:"10px"}}>
+                        <span style={{color:'#000'}}>
+                            {" "}
+                            Age : <b style={{color:'#0B72AA'}}>{calculate_age(moment(patientObj.patientDob).format("DD-MM-YYYY"))}</b>
+                        </span>
+                        </Col>
+                        <Col md={4} style={{marginTop:"10px"}}>
+                        <span style={{color:'#000'}}>
+                            {" "}
+                            Sex :{" "}
+                            <b style={{color:'#0B72AA',fontFamily:`'poppins', sans-serif`,fontWeight:'bolder'}}>{patientObj.patientSex }</b>
+                        </span>
+                        </Col>
+                        <Col md={4} className={classes.root2} style={{marginTop:"10px"}}>
+                        <span style={{color:'#000'}}>
+                            {" "}
+                            E-mail : <b style={{color:'#0B72AA'}}>{patientObj.patientPhoneNumber }</b>
+                        </span>
+                        </Col>
+                        <Col md={4} className={classes.root2} style={{marginTop:"10px"}}>
+                        <span style={{color:'#000'}}>
+                            {" "}
+                            Address: <b style={{color:'#0B72AA'}}> </b>
+                        </span>
+                        </Col>
+
+                        {/*<Col md={12}>
+                        {VaccinationStatus(patientObj)}
+                        {CurrentStatus(patientObj.current_status)}
+
+                        </Col>*/}
+                        </Row>
+                        </Col>
+
                     </Row>
-                    </Col>
-                </Row>
-            
-                </ExpansionPanelSummary>
-               {/* <ExpansionPanelDetails className={classes.details}>
-                <div className={classes.column} >
-                    <Button
-                            color='red'
-                            content='BloodType'
-                            //icon='heart'
-                            label={{ basic: true, color: 'red', pointing: 'left', content: 'AB+' }}
-                            />
-                            
-                    </div>
-                <div className={classes.column}>
-                <Button
-                            basic
-                            color='blue'
-                            content='Height'
-                            icon='fork'
-                            label={{
-                                as: 'a',
-                                basic: true,
-                                color: 'blue',
-                                pointing: 'left',
-                                content: '74.5 in',
-                            }}
-                            />
-                </div>
-                <div className={classes.column}>
-                <Button
-                            basic
-                            color='blue'
-                            content='Weight'
-                            icon='fork'
-                            label={{
-                                as: 'a',
-                                basic: true,
-                                color: 'blue',
-                                pointing: 'left',
-                                content: '74.5 in',
-                            }}
-                            />
-                </div>
-                <div className={classNames(classes.column, classes.helper)}>
-                    <Typography variant="caption">
-                   
-                    </Typography>
-                </div>
-                </ExpansionPanelDetails> */}
-                <Divider />
-                <ExpansionPanelActions expandIcon={<ExpandMoreIcon />}>
-                
-                </ExpansionPanelActions>
-            </ExpansionPanel>
-        
-    </div>
+                    </ExpansionPanelSummary>
+
+                    <ExpansionPanelActions expandIcon={<ExpandMoreIcon />}>
+                      <div className="float-end" style={{floated:'right'}}>
+                        <Link to={"/"} >
+                            <Button
+                                floated='right'
+                                style={{padding:'0px'}}
+                            >
+                                <MatButton
+                                    variant="contained"
+                                    floated='right'
+                                    startIcon={<TiArrowBack  />}
+                                    style={{backgroundColor:"rgb(153, 46, 98)", color:'#fff', height:'35px'}}
+                                >
+                                    <span style={{ textTransform: "capitalize" }}>Back</span>
+                                </MatButton>
+                            </Button>
+
+                        </Link>
+                        </div>
+                    </ExpansionPanelActions>
+                </ExpansionPanel>
+
+        </div>
   );
 }
 

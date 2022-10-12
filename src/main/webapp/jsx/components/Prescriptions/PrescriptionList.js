@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
  import axios from "axios";
 import { url as baseUrl, token as token  } from "../../../api";
 import {PrescriptionObj} from './PrescriptionObj';
+import SplitActionButton from '../../layouts/SplitActionButton';
+import {FaEye, FaUserPlus} from "react-icons/fa";
 
 import { forwardRef } from 'react';
 
@@ -74,7 +76,7 @@ const PatientSearch = (props) => {
         })
     return dispensed.length
   }
-  const drugType = (drugsArray) => {
+    const drugType = (drugsArray) => {
     //console.log(prescriptions)
     const type = []
     drugsArray.map(drugs => {
@@ -90,6 +92,32 @@ const PatientSearch = (props) => {
     
     return type
   }
+
+    const actionItems = prescription => {
+              return  [
+                  {
+                      name:'View',
+                      type:'link',
+                      icon:<FaEye  size="22"/>,
+                      to:{
+                          pathname: "/prescriptions",
+                          state: prescription
+                      }
+                  },
+
+    //              {...(permissions.includes('view_patient') || permissions.includes("all_permission")&&
+    //                      {
+    //                          name:'Print Manifest',
+    //                          type:'link',
+    //                          icon:<MdPerson size="20" color='rgb(4, 196, 217)' />,
+    //                          to:{
+    //                              pathname: "/print-manifest",
+    //                              state: { sampleObj: row, permissions:permissions  }
+    //                          }
+    //                      }
+    //              )},
+               ]
+           }
  
   return (
     <div>
@@ -127,20 +155,9 @@ const PatientSearch = (props) => {
           dispensedCount: totalDrugsPrescribed(prescription.drugOrders),
          // type:   drugType(prescription.formDataObj),
           actions: (
-            
-            <Link
-              to={{
-                pathname: "/prescriptions",
-                state: prescription,
-               
-              }}
-              style={{ cursor: "pointer", color: "blue", fontStyle: "bold" }}>
-              <Tooltip title="View Prescription">
-                <IconButton aria-label="View Prescription">
-                  <VisibilityIcon color="primary" />
-                </IconButton>
-              </Tooltip>
-            </Link>
+                <div>
+                   <SplitActionButton actions={actionItems(prescription)} />
+                </div>
           ),
         }))}
                   options={{

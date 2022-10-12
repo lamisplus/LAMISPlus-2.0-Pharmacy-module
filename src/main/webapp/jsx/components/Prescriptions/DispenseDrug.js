@@ -54,7 +54,29 @@ const useStyles = makeStyles(theme => ({
         }
     },
     input: {
-        display: 'none'
+        border:'1px solid #014d88',
+        borderRadius:'0px',
+        fontSize:'16px',
+        color:'#000'
+    },
+    error: {
+        color: "#f85032",
+        fontSize: "11px",
+    },
+    success: {
+        color: "#4BB543 ",
+        fontSize: "11px",
+    },
+    inputGroupText:{
+        backgroundColor:'#014d88',
+        fontWeight:"bolder",
+        color:'#fff',
+        borderRadius:'0px'
+    },
+    label:{
+        fontSize:'14px',
+        color:'#014d88',
+        fontWeight:'600'
     }
 }))
 
@@ -72,23 +94,24 @@ const DispenseModal = (props) => {
     const [saving, setSaving] = useState(false);
     const [drugDispenseObj] = useState({drugDispenses:[]})
     const [formValues, setFormValues] = useState({
-    brand: "",
-    comment: "",
-    dateTimeDispensed: "",
-    dispensedBy: "",
-    dosageFrequency: drugDetails.dosageFrequency,
-    dosageStrength: drugDetails.dosageStrength,
-    dosageStrengthUnit: drugDetails.dosageStrengthUnit,
-    drugName: drugDetails.drugName,
-    drugOrderId: drugDetails.id,
-    duration: drugDetails.duration,
-    durationUnit:drugDetails.durationUnit,
-    otherDetails: {},
-    patientId: drugDetails.patientId,
-    quantity:"",
-    startDate: drugDetails.startDate,
-    type: "",
-    unit: "" });
+        brand: "",
+        comment: "",
+        dateTimeDispensed: "",
+        dispensedBy: "",
+        dosageFrequency: drugDetails.dosageFrequency,
+        dosageStrength: drugDetails.dosageStrength,
+        dosageStrengthUnit: drugDetails.dosageStrengthUnit,
+        drugName: drugDetails.drugName,
+        drugOrderId: drugDetails.id,
+        duration: drugDetails.duration,
+        durationUnit:drugDetails.durationUnit,
+        otherDetails: {},
+        patientId: drugDetails.patientId,
+        quantity:"",
+        startDate: drugDetails.startDate,
+        type: "",
+        unit: ""
+    });
 
     const handleInputChange = (e) => {
         setFormValues ({ ...formValues, [e.target.name]: e.target.value });
@@ -172,7 +195,7 @@ const DispenseModal = (props) => {
                             <div className="row">
                                     <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
-                                            <Label for="maritalStatus">Date Dispensed</Label>
+                                            <Label for="maritalStatus" className={classes.label}>Date Dispensed</Label>
                                             
                                             <Input
                                                 type="datetime-local"
@@ -181,14 +204,13 @@ const DispenseModal = (props) => {
                                                 id="dateTimeDispensed"
                                                 placeholder="Date Dispensed"
                                                 onChange={handleInputChange}
+                                                className={classes.input}
                                             />
                                         </FormGroup>
                                     </div>
-                                    </div>
-                                    <div className="row">
-                                    <div className="form-group mb-3 col-md-5">
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
-                                            <Label for="exampleNumber">Brand name</Label>
+                                            <Label for="exampleNumber" className={classes.label}>Brand name</Label>
                                             <Input
                                                 type="text"
                                                 name="brand"
@@ -196,29 +218,35 @@ const DispenseModal = (props) => {
                                                 id="brand"
                                                 //placeholder="brand name"
                                                 onChange={handleInputChange}
+                                                className={classes.input}
                                             />
 
                                         </FormGroup>
                                     </div>
-                                    <div className="form-group mb-3 col-md-3">
+                            </div>
+                            <div className="row">
+
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
-                                            <Label>Quantity</Label>
+                                            <Label className={classes.label}>Quantity</Label>
                                             <Input
                                                 type="number"
                                                 name="quantity"
                                                 value={formValues.quantity}
                                                 id="quantity"
                                                 onChange={handleInputChange}
+                                                className={classes.input}
                                             />
                                         </FormGroup>
                                     </div>
-                                    <div className="form-group mb-3 col-md-4">
+                                    <div className="form-group mb-3 col-md-6">
                                         <FormGroup>
-                                            <Label >Unit</Label>
+                                            <Label className={classes.label}>Unit</Label>
                                             <Input
                                                 type="select"
                                                 name="unit"
                                                 id="unit"
+                                                className={classes.input}
                                                 value={formValues.unit}
                                                 onChange={handleInputChange}>
                                                 <option value="Packs">Packs</option>
@@ -229,7 +257,7 @@ const DispenseModal = (props) => {
                                     </div>
                                     <div className="form-group mb-3 col-md-12">
                                         <FormGroup>
-                                            <Label for="comment">Note</Label>
+                                            <Label for="comment" className={classes.label}>Note</Label>
                                             <Input
                                                 type="textarea"
                                                 name="comment"
@@ -238,6 +266,7 @@ const DispenseModal = (props) => {
                                                 row="40"
                                                 style={{ minHeight: 100, fontSize: 14 }}
                                                 onChange={handleInputChange}
+                                                className={classes.input}
                                             ></Input>
                                         </FormGroup>
                                     </div>

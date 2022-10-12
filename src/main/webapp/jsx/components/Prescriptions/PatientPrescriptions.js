@@ -121,7 +121,8 @@ const updateFormData = (data) =>{
    );
 
 
- const Actions = (form) => { 
+ const Actions = (form) => {
+ console.log("form", form)
    return (
      <Menu>
        <MenuButton
@@ -135,7 +136,7 @@ const updateFormData = (data) =>{
          Action<span aria-hidden>▾</span>
        </MenuButton>
        <MenuList style={{ hover: "#eee" }}>
-         {form && form.status === 0 ? (
+         {form && form.status === 0 || form.status === null ? (
 
            <MenuItem onSelect={() => 
             toggle(form)
@@ -185,16 +186,17 @@ const updateFormData = (data) =>{
   return (
     <React.Fragment>
         <Card body>
+        {/*
         <Link to={"/"} >
             <ButtonMui
                 variant="contained"
                 color="primary"
                 className=" float-end ms-2"
-                //startIcon={<FaUserPlus size="10"/>}
+                startIcon={<FaUserPlus size="10"/>}
             >
                 <span style={{ textTransform: "capitalize" }}>Back</span>
             </ButtonMui>
-            </Link>     
+            </Link> */}
           <div>
             {formData.drugOrders.length >= 0 ? (
               <Fragment>
@@ -223,7 +225,7 @@ const updateFormData = (data) =>{
                                     <td>{form.dosageFrequency && form.dosageStrengthUnit ? form.dosageFrequency + ' ' + form.dosageStrengthUnit : '' }</td>
                                     <td>{form.duration && form.duration ? form.duration + ' ' + form.durationUnit : ''}</td>
                                     <td>{Moment(form.dateTimePrescribed).format("YYYY-MM-DD  HH:mm:ss")}</td>
-                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
+                                    <td>{ form.dateTimeDispensed !== null ? form.dateTimeDispensed.replace("@", " ") : Moment(new Date()).format("YYYY-MM-DD  HH:mm:ss") }</td>
                                     <td>{Actions(form)}</td>
                                   </tr>
                                   :

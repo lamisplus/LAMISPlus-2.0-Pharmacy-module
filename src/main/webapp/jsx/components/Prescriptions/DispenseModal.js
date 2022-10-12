@@ -25,8 +25,6 @@ import moment from "moment";
 import { Spinner } from 'reactstrap';
 import { url } from "./../../../api";
 import axios from "axios";
-
-
 Moment.locale('en');
 momentLocalizer();
 const useStyles = makeStyles(theme => ({
@@ -110,8 +108,6 @@ const DispenseModal = (props) => {
 
         toggle()
     };
-
-
 
     return (
         <div>
